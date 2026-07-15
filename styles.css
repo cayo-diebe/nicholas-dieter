@@ -760,12 +760,39 @@ body.reveal-ready [data-reveal].is-visible {
 
 .text-link {
   display: inline-flex;
+  align-items: center;
+  gap: 0.62rem;
   margin-top: 1.35rem;
   color: var(--nd-cream);
   font-weight: 800;
-  text-decoration: underline;
-  text-decoration-color: rgba(244, 232, 184, 0.46);
-  text-underline-offset: 0.26em;
+  text-decoration: none;
+}
+
+.text-link svg {
+  width: 1.28rem;
+  height: 1.28rem;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.text-link span {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 1px;
+  transition: background-size 180ms var(--ease), color 180ms var(--ease);
+}
+
+.text-link:hover {
+  color: var(--warm-white);
+}
+
+.text-link:hover span {
+  background-size: 100% 2px;
 }
 
 .site-footer {
