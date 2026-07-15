@@ -23,18 +23,49 @@ const galleryImages = [
     src: "assets/oficina-leitura-palco.png",
     alt: "Participantes lendo textos em uma sala de ensaio com luzes de palco.",
     caption: "Leitura, escuta e composição em sala de ensaio.",
+    layout: "wide",
     position: "center center",
   },
   {
     src: "assets/oficina-mesa-cena.png",
     alt: "Três participantes em exercício cênico ao redor de uma mesa de madeira.",
     caption: "Jogo dramático, relação e construção de presença.",
+    layout: "portrait",
     position: "center center",
   },
   {
     src: "assets/oficina-dupla-mesa.png",
     alt: "Dois participantes em exercício teatral sentados à mesa.",
     caption: "Cena, conflito e imaginação compartilhada.",
+    layout: "wide",
+    position: "center center",
+  },
+  {
+    src: "assets/oficina-sofa-movimento.png",
+    alt: "Duas participantes em exercício físico sobre um sofá em cena.",
+    caption: "Corpo, impulso e reação em composição.",
+    layout: "portrait",
+    position: "center center",
+  },
+  {
+    src: "assets/oficina-mesa-publico.png",
+    alt: "Participante em pé diante de uma mesa com público ao fundo.",
+    caption: "Presença individual diante do grupo.",
+    layout: "portrait",
+    position: "center center",
+  },
+  {
+    src: "assets/oficina-figura-vermelho.png",
+    alt: "Participante sentada à mesa com figurino vermelho em exercício cênico.",
+    caption: "Escuta, pausa e tensão dramática.",
+    layout: "portrait",
+    position: "center center",
+  },
+  {
+    src: "assets/oficina-palco-aberto.png",
+    alt: "Duas participantes em cena no palco diante da plateia.",
+    caption: "Cena aberta, luz e relação com a plateia.",
+    layout: "portrait",
     position: "center center",
   },
 ];
@@ -123,7 +154,12 @@ const renderGallery = () => {
   track.innerHTML = galleryImages
     .map(
       (image, index) => `
-        <figure class="carousel__slide" aria-hidden="${index === 0 ? "false" : "true"}">
+        <figure class="carousel__slide carousel__slide--${image.layout}" aria-hidden="${index === 0 ? "false" : "true"}">
+          <span
+            class="carousel__backdrop"
+            aria-hidden="true"
+            style="background-image: url('${image.src}'); background-position: ${image.position};"
+          ></span>
           <img
             src="${image.src}"
             alt="${image.alt}"
