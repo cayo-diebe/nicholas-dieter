@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Laboratórios de Teatro, Cinema, Pesquisa e Formação Artística conduzidos por Nicholas Dieter."
+    >
+    <meta name="theme-color" content="#070608">
+    <title>Nicholas Dieter | Laboratórios de Teatro e Cinema</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="preload" href="assets/nicholas-dieter-nevoa.png" as="image">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header" aria-label="Cabeçalho">
+      <div class="site-header__inner">
+        <a class="brand" href="#inicio" aria-label="Nicholas Dieter, início">
+          <img src="assets/nd-logo.png" width="48" height="48" alt="">
+          <span>Nicholas Dieter</span>
+        </a>
+
+        <nav class="site-nav" aria-label="Navegação principal">
+          <a href="#oficina">Oficina</a>
+          <a href="#registros">Registros</a>
+          <a href="#aulas">Aulas</a>
+          <a href="#sobre">Sobre</a>
+        </nav>
+      </div>
+    </header>
+
+    <aside class="section-index" aria-label="Índice da página">
+      <a href="#oficina" data-section-link="oficina"><span>01</span> Oficina</a>
+      <a href="#registros" data-section-link="registros"><span>02</span> Registros</a>
+      <a href="#aulas" data-section-link="aulas"><span>03</span> Aulas</a>
+      <a href="#sobre" data-section-link="sobre"><span>04</span> Sobre</a>
+    </aside>
+
+    <main>
+      <section class="hero" id="inicio" aria-labelledby="hero-title">
+        <div class="hero__image" aria-hidden="true"></div>
+        <div class="hero__mist" aria-hidden="true"></div>
+
+        <div class="hero__content" data-reveal>
+          <p class="hero__eyebrow">Diretor • Dramaturgo • Pesquisador</p>
+          <h1 id="hero-title">Nicholas Dieter</h1>
+          <p class="hero__statement">
+            Laboratórios de Teatro, Cinema, Pesquisa e Formação Artística
+          </p>
+        </div>
+
+        <nav class="hero-menu" aria-label="Percursos da página" data-reveal>
+          <a href="#oficina">
+            <span>01</span>
+            <strong>Subpersonalidades</strong>
+            <small>Laboratório intensivo</small>
+          </a>
+          <a href="#registros">
+            <span>02</span>
+            <strong>Registros</strong>
+            <small>Processos em sala</small>
+          </a>
+          <a href="#aulas" data-vimeo-link target="_blank" rel="noopener">
+            <span>03</span>
+            <strong>Outras aulas</strong>
+            <small>Vídeo e continuidade</small>
+          </a>
+        </nav>
+
+        <div class="hero__actions" aria-label="Ações principais" data-reveal>
+          <a class="button button--primary" href="#oficina">Conhecer oficina</a>
+          <a
+            class="button button--ghost"
+            href="https://vimeo.com/"
+            target="_blank"
+            rel="noopener"
+            data-vimeo-link
+          >
+            Ver outras aulas
+          </a>
+        </div>
+
+        <img
+          class="hero__monogram"
+          src="assets/nd-logo.png"
+          width="140"
+          height="140"
+          alt="Monograma ND"
+        >
+      </section>
+
+      <section
+        class="featured editorial-section"
+        id="oficina"
+        aria-labelledby="featured-title"
+        data-section="oficina"
+      >
+        <div class="section-shell featured__grid">
+          <div class="section-marker" aria-hidden="true">01</div>
+
+          <div class="featured__copy" data-reveal>
+            <p class="section-kicker">Oficina em destaque</p>
+            <div id="featured-workshop"></div>
+          </div>
+
+          <figure class="featured__poster" data-reveal>
+            <img
+              src="assets/subpersonalidades-cartaz.png"
+              alt="Cartaz do Laboratório Intensivo Subpersonalidades"
+              loading="lazy"
+            >
+          </figure>
+        </div>
+      </section>
+
+      <section
+        class="gallery editorial-section"
+        id="registros"
+        aria-labelledby="gallery-title"
+        data-section="registros"
+      >
+        <div class="section-shell gallery__layout">
+          <div class="gallery__copy" data-reveal>
+            <div class="section-marker" aria-hidden="true">02</div>
+            <p class="section-kicker">Arquivo vivo</p>
+            <h2 id="gallery-title">Registros de oficinas</h2>
+            <p class="gallery__summary">
+              Imagens de ensaios, leituras e composições coletivas. O arquivo fica pronto
+              para crescer com novas turmas, encontros e processos.
+            </p>
+            <p class="gallery__current" id="gallery-current-caption"></p>
+            <p class="gallery__counter" id="gallery-current-counter" aria-live="polite"></p>
+          </div>
+
+          <div class="carousel" aria-roledescription="carrossel" aria-label="Registros de oficinas" data-reveal>
+            <div class="carousel__viewport" tabindex="0" aria-live="polite">
+              <div class="carousel__track" id="gallery-track"></div>
+            </div>
+
+            <div class="carousel__controls">
+              <button
+                class="carousel__button"
+                type="button"
+                aria-label="Imagem anterior"
+                data-carousel-prev
+              >
+                <span aria-hidden="true">←</span>
+              </button>
+              <button
+                class="carousel__button"
+                type="button"
+                aria-label="Próxima imagem"
+                data-carousel-next
+              >
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+
+            <div class="carousel__indicators" id="gallery-indicators" aria-label="Selecionar imagem"></div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="other-lessons editorial-section"
+        id="aulas"
+        aria-labelledby="other-lessons-title"
+        data-section="aulas"
+      >
+        <div class="section-shell other-lessons__inner">
+          <div class="section-marker" aria-hidden="true">03</div>
+          <div data-reveal>
+            <p class="section-kicker">Outras aulas</p>
+            <h2 id="other-lessons-title">Aulas, filmes e processos em vídeo.</h2>
+          </div>
+          <a
+            class="button button--primary"
+            href="https://vimeo.com/"
+            target="_blank"
+            rel="noopener"
+            data-vimeo-link
+            data-reveal
+          >
+            Ver outras aulas
+          </a>
+        </div>
+      </section>
+
+      <section
+        class="about editorial-section"
+        id="sobre"
+        aria-labelledby="about-title"
+        data-section="sobre"
+      >
+        <div class="section-shell about__grid">
+          <div data-reveal>
+            <div class="section-marker" aria-hidden="true">04</div>
+            <p class="section-kicker">Sobre</p>
+            <h2 id="about-title">Pesquisa cênica com presença, escuta e composição.</h2>
+          </div>
+
+          <div class="about__text" data-reveal>
+            <p>
+              Nicholas Dieter conduz laboratórios de teatro, cinema e formação artística
+              voltados à presença, imaginação dramática, pesquisa cênica e composição coletiva.
+            </p>
+            <a
+              class="text-link"
+              href="https://www.instagram.com/nicholas.dieter/"
+              target="_blank"
+              rel="noopener"
+            >
+              Instagram de Nicholas Dieter
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="section-shell site-footer__inner">
+        <span>ND</span>
+        <p>Laboratórios de Teatro, Cinema, Pesquisa e Formação Artística.</p>
+      </div>
+    </footer>
+  </body>
+</html>
