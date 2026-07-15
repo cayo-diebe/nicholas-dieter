@@ -22,27 +22,33 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <header class="site-header" aria-label="Cabeçalho">
+    <header class="site-header" aria-label="Cabeçalho" data-i18n-aria="aria.header">
       <div class="site-header__inner">
-        <a class="brand" href="#inicio" aria-label="Nicholas Dieter, início">
+        <a class="brand" href="#inicio" aria-label="Nicholas Dieter, início" data-i18n-aria="aria.brand">
           <img src="assets/nd-logo.png" width="48" height="48" alt="">
           <span>Nicholas Dieter</span>
         </a>
 
-        <nav class="site-nav" aria-label="Navegação principal">
-          <a href="#oficina">Oficina</a>
-          <a href="#registros">Registros</a>
-          <a href="#aulas">Aulas</a>
-          <a href="#sobre">Sobre</a>
+        <nav class="site-nav" aria-label="Navegação principal" data-i18n-aria="aria.mainNav">
+          <a href="#oficina" data-i18n="nav.workshop">Oficina</a>
+          <a href="#registros" data-i18n="nav.records">Registros</a>
+          <a href="#aulas" data-i18n="nav.classes">Aulas</a>
+          <a href="#sobre" data-i18n="nav.about">Sobre</a>
         </nav>
+
+        <div class="language-switcher" role="group" aria-label="Selecionar idioma" data-i18n-aria="aria.languageSwitcher">
+          <button type="button" data-language-option="pt" lang="pt-BR" aria-pressed="true">PT</button>
+          <button type="button" data-language-option="es" lang="es" aria-pressed="false">ES</button>
+          <button type="button" data-language-option="en" lang="en" aria-pressed="false">EN</button>
+        </div>
       </div>
     </header>
 
-    <aside class="section-index" aria-label="Índice da página">
-      <a href="#oficina" data-section-link="oficina"><span>01</span> Oficina</a>
-      <a href="#registros" data-section-link="registros"><span>02</span> Registros</a>
-      <a href="#aulas" data-section-link="aulas"><span>03</span> Aulas</a>
-      <a href="#sobre" data-section-link="sobre"><span>04</span> Sobre</a>
+    <aside class="section-index" aria-label="Índice da página" data-i18n-aria="aria.pageIndex">
+      <a href="#oficina" data-section-link="oficina"><span>01</span> <strong data-i18n="nav.workshop">Oficina</strong></a>
+      <a href="#registros" data-section-link="registros"><span>02</span> <strong data-i18n="nav.records">Registros</strong></a>
+      <a href="#aulas" data-section-link="aulas"><span>03</span> <strong data-i18n="nav.classes">Aulas</strong></a>
+      <a href="#sobre" data-section-link="sobre"><span>04</span> <strong data-i18n="nav.about">Sobre</strong></a>
     </aside>
 
     <main>
@@ -51,39 +57,40 @@
         <div class="hero__mist" aria-hidden="true"></div>
 
         <div class="hero__content" data-reveal>
-          <p class="hero__eyebrow">Diretor • Dramaturgo • Pesquisador</p>
+          <p class="hero__eyebrow" data-i18n="hero.eyebrow">Diretor • Dramaturgo • Pesquisador</p>
           <h1 id="hero-title">Nicholas Dieter</h1>
-          <p class="hero__statement">
+          <p class="hero__statement" data-i18n="hero.statement">
             Laboratórios de Teatro, Cinema, Pesquisa e Formação Artística
           </p>
         </div>
 
-        <nav class="hero-menu" aria-label="Percursos da página" data-reveal>
+        <nav class="hero-menu" aria-label="Percursos da página" data-i18n-aria="aria.heroMenu" data-reveal>
           <a href="#oficina">
             <span>01</span>
-            <strong>Subpersonalidades</strong>
-            <small>Laboratório intensivo</small>
+            <strong data-i18n="heroMenu.workshopTitle">Subpersonalidades</strong>
+            <small data-i18n="heroMenu.workshopSubtitle">Laboratório intensivo</small>
           </a>
           <a href="#registros">
             <span>02</span>
-            <strong>Registros</strong>
-            <small>Processos em sala</small>
+            <strong data-i18n="heroMenu.recordsTitle">Registros</strong>
+            <small data-i18n="heroMenu.recordsSubtitle">Processos em sala</small>
           </a>
           <a href="#aulas" data-vimeo-link target="_blank" rel="noopener">
             <span>03</span>
-            <strong>Outras aulas</strong>
-            <small>Vídeo e continuidade</small>
+            <strong data-i18n="heroMenu.classesTitle">Outras aulas</strong>
+            <small data-i18n="heroMenu.classesSubtitle">Vídeo e continuidade</small>
           </a>
         </nav>
 
-        <div class="hero__actions" aria-label="Ações principais" data-reveal>
-          <a class="button button--primary" href="#oficina">Conhecer oficina</a>
+        <div class="hero__actions" aria-label="Ações principais" data-i18n-aria="aria.primaryActions" data-reveal>
+          <a class="button button--primary" href="#oficina" data-i18n="buttons.knowWorkshop">Conhecer oficina</a>
           <a
             class="button button--ghost"
             href="https://vimeo.com/"
             target="_blank"
             rel="noopener"
             data-vimeo-link
+            data-i18n="buttons.viewClasses"
           >
             Ver outras aulas
           </a>
@@ -95,6 +102,7 @@
           width="140"
           height="140"
           alt="Monograma ND"
+          data-i18n-alt="aria.monogram"
         >
       </section>
 
@@ -108,7 +116,7 @@
           <div class="section-marker" aria-hidden="true">01</div>
 
           <div class="featured__copy" data-reveal>
-            <p class="section-kicker">Oficina em destaque</p>
+            <p class="section-kicker" data-i18n="featured.kicker">Oficina em destaque</p>
             <div id="featured-workshop"></div>
           </div>
 
@@ -116,6 +124,7 @@
             <img
               src="assets/subpersonalidades-cartaz.png"
               alt="Cartaz do Laboratório Intensivo Subpersonalidades"
+              data-i18n-alt="featured.posterAlt"
               loading="lazy"
             >
           </figure>
@@ -131,9 +140,9 @@
         <div class="section-shell gallery__layout">
           <div class="gallery__copy" data-reveal>
             <div class="section-marker" aria-hidden="true">02</div>
-            <p class="section-kicker">Arquivo vivo</p>
-            <h2 id="gallery-title">Registros de oficinas</h2>
-            <p class="gallery__summary">
+            <p class="section-kicker" data-i18n="gallery.kicker">Arquivo vivo</p>
+            <h2 id="gallery-title" data-i18n="gallery.title">Registros de oficinas</h2>
+            <p class="gallery__summary" data-i18n="gallery.summary">
               Imagens de ensaios, leituras e composições coletivas. O arquivo fica pronto
               para crescer com novas turmas, encontros e processos.
             </p>
@@ -141,7 +150,13 @@
             <p class="gallery__counter" id="gallery-current-counter" aria-live="polite"></p>
           </div>
 
-          <div class="carousel" aria-roledescription="carrossel" aria-label="Registros de oficinas" data-reveal>
+          <div
+            class="carousel"
+            aria-roledescription="carrossel"
+            aria-label="Registros de oficinas"
+            data-i18n-aria="aria.carousel"
+            data-reveal
+          >
             <div class="carousel__viewport" tabindex="0" aria-live="polite">
               <div class="carousel__track" id="gallery-track"></div>
             </div>
@@ -151,6 +166,7 @@
                 class="carousel__button"
                 type="button"
                 aria-label="Imagem anterior"
+                data-i18n-aria="aria.previousImage"
                 data-carousel-prev
               >
                 <span aria-hidden="true">←</span>
@@ -159,13 +175,19 @@
                 class="carousel__button"
                 type="button"
                 aria-label="Próxima imagem"
+                data-i18n-aria="aria.nextImage"
                 data-carousel-next
               >
                 <span aria-hidden="true">→</span>
               </button>
             </div>
 
-            <div class="carousel__indicators" id="gallery-indicators" aria-label="Selecionar imagem"></div>
+            <div
+              class="carousel__indicators"
+              id="gallery-indicators"
+              aria-label="Selecionar imagem"
+              data-i18n-aria="aria.selectImage"
+            ></div>
           </div>
         </div>
       </section>
@@ -179,8 +201,8 @@
         <div class="section-shell other-lessons__inner">
           <div class="section-marker" aria-hidden="true">03</div>
           <div data-reveal>
-            <p class="section-kicker">Outras aulas</p>
-            <h2 id="other-lessons-title">Aulas, filmes e processos em vídeo.</h2>
+            <p class="section-kicker" data-i18n="lessons.kicker">Outras aulas</p>
+            <h2 id="other-lessons-title" data-i18n="lessons.title">Aulas, filmes e processos em vídeo.</h2>
           </div>
           <a
             class="button button--primary"
@@ -188,6 +210,7 @@
             target="_blank"
             rel="noopener"
             data-vimeo-link
+            data-i18n="buttons.viewClasses"
             data-reveal
           >
             Ver outras aulas
@@ -204,12 +227,12 @@
         <div class="section-shell about__grid">
           <div data-reveal>
             <div class="section-marker" aria-hidden="true">04</div>
-            <p class="section-kicker">Sobre</p>
-            <h2 id="about-title">Pesquisa cênica com presença, escuta e composição.</h2>
+            <p class="section-kicker" data-i18n="about.kicker">Sobre</p>
+            <h2 id="about-title" data-i18n="about.title">Pesquisa cênica com presença, escuta e composição.</h2>
           </div>
 
           <div class="about__text" data-reveal>
-            <p>
+            <p data-i18n="about.body">
               Nicholas Dieter conduz laboratórios de teatro, cinema e formação artística
               voltados à presença, imaginação dramática, pesquisa cênica e composição coletiva.
             </p>
@@ -224,7 +247,7 @@
                 <circle cx="12" cy="12" r="4"></circle>
                 <circle cx="17.5" cy="6.5" r="1"></circle>
               </svg>
-              <span>Nicholas Dieter</span>
+              <span data-i18n="about.instagram">Nicholas Dieter</span>
             </a>
           </div>
         </div>
@@ -234,7 +257,7 @@
     <footer class="site-footer">
       <div class="section-shell site-footer__inner">
         <span>ND</span>
-        <p>Laboratórios de Teatro, Cinema, Pesquisa e Formação Artística.</p>
+        <p data-i18n="footer.text">Laboratórios de Teatro, Cinema, Pesquisa e Formação Artística.</p>
       </div>
     </footer>
   </body>
