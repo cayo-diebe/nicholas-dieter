@@ -37,6 +37,8 @@
         nextClasses: "Próximas turmas",
         investment: "Investimento",
         enrollment: "Inscrição",
+        languages: "Idiomas da oficina",
+        languagesIntro: "A turma pode ser conduzida nos idiomas indicados abaixo, de acordo com o grupo.",
         formIntro: "Preencha os dados e envie sua inscrição pelo WhatsApp.",
         firstName: "Nome",
         lastName: "Sobrenome",
@@ -79,6 +81,8 @@
         nextClasses: "Próximas fechas",
         investment: "Inversión",
         enrollment: "Inscripción",
+        languages: "Idiomas del taller",
+        languagesIntro: "El grupo puede ser conducido en los idiomas indicados abajo, según la composición del grupo.",
         formIntro: "Completa tus datos y envía la inscripción por WhatsApp.",
         firstName: "Nombre",
         lastName: "Apellido",
@@ -121,6 +125,8 @@
         nextClasses: "Upcoming groups",
         investment: "Investment",
         enrollment: "Enrollment",
+        languages: "Workshop languages",
+        languagesIntro: "The group can be conducted in the languages listed below, according to the participants.",
         formIntro: "Fill in your details and send your enrollment via WhatsApp.",
         firstName: "First name",
         lastName: "Last name",
@@ -195,6 +201,11 @@
       cardImage: "assets/subpersonalidades-cartaz.png",
       heroImage: "assets/nicholas-dieter-nevoa.png",
       accent: "#76d8e6",
+      languages: {
+        pt: "Português e espanhol",
+        es: "Portugués y español",
+        en: "Portuguese and Spanish",
+      },
       gallery: [
         "assets/oficina-leitura-palco.png",
         "assets/oficina-mesa-cena.png",
@@ -404,7 +415,23 @@
     },
   ];
 
+  const defaultLanguages = {
+    pt: "Português",
+    es: "Portugués",
+    en: "Portuguese",
+  };
+
   const clone = (value) => JSON.parse(JSON.stringify(value));
+
+  const normalizeWorkshops = (workshops) =>
+    (workshops || []).map((workshop) => ({
+      ...workshop,
+      gallery: workshop.gallery || [],
+      languages: {
+        ...defaultLanguages,
+        ...(workshop.languages || {}),
+      },
+    }));
 
   const getLanguage = () => {
     const params = new URLSearchParams(window.location.search);
@@ -434,7 +461,7 @@
   const loadWorkshops = () => {
     try {
       const saved = window.localStorage.getItem(STORAGE_KEY);
-      return saved ? JSON.parse(saved) : clone(defaultWorkshops);
+      return saved ? normalizeWorkshops(JSON.parse(saved)) : clone(defaultWorkshops);
     } catch {
       return clone(defaultWorkshops);
     }
@@ -446,6 +473,9 @@
 
   const getWorkshopCopy = (workshop, language) =>
     workshop.copy?.[language] || workshop.copy?.pt || Object.values(workshop.copy || {})[0] || {};
+
+  const getWorkshopLanguages = (workshop, language) =>
+    workshop.languages?.[language] || workshop.languages?.pt || defaultLanguages[language] || defaultLanguages.pt;
 
   const getRootPath = () => (window.location.pathname.includes("/oficinas/") ? "../../" : "");
 
@@ -471,6 +501,51 @@
   const createWhatsAppUrl = (message, extra = "") =>
     `https://wa.me/${PHONE}?text=${encodeURIComponent(`${message}${extra}`)}`;
 
+  const enableImageLightbox = () => {
+    if (document.documentElement.dataset.lightboxReady === "true") return;
+    document.documentElement.dataset.lightboxReady = "true";
+
+    const close = () => {
+      document.querySelector(".image-lightbox")?.remove();
+      document.body.classList.remove("has-lightbox");
+    };
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") close();
+    });
+
+    document.addEventListener("click", (event) => {
+      const closeButton = event.target.closest("[data-lightbox-close]");
+      if (closeButton) {
+        close();
+        return;
+      }
+
+      const image = event.target.closest("img");
+      if (!image || image.closest(".image-lightbox") || image.closest(".brand")) return;
+
+      const src = image.currentSrc || image.src;
+      if (!src) return;
+      event.preventDefault();
+
+      const overlay = document.createElement("div");
+      overlay.className = "image-lightbox";
+      overlay.setAttribute("role", "dialog");
+      overlay.setAttribute("aria-modal", "true");
+      overlay.innerHTML = `
+        <button class="image-lightbox__close" type="button" data-lightbox-close aria-label="Fechar imagem">Fechar</button>
+        <button class="image-lightbox__backdrop" type="button" data-lightbox-close aria-label="Fechar imagem"></button>
+        <figure class="image-lightbox__frame">
+          <img src="${src}" alt="${image.alt || ""}">
+        </figure>
+      `;
+
+      document.body.append(overlay);
+      document.body.classList.add("has-lightbox");
+      overlay.querySelector("[data-lightbox-close]")?.focus();
+    });
+  };
+
   window.ND = {
     PHONE,
     VIMEO_URL,
@@ -478,14 +553,19 @@
     globalFaq,
     ui,
     clone,
+    normalizeWorkshops,
     getRootPath,
     getLanguage,
     setLanguage,
     loadWorkshops,
     saveWorkshops,
     getWorkshopCopy,
+    getWorkshopLanguages,
     getWorkshopUrl,
     resolveAsset,
     createWhatsAppUrl,
+    enableImageLightbox,
   };
+
+  document.addEventListener("DOMContentLoaded", enableImageLightbox);
 })();

@@ -7,26 +7,32 @@ Site estático para oficinas, laboratórios e campanhas de Nicholas Dieter.
 - `index.html`: página principal com lista de oficinas, registros, FAQ e sobre.
 - `oficinas/subpersonalidades/index.html`: URL limpa da oficina Subpersonalidades.
 - `oficina.html?slug=subpersonalidades`: rota dinâmica de fallback para oficinas.
-- `admin.html`: cadastro local de oficinas, turmas, investimento, programa e FAQ.
+- `admin.html`: cadastro local com login, oficinas, idiomas, turmas, investimento, programa e FAQ.
 - `workshop-data.js`: dados editáveis, traduções em PT/ES/EN e configurações globais.
 - `script.js`: renderização da home.
 - `oficina.js`: renderização das páginas de oficina e inscrição via WhatsApp.
-- `admin.js`: CRUD local e exportação de JSON.
+- `admin.js`: CRUD local, login client-side e exportação dos dados finais.
 - `styles.css`: identidade visual e responsividade.
 
 ## Admin
 
-O admin salva no `localStorage` do navegador e exporta o JSON final. Como o projeto é estático, novos cadastros só entram em produção quando o JSON exportado for levado para `workshop-data.js` e publicado no GitHub.
+O admin é client-side e usa login simples:
+
+- usuário: `admin`
+- senha: `123`
+
+Depois do login, o cadastro salva no `localStorage` do navegador e exporta os dados finais. Como o projeto é estático, novos cadastros só entram em produção quando os dados exportados forem levados para `workshop-data.js` e publicados no GitHub.
 
 Cada oficina precisa de:
 
 - `slug`, título, selo, chamada e descrição curta.
 - imagens de card/principal e galeria.
+- idiomas da oficina em português, espanhol e inglês.
 - próximas turmas, carga horária, local/formato e status.
 - investimento e observações.
 - coordenação.
-- conteúdo programático em JSON.
-- FAQ em JSON.
+- conteúdo programático por módulos e itens.
+- FAQ por perguntas e respostas.
 
 ## Campanhas
 

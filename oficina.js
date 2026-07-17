@@ -75,6 +75,7 @@
     const coordinator = copy.coordinator || {};
     const registration = copy.registration || {};
     const faq = [...(copy.faq || []), ...(window.ND.globalFaq[language] || [])];
+    const workshopLanguages = window.ND.getWorkshopLanguages(workshop, language);
 
     document.title = `${copy.title} | Nicholas Dieter`;
     document.querySelector("meta[name='description']").content = copy.summary || copy.headline;
@@ -104,6 +105,14 @@
         <div class="rich-copy">
           ${(copy.about || []).map((paragraph) => `<p>${paragraph}</p>`).join("")}
         </div>
+      </section>
+
+      <section class="section language-section">
+        <div>
+          <p class="eyebrow">${t("workshop.languages")}</p>
+          <h2>${workshopLanguages}</h2>
+        </div>
+        <p>${t("workshop.languagesIntro")}</p>
       </section>
 
       <section class="section section--program" id="programa">

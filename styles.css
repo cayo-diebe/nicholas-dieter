@@ -31,6 +31,14 @@ body {
   font-family: var(--sans);
 }
 
+body.has-lightbox {
+  overflow: hidden;
+}
+
+[hidden] {
+  display: none !important;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -433,6 +441,27 @@ h3 {
   line-height: 0.95;
 }
 
+.language-section {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  border-top: 1px solid rgba(244, 232, 184, 0.16);
+  border-bottom: 1px solid rgba(244, 232, 184, 0.16);
+  background: rgba(244, 232, 184, 0.035);
+}
+
+.language-section h2 {
+  color: var(--nd-cream);
+  font-size: clamp(2.55rem, 4.4vw, 4.4rem);
+  line-height: 0.92;
+}
+
+.language-section p:not(.eyebrow) {
+  max-width: 620px;
+  color: rgba(247, 241, 223, 0.74);
+  font-size: 1.08rem;
+  line-height: 1.65;
+}
+
 .back-link {
   display: inline-flex;
   margin-bottom: 1rem;
@@ -495,7 +524,14 @@ h3 {
 .course-gallery img {
   width: 100%;
   aspect-ratio: 1;
+  cursor: zoom-in;
   object-fit: cover;
+}
+
+.records-strip img,
+.workshop-card__image img,
+.course-hero__image img {
+  cursor: zoom-in;
 }
 
 .coordinator-section {
@@ -623,8 +659,42 @@ h3 {
   padding: 7rem clamp(1rem, 6vw, 5rem) 4rem;
 }
 
+.admin-login {
+  display: grid;
+  min-height: calc(100svh - 7rem);
+  place-items: center;
+}
+
+.admin-login-card {
+  display: grid;
+  width: min(420px, 100%);
+  gap: 1rem;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  border: 1px solid var(--line);
+  background: rgba(247, 241, 223, 0.05);
+}
+
+.admin-login-card h1 {
+  font-size: clamp(3rem, 9vw, 5.5rem);
+  line-height: 0.86;
+}
+
+.admin-error {
+  margin: 0;
+  color: #ffd0c4;
+  font-weight: 800;
+}
+
 .admin-hero {
   max-width: 780px;
+}
+
+.admin-hero__top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: start;
+  justify-content: space-between;
 }
 
 .admin-hero h1 {
@@ -678,9 +748,49 @@ h3 {
   padding: 1rem;
 }
 
+.admin-form legend {
+  padding: 0 0.4rem;
+  color: var(--nd-cream);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
 .form-row {
   display: grid;
   gap: 1rem;
+}
+
+.admin-repeater {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.admin-repeater-item {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1rem;
+  border: 1px solid rgba(244, 232, 184, 0.14);
+  background: rgba(7, 6, 8, 0.24);
+}
+
+.admin-repeater-heading {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admin-mini-button {
+  border: 1px solid rgba(244, 232, 184, 0.28);
+  background: transparent;
+  color: var(--warm-white);
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.76rem;
+  font-weight: 900;
 }
 
 .admin-actions {
@@ -697,6 +807,49 @@ h3 {
   display: block;
 }
 
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 4vw, 3rem);
+}
+
+.image-lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(0, 0, 0, 0.86);
+  cursor: zoom-out;
+}
+
+.image-lightbox__close {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  border: 1px solid rgba(244, 232, 184, 0.42);
+  background: rgba(7, 6, 8, 0.82);
+  color: var(--warm-white);
+  cursor: pointer;
+  padding: 0.75rem 0.9rem;
+  font-weight: 900;
+}
+
+.image-lightbox__frame {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  width: min(1120px, 100%);
+}
+
+.image-lightbox__frame img {
+  width: 100%;
+  max-height: calc(100svh - 6rem);
+  object-fit: contain;
+}
+
 @media (min-width: 760px) {
   .site-nav {
     display: flex;
@@ -704,7 +857,8 @@ h3 {
 
   .section--split,
   .course-about,
-  .coordinator-section {
+  .coordinator-section,
+  .language-section {
     grid-template-columns: minmax(260px, 0.42fr) minmax(0, 1fr);
   }
 
@@ -731,6 +885,10 @@ h3 {
 
   .form-row--two {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .form-row--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .admin-grid {
