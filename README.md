@@ -36,4 +36,4 @@ Cada oficina precisa de:
 
 ## Campanhas
 
-A URL limpa atual é `oficinas/subpersonalidades/`. A rota dinâmica `oficina.html?slug=subpersonalidades` continua disponível para testes e novos cadastros antes da criação de uma pasta limpa.
+A URL limpa atual é `oficinas/subpersonalidades/`. Oficinas sem pasta própria usam automaticamente a rota dinâmica `oficina.html?slug=nome-da-oficina`, para que novos cadastros não gerem links quebrados antes da criação de uma pasta limpa.

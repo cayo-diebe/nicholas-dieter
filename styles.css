@@ -584,9 +584,12 @@ h3 {
 }
 
 .records-strip img,
-.workshop-card__image img,
 .course-hero__image img {
   cursor: zoom-in;
+}
+
+.workshop-card__image img {
+  cursor: pointer;
 }
 
 .coordinator-section {

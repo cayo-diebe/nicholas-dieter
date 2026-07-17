@@ -4,6 +4,7 @@
   const DEFAULT_LANGUAGE = "pt";
   const PHONE = "5511992978145";
   const VIMEO_URL = "https://vimeo.com/user131484859";
+  const CLEAN_ROUTE_SLUGS = new Set(["subpersonalidades"]);
 
   const ui = {
     pt: {
@@ -485,7 +486,7 @@
   };
 
   const getWorkshopUrl = (slug, language, options = {}) => {
-    const clean = options.clean !== false;
+    const clean = options.clean !== false && CLEAN_ROUTE_SLUGS.has(slug);
     const encodedSlug = encodeURIComponent(slug);
 
     if (clean) {
@@ -522,7 +523,14 @@
       }
 
       const image = event.target.closest("img");
-      if (!image || image.closest(".image-lightbox") || image.closest(".brand")) return;
+      if (
+        !image ||
+        image.closest(".image-lightbox") ||
+        image.closest(".brand") ||
+        image.closest(".workshop-card__image")
+      ) {
+        return;
+      }
 
       const src = image.currentSrc || image.src;
       if (!src) return;
