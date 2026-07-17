@@ -1,21 +1,33 @@
-# Nicholas Dieter Landing Page
+# Nicholas Dieter
 
-Landing page estática para Nicholas Dieter, com foco em laboratórios de teatro, cinema, pesquisa e formação artística.
+Site estático para oficinas, laboratórios e campanhas de Nicholas Dieter.
 
-## Como editar
+## Estrutura
 
-- Troque o link de aulas em vídeo na constante `VIMEO_AULAS_URL`, em `script.js`.
-- Ajuste a velocidade automática do carrossel em `CAROUSEL_AUTOPLAY_INTERVAL_MS`, em `script.js`.
-- Edite textos em português, espanhol e inglês no objeto `translations`, em `script.js`.
-- Troque telefone na constante `WHATSAPP_PHONE` e mensagens do WhatsApp em `translations.{idioma}.workshop.whatsappMessage`, em `script.js`.
-- Edite dados da oficina em `translations.{idioma}.workshop`, em `script.js`.
-- Atualize as imagens do carrossel no array `galleryImages`, em `script.js`, usando arquivos dentro de `assets/`.
-- Use apenas registros de oficina em `galleryImages`; cartazes e imagens de marca ficam melhor no hero ou na seção de oficina.
-- A tipografia usa Google Fonts (`Instrument Serif` e `Familjen Grotesk`) com fallbacks locais no CSS.
+- `index.html`: página principal com lista de oficinas, registros, FAQ e sobre.
+- `oficinas/subpersonalidades/index.html`: URL limpa da oficina Subpersonalidades.
+- `oficina.html?slug=subpersonalidades`: rota dinâmica de fallback para oficinas.
+- `admin.html`: cadastro local de oficinas, turmas, investimento, programa e FAQ.
+- `workshop-data.js`: dados editáveis, traduções em PT/ES/EN e configurações globais.
+- `script.js`: renderização da home.
+- `oficina.js`: renderização das páginas de oficina e inscrição via WhatsApp.
+- `admin.js`: CRUD local e exportação de JSON.
+- `styles.css`: identidade visual e responsividade.
 
-## Arquivos principais
+## Admin
 
-- `index.html`: estrutura semântica da página.
-- `styles.css`: identidade visual, responsividade e estados de interação.
-- `script.js`: dados editáveis, WhatsApp e carrossel.
-- `assets/`: imagens locais usadas no hero, oficina e marca.
+O admin salva no `localStorage` do navegador e exporta o JSON final. Como o projeto é estático, novos cadastros só entram em produção quando o JSON exportado for levado para `workshop-data.js` e publicado no GitHub.
+
+Cada oficina precisa de:
+
+- `slug`, título, selo, chamada e descrição curta.
+- imagens de card/principal e galeria.
+- próximas turmas, carga horária, local/formato e status.
+- investimento e observações.
+- coordenação.
+- conteúdo programático em JSON.
+- FAQ em JSON.
+
+## Campanhas
+
+A URL limpa atual é `oficinas/subpersonalidades/`. A rota dinâmica `oficina.html?slug=subpersonalidades` continua disponível para testes e novos cadastros antes da criação de uma pasta limpa.

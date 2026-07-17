@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#070608">
+    <title>Admin | Nicholas Dieter</title>
+    <link rel="icon" type="image/png" href="assets/nd-logo.png">
+    <link rel="apple-touch-icon" href="assets/nd-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="styles.css">
+    <script src="workshop-data.js" defer></script>
+    <script src="admin.js" defer></script>
+  </head>
+  <body data-page="admin">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Nicholas Dieter, início">
+        <img src="assets/nd-logo.png" width="48" height="48" alt="">
+        <span>Nicholas Dieter</span>
+      </a>
+      <nav class="site-nav" aria-label="Navegação principal">
+        <a href="index.html#oficinas">Oficinas</a>
+        <a href="oficina.html?slug=subpersonalidades">Subpersonalidades</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </header>
+
+    <main class="admin-shell">
+      <section class="admin-hero">
+        <p class="eyebrow">Admin</p>
+        <h1>Cadastro de oficinas</h1>
+        <p>
+          Cadastre oficinas, próximas turmas, investimento e dados de inscrição. Esta área salva
+          no navegador e gera um JSON para atualização da produção.
+        </p>
+      </section>
+
+      <section class="admin-grid">
+        <aside class="admin-panel">
+          <h2>Oficinas</h2>
+          <div class="admin-list" id="admin-list"></div>
+          <button class="button button--ghost" type="button" id="new-workshop">Nova oficina</button>
+          <button class="button button--ghost" type="button" id="reset-workshops">Restaurar padrão</button>
+        </aside>
+
+        <form class="admin-form" id="admin-form">
+          <div class="form-row form-row--two">
+            <label>
+              Slug / URL
+              <input name="slug" required placeholder="subpersonalidades">
+            </label>
+            <label>
+              Status
+              <select name="status">
+                <option value="open">Inscrições abertas</option>
+                <option value="soon">Em breve</option>
+                <option value="closed">Turma encerrada</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="form-row form-row--two">
+            <label>
+              Título
+              <input name="title" required>
+            </label>
+            <label>
+              Selo / categoria
+              <input name="label" required>
+            </label>
+          </div>
+
+          <label>
+            Chamada
+            <input name="headline" required>
+          </label>
+
+          <label>
+            Descrição curta
+            <textarea name="summary" rows="3" required></textarea>
+          </label>
+
+          <label>
+            Sobre a oficina (um parágrafo por linha)
+            <textarea name="about" rows="5"></textarea>
+          </label>
+
+          <div class="form-row form-row--two">
+            <label>
+              Imagem/card
+              <input name="cardImage" placeholder="assets/subpersonalidades-cartaz.png">
+            </label>
+            <label>
+              Imagem principal
+              <input name="heroImage" placeholder="assets/subpersonalidades-cartaz.png">
+            </label>
+          </div>
+
+          <fieldset>
+            <legend>Próximas turmas</legend>
+            <div class="form-row form-row--two">
+              <label>Datas <input name="dates"></label>
+              <label>Horário <input name="schedule"></label>
+            </div>
+            <div class="form-row form-row--two">
+              <label>Carga horária <input name="workload"></label>
+              <label>Local/Formato <input name="location"></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Investimento</legend>
+            <div class="form-row form-row--two">
+              <label>Valor à vista <input name="cash"></label>
+              <label>Parcelamento <input name="installments"></label>
+            </div>
+            <label>Observações <textarea name="investmentNotes" rows="3"></textarea></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Coordenação</legend>
+            <div class="form-row form-row--two">
+              <label>Nome <input name="coordinatorName"></label>
+              <label>Função <input name="coordinatorRole"></label>
+            </div>
+            <label>Bio <textarea name="coordinatorBio" rows="4"></textarea></label>
+          </fieldset>
+
+          <label>
+            Conteúdo programático em JSON
+            <textarea name="program" rows="8" spellcheck="false"></textarea>
+          </label>
+
+          <label>
+            FAQ da oficina em JSON
+            <textarea name="faq" rows="6" spellcheck="false"></textarea>
+          </label>
+
+          <div class="admin-actions">
+            <button class="button button--primary" type="submit">Salvar oficina</button>
+            <button class="button button--ghost" type="button" id="delete-workshop">Excluir</button>
+            <button class="button button--ghost" type="button" id="export-workshops">Exportar JSON</button>
+          </div>
+
+          <p class="admin-url" id="campaign-url"></p>
+          <textarea class="export-box" id="export-box" rows="10" readonly></textarea>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
