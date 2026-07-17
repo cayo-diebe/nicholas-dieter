@@ -14,7 +14,7 @@
         primaryCta: "Ver oficinas",
         secondaryCta: "Ver outras aulas",
         workshopsKicker: "Campanhas e inscrições",
-        workshopsTitle: "Oficinas com URL própria",
+        workshopsTitle: "OFICINAS",
         workshopsText:
           "Cada oficina tem uma página de campanha com programação, próximas turmas, investimento e formulário de inscrição.",
         recordsKicker: "Arquivo vivo",
@@ -58,7 +58,7 @@
         primaryCta: "Ver talleres",
         secondaryCta: "Ver otras clases",
         workshopsKicker: "Campañas e inscripciones",
-        workshopsTitle: "Talleres con URL propia",
+        workshopsTitle: "TALLERES",
         workshopsText:
           "Cada taller tiene una página de campaña con programa, próximas fechas, inversión y formulario de inscripción.",
         recordsKicker: "Archivo vivo",
@@ -102,7 +102,7 @@
         primaryCta: "View workshops",
         secondaryCta: "View other classes",
         workshopsKicker: "Campaigns and enrollment",
-        workshopsTitle: "Workshops with dedicated URLs",
+        workshopsTitle: "WORKSHOPS",
         workshopsText:
           "Each workshop has a campaign page with program, upcoming groups, investment and an enrollment form.",
         recordsKicker: "Living archive",
