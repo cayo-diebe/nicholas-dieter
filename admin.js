@@ -15,6 +15,7 @@
   const exportBox = document.querySelector("#export-box");
   const campaignUrl = document.querySelector("#campaign-url");
   const programEditor = document.querySelector("#program-editor");
+  const videoEditor = document.querySelector("#video-editor");
   const faqEditor = document.querySelector("#faq-editor");
   const galleryPreview = document.querySelector("#gallery-preview");
   const stepCards = Array.from(document.querySelectorAll("[data-admin-step]"));
@@ -127,6 +128,22 @@
   const imageLabel = (value = "") =>
     value.startsWith("data:image") ? "Imagem enviada pelo navegador" : value;
 
+  const videoTypeOptions = [
+    { value: "scene", label: "Fragmento de cena" },
+    { value: "testimonial", label: "Depoimento / recomendação" },
+    { value: "process", label: "Bastidor de processo" },
+  ];
+
+  const emptyVideo = { title: "", type: "scene", url: "", description: "" };
+
+  const renderVideoTypeOptions = (selected = "scene") =>
+    videoTypeOptions
+      .map(
+        (option) =>
+          `<option value="${option.value}"${option.value === selected ? " selected" : ""}>${option.label}</option>`,
+      )
+      .join("");
+
   const readFileAsDataUrl = (file) =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -238,11 +255,11 @@
             </div>
             <label>
               Título do módulo
-              <input data-program-title value="${escapeHtml(module.title || "")}">
+              <input data-program-title placeholder="Presença e escuta" value="${escapeHtml(module.title || "")}">
             </label>
             <label>
               Itens do módulo
-              <textarea data-program-items rows="4" placeholder="Um item por linha">${escapeHtml((module.items || []).join("\n"))}</textarea>
+              <textarea data-program-items rows="4" placeholder="Um item por linha. Ex: aquecimento cênico">${escapeHtml((module.items || []).join("\n"))}</textarea>
             </label>
           </article>
         `,
@@ -253,6 +270,48 @@
       button.addEventListener("click", () => {
         button.closest("[data-program-item]").remove();
         if (!programEditor.children.length) renderProgramEditor([{ title: "", items: [] }]);
+      });
+    });
+  };
+
+  const renderVideoEditor = (videos = []) => {
+    videoEditor.innerHTML = videos
+      .map(
+        (video, index) => `
+          <article class="admin-repeater-item" data-video-item>
+            <div class="admin-repeater-heading">
+              <strong>Vídeo ${index + 1}</strong>
+              <button class="admin-mini-button" type="button" data-remove-video>Remover</button>
+            </div>
+            <div class="form-row form-row--two">
+              <label>
+                Título do vídeo
+                <input data-video-title placeholder="Fragmento de cena: jogo de presença" value="${escapeHtml(video.title || "")}">
+              </label>
+              <label>
+                Tipo
+                <select data-video-type>
+                  ${renderVideoTypeOptions(video.type || "scene")}
+                </select>
+              </label>
+            </div>
+            <label>
+              Link do vídeo
+              <input data-video-url placeholder="https://vimeo.com/123456789" value="${escapeHtml(video.url || "")}">
+            </label>
+            <label>
+              Descrição
+              <textarea data-video-description rows="3" placeholder="Breve contexto do fragmento, bastidor ou depoimento.">${escapeHtml(video.description || "")}</textarea>
+            </label>
+          </article>
+        `,
+      )
+      .join("");
+
+    videoEditor.querySelectorAll("[data-remove-video]").forEach((button) => {
+      button.addEventListener("click", () => {
+        button.closest("[data-video-item]").remove();
+        if (!videoEditor.children.length) renderVideoEditor([emptyVideo]);
       });
     });
   };
@@ -268,11 +327,11 @@
             </div>
             <label>
               Pergunta
-              <input data-faq-question value="${escapeHtml(item.question || "")}">
+              <input data-faq-question placeholder="Preciso ter experiência prévia?" value="${escapeHtml(item.question || "")}">
             </label>
             <label>
               Resposta
-              <textarea data-faq-answer rows="3">${escapeHtml(item.answer || "")}</textarea>
+              <textarea data-faq-answer rows="3" placeholder="Resposta curta, direta e acolhedora.">${escapeHtml(item.answer || "")}</textarea>
             </label>
           </article>
         `,
@@ -295,6 +354,16 @@
       }))
       .filter((module) => module.title || module.items.length);
 
+  const readVideoEditor = () =>
+    Array.from(videoEditor.querySelectorAll("[data-video-item]"))
+      .map((item) => ({
+        title: item.querySelector("[data-video-title]").value.trim(),
+        type: item.querySelector("[data-video-type]").value,
+        url: item.querySelector("[data-video-url]").value.trim(),
+        description: item.querySelector("[data-video-description]").value.trim(),
+      }))
+      .filter((video) => video.title || video.url || video.description);
+
   const readFaqEditor = () =>
     Array.from(faqEditor.querySelectorAll("[data-faq-item]"))
       .map((item) => ({
@@ -308,6 +377,7 @@
     if (!workshop) {
       form.reset();
       renderProgramEditor([{ title: "", items: [] }]);
+      renderVideoEditor([emptyVideo]);
       renderFaqEditor([{ question: "", answer: "" }]);
       syncImagePreviews();
       campaignUrl.textContent = "Nenhuma oficina cadastrada.";
@@ -343,6 +413,7 @@
     form.coordinatorRole.value = coordinator.role || "";
     form.coordinatorBio.value = coordinator.bio || "";
     renderProgramEditor(copy.program?.length ? copy.program : [{ title: "", items: [] }]);
+    renderVideoEditor(copy.videos?.length ? copy.videos : [emptyVideo]);
     renderFaqEditor(copy.faq?.length ? copy.faq : [{ question: "", answer: "" }]);
     syncImagePreviews();
 
@@ -412,6 +483,7 @@
       summary: form.summary.value.trim(),
       about: splitLines(form.about.value),
       program: readProgramEditor(),
+      videos: readVideoEditor(),
       coordinator: {
         name: form.coordinatorName.value.trim(),
         role: form.coordinatorRole.value.trim(),
@@ -452,8 +524,8 @@
       copy: {
         ...(existing?.copy || {}),
         pt: copy,
-        es: { ...(existing?.copy?.es || copy), investment: copy.investment },
-        en: { ...(existing?.copy?.en || copy), investment: copy.investment },
+        es: { ...(existing?.copy?.es || copy), investment: copy.investment, videos: copy.videos },
+        en: { ...(existing?.copy?.en || copy), investment: copy.investment, videos: copy.videos },
       },
     };
 
@@ -474,12 +546,16 @@
             <strong>Novo módulo</strong>
             <button class="admin-mini-button" type="button" data-remove-program>Remover</button>
           </div>
-          <label>Título do módulo <input data-program-title></label>
-          <label>Itens do módulo <textarea data-program-items rows="4" placeholder="Um item por linha"></textarea></label>
+          <label>Título do módulo <input data-program-title placeholder="Presença e escuta"></label>
+          <label>Itens do módulo <textarea data-program-items rows="4" placeholder="Um item por linha. Ex: aquecimento cênico"></textarea></label>
         </article>
       `,
     );
     renderProgramEditor(readProgramEditor().concat({ title: "", items: [] }));
+  });
+
+  document.querySelector("#add-video").addEventListener("click", () => {
+    renderVideoEditor(readVideoEditor().concat(emptyVideo));
   });
 
   document.querySelector("#add-faq").addEventListener("click", () => {
@@ -555,6 +631,7 @@
           summary: "Descrição curta da oficina.",
           about: [],
           program: [],
+          videos: [],
           coordinator: {},
           nextClass: {},
           investment: {},

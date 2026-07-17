@@ -589,6 +589,61 @@ h3 {
   object-fit: cover;
 }
 
+.section--videos {
+  border-top: 1px solid rgba(244, 232, 184, 0.14);
+  border-bottom: 1px solid rgba(244, 232, 184, 0.14);
+  background: rgba(244, 232, 184, 0.035);
+}
+
+.section--videos .section__intro {
+  max-width: 720px;
+}
+
+.video-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.video-card {
+  display: grid;
+  gap: 1rem;
+  border: 1px solid rgba(244, 232, 184, 0.18);
+  background: rgba(7, 6, 8, 0.26);
+  padding: 1rem;
+}
+
+.video-card iframe,
+.video-card__fallback {
+  display: grid;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  background: #000;
+}
+
+.video-card__fallback {
+  place-items: center;
+  border: 1px solid rgba(244, 232, 184, 0.2);
+  color: var(--nd-cream);
+  font-weight: 900;
+}
+
+.video-card h3 {
+  margin: 0;
+  color: var(--nd-cream);
+  font-family: var(--display);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 400;
+  line-height: 0.92;
+}
+
+.video-card p:not(.eyebrow) {
+  max-width: 700px;
+  color: rgba(247, 241, 223, 0.72);
+  line-height: 1.6;
+}
+
 .records-strip img,
 .course-hero__image img {
   cursor: zoom-in;
@@ -713,6 +768,12 @@ h3 {
   border-color: rgba(244, 232, 184, 0.28);
   background: rgba(7, 6, 8, 0.26);
   color: var(--warm-white);
+}
+
+.signup-form ::placeholder,
+.admin-login-card ::placeholder,
+.admin-form ::placeholder {
+  color: rgba(247, 241, 223, 0.42);
 }
 
 .admin-form select option {
@@ -926,6 +987,12 @@ h3 {
 .admin-url {
   color: rgba(247, 241, 223, 0.58);
   font-size: 0.85rem;
+}
+
+.admin-field-hint {
+  margin: 0;
+  color: rgba(247, 241, 223, 0.58);
+  line-height: 1.55;
 }
 
 .admin-form fieldset {
@@ -1230,6 +1297,10 @@ h3 {
 
   .program-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .video-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .course-hero {

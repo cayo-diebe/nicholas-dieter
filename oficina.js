@@ -11,6 +11,55 @@
   const t = (path) =>
     path.split(".").reduce((value, key) => value?.[key], window.ND.ui[language]) || "";
 
+  const escapeHtml = (value = "") =>
+    String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;");
+
+  const getVideoEmbedUrl = (url = "") => {
+    try {
+      const parsed = new URL(url);
+      const host = parsed.hostname.replace(/^www\./, "");
+
+      if (host.includes("vimeo.com")) {
+        const id = parsed.pathname.split("/").filter(Boolean).find((part) => /^\d+$/.test(part));
+        return id ? `https://player.vimeo.com/video/${id}` : "";
+      }
+
+      if (host === "youtu.be") {
+        const id = parsed.pathname.split("/").filter(Boolean)[0];
+        return id ? `https://www.youtube.com/embed/${id}` : "";
+      }
+
+      if (host.includes("youtube.com")) {
+        const id = parsed.searchParams.get("v") || parsed.pathname.split("/").filter(Boolean).pop();
+        return id ? `https://www.youtube.com/embed/${id}` : "";
+      }
+    } catch {
+      return "";
+    }
+
+    return "";
+  };
+
+  const getSafeVideoUrl = (url = "") => {
+    try {
+      const parsed = new URL(url);
+      return ["http:", "https:"].includes(parsed.protocol) ? parsed.href : "";
+    } catch {
+      return "";
+    }
+  };
+
+  const getVideoTypeLabel = (type) =>
+    ({
+      testimonial: t("workshop.videoTestimonial"),
+      process: t("workshop.videoProcess"),
+      scene: t("workshop.videoScene"),
+    })[type] || t("workshop.videoScene");
+
   const applyLanguage = () => {
     document.documentElement.lang = language === "pt" ? "pt-BR" : language;
     window.ND.setLanguage(language);
@@ -54,6 +103,49 @@
   const renderGallery = (gallery = []) =>
     gallery.map((src) => `<img src="${window.ND.resolveAsset(src)}" alt="">`).join("");
 
+  const renderVideos = (videos = []) => {
+    const items = videos
+      .filter((video) => video.url)
+      .map((video) => {
+        const embedUrl = getVideoEmbedUrl(video.url);
+        const safeUrl = getSafeVideoUrl(video.url);
+        const title = escapeHtml(video.title || t("workshop.videoFallbackTitle"));
+        const description = escapeHtml(video.description || "");
+        const type = escapeHtml(getVideoTypeLabel(video.type));
+
+        if (!embedUrl && !safeUrl) return "";
+
+        return `
+          <article class="video-card">
+            ${
+              embedUrl
+                ? `<iframe src="${embedUrl}" title="${title}" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`
+                : `<a class="video-card__fallback" href="${escapeHtml(safeUrl)}" target="_blank" rel="noopener">${t("workshop.watchVideo")}</a>`
+            }
+            <div>
+              <p class="eyebrow">${type}</p>
+              <h3>${title}</h3>
+              ${description ? `<p>${description}</p>` : ""}
+            </div>
+          </article>
+        `;
+      })
+      .join("");
+
+    if (!items) return "";
+
+    return `
+      <section class="section section--videos" id="videos">
+        <div class="section__intro">
+          <p class="eyebrow">${t("workshop.videos")}</p>
+          <h2>${t("workshop.videoTitle")}</h2>
+          <p>${t("workshop.videoIntro")}</p>
+        </div>
+        <div class="video-grid">${items}</div>
+      </section>
+    `;
+  };
+
   const render = () => {
     applyLanguage();
     const root = document.querySelector("#workshop-root");
@@ -75,6 +167,7 @@
     const coordinator = copy.coordinator || {};
     const registration = copy.registration || {};
     const faq = [...(copy.faq || []), ...(window.ND.globalFaq[language] || [])];
+    const videos = copy.videos || workshop.videos || [];
     const workshopLanguages = window.ND.getWorkshopLanguages(workshop, language);
 
     document.title = `${copy.title} | Nicholas Dieter`;
@@ -127,6 +220,8 @@
         ${renderGallery(workshop.gallery || [])}
       </section>
 
+      ${renderVideos(videos)}
+
       <section class="section coordinator-section">
         <div>
           <p class="eyebrow">${t("workshop.coordinator")}</p>
@@ -160,11 +255,11 @@
           <span class="divider"></span>
           <p>${t("workshop.formIntro")}</p>
           <form class="signup-form" id="signup-form">
-            <label>${t("workshop.firstName")} *<input name="firstName" required></label>
-            <label>${t("workshop.lastName")} *<input name="lastName" required></label>
-            <label>${t("workshop.email")} *<input type="email" name="email" required></label>
-            <label>${t("workshop.phone")} *<input name="phone" required></label>
-            <label>${t("workshop.trajectory")}<textarea name="trajectory" rows="4"></textarea></label>
+            <label>${t("workshop.firstName")} *<input name="firstName" required placeholder="${t("workshop.firstNamePlaceholder")}"></label>
+            <label>${t("workshop.lastName")} *<input name="lastName" required placeholder="${t("workshop.lastNamePlaceholder")}"></label>
+            <label>${t("workshop.email")} *<input type="email" name="email" required placeholder="${t("workshop.emailPlaceholder")}"></label>
+            <label>${t("workshop.phone")} *<input name="phone" required placeholder="${t("workshop.phonePlaceholder")}"></label>
+            <label>${t("workshop.trajectory")}<textarea name="trajectory" rows="4" placeholder="${t("workshop.trajectoryPlaceholder")}"></textarea></label>
             <button class="button button--primary" type="submit">${t("workshop.submit")}</button>
           </form>
         </article>

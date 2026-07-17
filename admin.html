@@ -46,11 +46,11 @@
           <h1>Acesso restrito</h1>
           <label>
             Usuário
-            <input name="username" autocomplete="username" required>
+            <input name="username" autocomplete="username" required placeholder="admin">
           </label>
           <label>
             Senha
-            <input name="password" type="password" autocomplete="current-password" required>
+            <input name="password" type="password" autocomplete="current-password" required placeholder="123">
           </label>
           <p class="admin-error" id="login-error" hidden>Usuário ou senha inválidos.</p>
           <button class="button button--primary" type="submit">Entrar</button>
@@ -121,27 +121,27 @@
               <div class="form-row form-row--two">
                 <label>
                   Título
-                  <input name="title" required>
+                  <input name="title" required placeholder="Subpersonalidades">
                 </label>
                 <label>
                   Selo / categoria
-                  <input name="label" required>
+                  <input name="label" required placeholder="Laboratório intensivo">
                 </label>
               </div>
 
               <label>
                 Chamada
-                <input name="headline" required>
+                <input name="headline" required placeholder="Preparação emocional, imaginação dramática e dinâmicas coletivas.">
               </label>
 
               <label>
                 Descrição curta
-                <textarea name="summary" rows="3" required></textarea>
+                <textarea name="summary" rows="3" required placeholder="Uma frase curta sobre a promessa e o foco da oficina."></textarea>
               </label>
 
               <label>
                 Sobre a oficina
-                <textarea name="about" rows="5" placeholder="Escreva um parágrafo por linha"></textarea>
+                <textarea name="about" rows="5" placeholder="Escreva um parágrafo por linha. Ex: A oficina investiga presença, escuta e composição coletiva."></textarea>
               </label>
 
               <fieldset class="admin-inline-fieldset">
@@ -237,12 +237,12 @@
               <fieldset class="admin-inline-fieldset">
                 <legend>Próximas turmas</legend>
                 <div class="form-row form-row--two">
-                  <label>Datas <input name="dates"></label>
-                  <label>Horário <input name="schedule"></label>
+                  <label>Datas <input name="dates" placeholder="8, 15, 22 e 29 de agosto"></label>
+                  <label>Horário <input name="schedule" placeholder="Sábados, 14h às 17h"></label>
                 </div>
                 <div class="form-row form-row--two">
-                  <label>Carga horária <input name="workload"></label>
-                  <label>Local/Formato <input name="location"></label>
+                  <label>Carga horária <input name="workload" placeholder="Carga horária: 12 horas"></label>
+                  <label>Local/Formato <input name="location" placeholder="Ao vivo, online pelo Meet"></label>
                 </div>
               </fieldset>
 
@@ -250,18 +250,18 @@
                 <legend>Investimento</legend>
                 <div class="form-row form-row--two">
                   <label>Valor à vista <input name="cash" inputmode="numeric" autocomplete="off" placeholder="R$ 0,00" data-money-mask></label>
-                  <label>Parcelamento <input name="installments"></label>
+                  <label>Parcelamento <input name="installments" placeholder="4x de R$ 250,00"></label>
                 </div>
-                <label>Observações <textarea name="investmentNotes" rows="3"></textarea></label>
+                <label>Observações <textarea name="investmentNotes" rows="3" placeholder="Ex: desconto para ex-alunos, prazo de matrícula ou condição especial."></textarea></label>
               </fieldset>
 
               <fieldset class="admin-inline-fieldset">
                 <legend>Coordenação</legend>
                 <div class="form-row form-row--two">
-                  <label>Nome <input name="coordinatorName"></label>
-                  <label>Função <input name="coordinatorRole"></label>
+                  <label>Nome <input name="coordinatorName" placeholder="Nicholas Dieter"></label>
+                  <label>Função <input name="coordinatorRole" placeholder="Diretor, dramaturgo e pesquisador"></label>
                 </div>
-                <label>Bio <textarea name="coordinatorBio" rows="4"></textarea></label>
+                <label>Bio <textarea name="coordinatorBio" rows="4" placeholder="Uma bio curta sobre a pesquisa, trajetória e condução da oficina."></textarea></label>
               </fieldset>
             </section>
 
@@ -270,7 +270,7 @@
                 <span>04</span>
                 <div>
                   <h2>Conteúdo</h2>
-                  <p>Programa e perguntas frequentes sem mexer em JSON.</p>
+                  <p>Programa, vídeos opcionais e perguntas frequentes sem mexer em JSON.</p>
                 </div>
               </div>
 
@@ -278,6 +278,13 @@
                 <legend>Conteúdo programático</legend>
                 <div class="admin-repeater" id="program-editor"></div>
                 <button class="button button--ghost" type="button" id="add-program">Adicionar módulo</button>
+              </fieldset>
+
+              <fieldset class="admin-inline-fieldset">
+                <legend>Vídeos opcionais</legend>
+                <p class="admin-field-hint">Use para fragmentos de cena, bastidores do processo ou depoimentos de recomendação. Se ficar vazio, a seção não aparece na oficina.</p>
+                <div class="admin-repeater" id="video-editor"></div>
+                <button class="button button--ghost" type="button" id="add-video">Adicionar vídeo</button>
               </fieldset>
 
               <fieldset class="admin-inline-fieldset">
@@ -300,7 +307,7 @@
             </div>
 
             <p class="admin-url" id="campaign-url"></p>
-            <textarea class="export-box" id="export-box" rows="10" readonly></textarea>
+            <textarea class="export-box" id="export-box" rows="10" readonly placeholder="Clique em Exportar dados para copiar o conteúdo atualizado."></textarea>
           </form>
         </section>
       </section>
