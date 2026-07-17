@@ -67,8 +67,8 @@
             <button class="button button--ghost" type="button" id="logout-admin">Sair</button>
           </div>
           <p>
-            Cadastre oficinas, próximas turmas, investimento, idiomas e inscrição. Esta área salva
-            no navegador e exporta os dados finais para publicação.
+            Cadastre a oficina em etapas, envie imagens pelo próprio navegador e exporte os dados
+            finais para publicação.
           </p>
         </section>
 
@@ -76,122 +76,213 @@
           <aside class="admin-panel">
             <h2>Oficinas</h2>
             <div class="admin-list" id="admin-list"></div>
-            <button class="button button--ghost" type="button" id="new-workshop">Nova oficina</button>
-            <button class="button button--ghost" type="button" id="reset-workshops">Restaurar padrão</button>
+            <div class="admin-panel-actions">
+              <button class="button button--ghost" type="button" id="new-workshop">Nova oficina</button>
+              <button class="button button--ghost" type="button" id="reset-workshops">Restaurar padrão</button>
+            </div>
+            <nav class="admin-flow" aria-label="Fluxo do cadastro">
+              <a href="#admin-basic">01 Essencial</a>
+              <a href="#admin-media">02 Imagens</a>
+              <a href="#admin-sales">03 Turmas</a>
+              <a href="#admin-content">04 Conteúdo</a>
+            </nav>
           </aside>
 
           <form class="admin-form" id="admin-form">
-            <div class="form-row form-row--two">
-              <label>
-                Slug / URL
-                <input name="slug" required placeholder="subpersonalidades">
-              </label>
-              <label>
-                Status
-                <select name="status">
-                  <option value="open">Inscrições abertas</option>
-                  <option value="soon">Em breve</option>
-                  <option value="closed">Turma encerrada</option>
-                </select>
-              </label>
-            </div>
-
-            <div class="form-row form-row--two">
-              <label>
-                Título
-                <input name="title" required>
-              </label>
-              <label>
-                Selo / categoria
-                <input name="label" required>
-              </label>
-            </div>
-
-            <label>
-              Chamada
-              <input name="headline" required>
-            </label>
-
-            <label>
-              Descrição curta
-              <textarea name="summary" rows="3" required></textarea>
-            </label>
-
-            <label>
-              Sobre a oficina
-              <textarea name="about" rows="5" placeholder="Escreva um parágrafo por linha"></textarea>
-            </label>
-
-            <fieldset>
-              <legend>Idiomas da oficina</legend>
-              <div class="form-row form-row--three">
-                <label>Português <input name="languagePt" placeholder="Português e espanhol"></label>
-                <label>Espanhol <input name="languageEs" placeholder="Portugués y español"></label>
-                <label>Inglês <input name="languageEn" placeholder="Portuguese and Spanish"></label>
+            <section class="admin-card" id="admin-basic">
+              <div class="admin-card__header">
+                <span>01</span>
+                <div>
+                  <h2>Essencial</h2>
+                  <p>Nome, chamada, URL e textos principais da oficina.</p>
+                </div>
               </div>
-            </fieldset>
 
-            <fieldset>
-              <legend>Imagens</legend>
               <div class="form-row form-row--two">
                 <label>
-                  Imagem/card
-                  <input name="cardImage" placeholder="assets/subpersonalidades-cartaz.png">
+                  Slug / URL
+                  <input name="slug" required placeholder="subpersonalidades">
                 </label>
                 <label>
-                  Imagem principal
-                  <input name="heroImage" placeholder="assets/subpersonalidades-cartaz.png">
+                  Status
+                  <select name="status">
+                    <option value="open">Inscrições abertas</option>
+                    <option value="soon">Em breve</option>
+                    <option value="closed">Turma encerrada</option>
+                  </select>
                 </label>
               </div>
+
+              <div class="form-row form-row--two">
+                <label>
+                  Título
+                  <input name="title" required>
+                </label>
+                <label>
+                  Selo / categoria
+                  <input name="label" required>
+                </label>
+              </div>
+
               <label>
-                Galeria
-                <textarea name="gallery" rows="5" placeholder="Um caminho de imagem por linha"></textarea>
+                Chamada
+                <input name="headline" required>
               </label>
-            </fieldset>
 
-            <fieldset>
-              <legend>Próximas turmas</legend>
-              <div class="form-row form-row--two">
-                <label>Datas <input name="dates"></label>
-                <label>Horário <input name="schedule"></label>
+              <label>
+                Descrição curta
+                <textarea name="summary" rows="3" required></textarea>
+              </label>
+
+              <label>
+                Sobre a oficina
+                <textarea name="about" rows="5" placeholder="Escreva um parágrafo por linha"></textarea>
+              </label>
+
+              <fieldset class="admin-inline-fieldset">
+                <legend>Idiomas da oficina</legend>
+                <div class="form-row form-row--three">
+                  <label>Português <input name="languagePt" placeholder="Português e espanhol"></label>
+                  <label>Espanhol <input name="languageEs" placeholder="Portugués y español"></label>
+                  <label>Inglês <input name="languageEn" placeholder="Portuguese and Spanish"></label>
+                </div>
+              </fieldset>
+            </section>
+
+            <section class="admin-card" id="admin-media">
+              <div class="admin-card__header">
+                <span>02</span>
+                <div>
+                  <h2>Imagens</h2>
+                  <p>Faça upload das imagens ou mantenha caminhos já existentes.</p>
+                </div>
               </div>
-              <div class="form-row form-row--two">
-                <label>Carga horária <input name="workload"></label>
-                <label>Local/Formato <input name="location"></label>
+
+              <div class="image-uploader-grid">
+                <article class="image-uploader">
+                  <div class="image-uploader__preview" data-image-preview="cardImage"></div>
+                  <div class="image-uploader__body">
+                    <h3>Imagem/card</h3>
+                    <p>Usada na lista de oficinas.</p>
+                    <label class="upload-button">
+                      Enviar imagem
+                      <input type="file" accept="image/*" data-image-upload="cardImage">
+                    </label>
+                    <details class="admin-advanced">
+                      <summary>Usar caminho/URL manual</summary>
+                      <label class="admin-path-label">
+                        Caminho ou URL
+                        <input name="cardImage" placeholder="assets/subpersonalidades-cartaz.png">
+                      </label>
+                    </details>
+                    <button class="admin-mini-button" type="button" data-clear-image="cardImage">Limpar imagem</button>
+                  </div>
+                </article>
+
+                <article class="image-uploader">
+                  <div class="image-uploader__preview" data-image-preview="heroImage"></div>
+                  <div class="image-uploader__body">
+                    <h3>Imagem principal</h3>
+                    <p>Usada no topo da página da oficina.</p>
+                    <label class="upload-button">
+                      Enviar imagem
+                      <input type="file" accept="image/*" data-image-upload="heroImage">
+                    </label>
+                    <details class="admin-advanced">
+                      <summary>Usar caminho/URL manual</summary>
+                      <label class="admin-path-label">
+                        Caminho ou URL
+                        <input name="heroImage" placeholder="assets/nicholas-dieter-nevoa.png">
+                      </label>
+                    </details>
+                    <button class="admin-mini-button" type="button" data-clear-image="heroImage">Limpar imagem</button>
+                  </div>
+                </article>
               </div>
-            </fieldset>
 
-            <fieldset>
-              <legend>Investimento</legend>
-              <div class="form-row form-row--two">
-                <label>Valor à vista <input name="cash"></label>
-                <label>Parcelamento <input name="installments"></label>
+              <article class="gallery-uploader">
+                <div>
+                  <h3>Galeria</h3>
+                  <p>Envie várias imagens de uma vez. Elas entram na galeria da oficina.</p>
+                </div>
+                <label class="upload-button upload-button--wide">
+                  Enviar fotos da galeria
+                  <input type="file" accept="image/*" multiple data-image-upload="gallery">
+                </label>
+                <div class="admin-gallery-preview" id="gallery-preview"></div>
+                <details class="admin-advanced">
+                  <summary>Usar caminhos/URLs manuais</summary>
+                  <label class="admin-path-label">
+                    Caminhos ou URLs da galeria
+                    <textarea name="gallery" rows="4" placeholder="Um caminho de imagem por linha"></textarea>
+                  </label>
+                </details>
+              </article>
+            </section>
+
+            <section class="admin-card" id="admin-sales">
+              <div class="admin-card__header">
+                <span>03</span>
+                <div>
+                  <h2>Turmas e venda</h2>
+                  <p>Datas, formato, investimento e coordenação.</p>
+                </div>
               </div>
-              <label>Observações <textarea name="investmentNotes" rows="3"></textarea></label>
-            </fieldset>
 
-            <fieldset>
-              <legend>Coordenação</legend>
-              <div class="form-row form-row--two">
-                <label>Nome <input name="coordinatorName"></label>
-                <label>Função <input name="coordinatorRole"></label>
+              <fieldset class="admin-inline-fieldset">
+                <legend>Próximas turmas</legend>
+                <div class="form-row form-row--two">
+                  <label>Datas <input name="dates"></label>
+                  <label>Horário <input name="schedule"></label>
+                </div>
+                <div class="form-row form-row--two">
+                  <label>Carga horária <input name="workload"></label>
+                  <label>Local/Formato <input name="location"></label>
+                </div>
+              </fieldset>
+
+              <fieldset class="admin-inline-fieldset">
+                <legend>Investimento</legend>
+                <div class="form-row form-row--two">
+                  <label>Valor à vista <input name="cash"></label>
+                  <label>Parcelamento <input name="installments"></label>
+                </div>
+                <label>Observações <textarea name="investmentNotes" rows="3"></textarea></label>
+              </fieldset>
+
+              <fieldset class="admin-inline-fieldset">
+                <legend>Coordenação</legend>
+                <div class="form-row form-row--two">
+                  <label>Nome <input name="coordinatorName"></label>
+                  <label>Função <input name="coordinatorRole"></label>
+                </div>
+                <label>Bio <textarea name="coordinatorBio" rows="4"></textarea></label>
+              </fieldset>
+            </section>
+
+            <section class="admin-card" id="admin-content">
+              <div class="admin-card__header">
+                <span>04</span>
+                <div>
+                  <h2>Conteúdo</h2>
+                  <p>Programa e perguntas frequentes sem mexer em JSON.</p>
+                </div>
               </div>
-              <label>Bio <textarea name="coordinatorBio" rows="4"></textarea></label>
-            </fieldset>
 
-            <fieldset>
-              <legend>Conteúdo programático</legend>
-              <div class="admin-repeater" id="program-editor"></div>
-              <button class="button button--ghost" type="button" id="add-program">Adicionar módulo</button>
-            </fieldset>
+              <fieldset class="admin-inline-fieldset">
+                <legend>Conteúdo programático</legend>
+                <div class="admin-repeater" id="program-editor"></div>
+                <button class="button button--ghost" type="button" id="add-program">Adicionar módulo</button>
+              </fieldset>
 
-            <fieldset>
-              <legend>FAQ da oficina</legend>
-              <div class="admin-repeater" id="faq-editor"></div>
-              <button class="button button--ghost" type="button" id="add-faq">Adicionar pergunta</button>
-            </fieldset>
+              <fieldset class="admin-inline-fieldset">
+                <legend>FAQ da oficina</legend>
+                <div class="admin-repeater" id="faq-editor"></div>
+                <button class="button button--ghost" type="button" id="add-faq">Adicionar pergunta</button>
+              </fieldset>
+            </section>
 
-            <div class="admin-actions">
+            <div class="admin-actions admin-actions--sticky">
               <button class="button button--primary" type="submit">Salvar oficina</button>
               <button class="button button--ghost" type="button" id="delete-workshop">Excluir</button>
               <button class="button button--ghost" type="button" id="export-workshops">Exportar dados</button>

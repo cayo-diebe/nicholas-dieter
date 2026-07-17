@@ -16,6 +16,7 @@
   const campaignUrl = document.querySelector("#campaign-url");
   const programEditor = document.querySelector("#program-editor");
   const faqEditor = document.querySelector("#faq-editor");
+  const galleryPreview = document.querySelector("#gallery-preview");
 
   const getSelected = () => workshops.find((workshop) => workshop.slug === selectedSlug);
   const getCopy = (workshop) => window.ND.getWorkshopCopy(workshop, "pt");
@@ -61,6 +62,86 @@
       .split("\n")
       .map((item) => item.trim())
       .filter(Boolean);
+
+  const imageLabel = (value = "") =>
+    value.startsWith("data:image") ? "Imagem enviada pelo navegador" : value;
+
+  const readFileAsDataUrl = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.addEventListener("load", () => resolve(reader.result));
+      reader.addEventListener("error", reject);
+      reader.readAsDataURL(file);
+    });
+
+  const prepareImageFile = async (file) => {
+    if (!file.type.startsWith("image/")) {
+      throw new Error("Arquivo inválido. Envie apenas imagens.");
+    }
+
+    const original = await readFileAsDataUrl(file);
+    if (file.type === "image/svg+xml" || file.type === "image/gif") return original;
+
+    return new Promise((resolve) => {
+      const image = new Image();
+      image.addEventListener("load", () => {
+        const maxSize = 1800;
+        const scale = Math.min(1, maxSize / Math.max(image.width, image.height));
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.round(image.width * scale);
+        canvas.height = Math.round(image.height * scale);
+        const context = canvas.getContext("2d");
+        context.fillStyle = "#070608";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+        resolve(canvas.toDataURL("image/jpeg", 0.86));
+      });
+      image.addEventListener("error", () => resolve(original));
+      image.src = original;
+    });
+  };
+
+  const renderSingleImagePreview = (fieldName) => {
+    const preview = document.querySelector(`[data-image-preview="${fieldName}"]`);
+    if (!preview) return;
+
+    const value = form[fieldName].value.trim();
+    if (!value) {
+      preview.innerHTML = "<span>Sem imagem</span>";
+      return;
+    }
+
+    preview.innerHTML = `
+      <img src="${escapeHtml(window.ND.resolveAsset(value))}" alt="">
+      <small>${escapeHtml(imageLabel(value))}</small>
+    `;
+  };
+
+  const renderGalleryPreview = () => {
+    const images = splitLines(form.gallery.value);
+    if (!images.length) {
+      galleryPreview.innerHTML = '<p class="empty-gallery">Nenhuma imagem adicionada.</p>';
+      return;
+    }
+
+    galleryPreview.innerHTML = images
+      .map(
+        (src, index) => `
+          <figure class="admin-gallery-item">
+            <img src="${escapeHtml(window.ND.resolveAsset(src))}" alt="">
+            <figcaption>${escapeHtml(imageLabel(src))}</figcaption>
+            <button class="admin-mini-button" type="button" data-remove-gallery="${index}">Remover</button>
+          </figure>
+        `,
+      )
+      .join("");
+  };
+
+  const syncImagePreviews = () => {
+    renderSingleImagePreview("cardImage");
+    renderSingleImagePreview("heroImage");
+    renderGalleryPreview();
+  };
 
   const renderList = () => {
     list.innerHTML = workshops
@@ -166,6 +247,7 @@
       form.reset();
       renderProgramEditor([{ title: "", items: [] }]);
       renderFaqEditor([{ question: "", answer: "" }]);
+      syncImagePreviews();
       campaignUrl.textContent = "Nenhuma oficina cadastrada.";
       return;
     }
@@ -200,6 +282,7 @@
     form.coordinatorBio.value = coordinator.bio || "";
     renderProgramEditor(copy.program?.length ? copy.program : [{ title: "", items: [] }]);
     renderFaqEditor(copy.faq?.length ? copy.faq : [{ question: "", answer: "" }]);
+    syncImagePreviews();
 
     const cleanUrl = window.ND.getWorkshopUrl(workshop.slug);
     const dynamicUrl = window.ND.getWorkshopUrl(workshop.slug, undefined, { clean: false });
@@ -295,6 +378,54 @@
 
   document.querySelector("#add-faq").addEventListener("click", () => {
     renderFaqEditor(readFaqEditor().concat({ question: "", answer: "" }));
+  });
+
+  document.querySelectorAll("[data-image-upload]").forEach((input) => {
+    input.addEventListener("change", async () => {
+      const files = Array.from(input.files || []);
+      if (!files.length) return;
+
+      const target = input.dataset.imageUpload;
+      const uploadButton = input.closest(".upload-button");
+      uploadButton?.classList.add("is-loading");
+
+      try {
+        const images = await Promise.all(files.map(prepareImageFile));
+        if (target === "gallery") {
+          form.gallery.value = splitLines(form.gallery.value).concat(images).join("\n");
+        } else if (form[target]) {
+          form[target].value = images[0];
+        }
+        syncImagePreviews();
+      } catch (error) {
+        alert(error.message || "Não foi possível carregar a imagem.");
+      } finally {
+        uploadButton?.classList.remove("is-loading");
+        input.value = "";
+      }
+    });
+  });
+
+  document.querySelectorAll("[data-clear-image]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const field = button.dataset.clearImage;
+      if (form[field]) form[field].value = "";
+      syncImagePreviews();
+    });
+  });
+
+  form.cardImage.addEventListener("input", syncImagePreviews);
+  form.heroImage.addEventListener("input", syncImagePreviews);
+  form.gallery.addEventListener("input", syncImagePreviews);
+
+  galleryPreview.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-remove-gallery]");
+    if (!button) return;
+
+    const images = splitLines(form.gallery.value);
+    images.splice(Number(button.dataset.removeGallery), 1);
+    form.gallery.value = images.join("\n");
+    syncImagePreviews();
   });
 
   document.querySelector("#new-workshop").addEventListener("click", () => {

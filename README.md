@@ -21,7 +21,7 @@ O admin é client-side e usa login simples:
 - usuário: `admin`
 - senha: `123`
 
-Depois do login, o cadastro salva no `localStorage` do navegador e exporta os dados finais. Como o projeto é estático, novos cadastros só entram em produção quando os dados exportados forem levados para `workshop-data.js` e publicados no GitHub.
+Depois do login, o cadastro salva no `localStorage` do navegador e exporta os dados finais. O admin aceita upload de imagens para card, imagem principal e galeria, salvando os arquivos como dados embutidos no export. Como o projeto é estático, novos cadastros só entram em produção quando os dados exportados forem levados para `workshop-data.js` e publicados no GitHub.
 
 Cada oficina precisa de:
 
