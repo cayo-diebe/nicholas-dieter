@@ -71,7 +71,7 @@
 
     const copy = window.ND.getWorkshopCopy(workshop, language);
     const next = copy.nextClass || {};
-    const investment = copy.investment || {};
+    const investment = workshop.investment || copy.investment || {};
     const coordinator = copy.coordinator || {};
     const registration = copy.registration || {};
     const faq = [...(copy.faq || []), ...(window.ND.globalFaq[language] || [])];

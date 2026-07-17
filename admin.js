@@ -254,7 +254,7 @@
 
     const copy = getCopy(workshop);
     const next = copy.nextClass || {};
-    const investment = copy.investment || {};
+    const investment = workshop.investment || copy.investment || {};
     const coordinator = copy.coordinator || {};
 
     form.slug.value = workshop.slug;
@@ -337,6 +337,7 @@
       cardImage: form.cardImage.value.trim(),
       heroImage: form.heroImage.value.trim(),
       accent: existing?.accent || "#76d8e6",
+      investment: copy.investment,
       languages: {
         pt: form.languagePt.value.trim() || "Português",
         es: form.languageEs.value.trim() || form.languagePt.value.trim() || "Portugués",
@@ -346,8 +347,8 @@
       copy: {
         ...(existing?.copy || {}),
         pt: copy,
-        es: existing?.copy?.es || copy,
-        en: existing?.copy?.en || copy,
+        es: { ...(existing?.copy?.es || copy), investment: copy.investment },
+        en: { ...(existing?.copy?.en || copy), investment: copy.investment },
       },
     };
 
