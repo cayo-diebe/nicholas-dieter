@@ -17,6 +17,15 @@
   const programEditor = document.querySelector("#program-editor");
   const faqEditor = document.querySelector("#faq-editor");
   const galleryPreview = document.querySelector("#gallery-preview");
+  const stepCards = Array.from(document.querySelectorAll("[data-admin-step]"));
+  const stepLinks = Array.from(document.querySelectorAll("[data-admin-step-target]"));
+  const stepCurrent = document.querySelector("#admin-step-current");
+  const stepTitle = document.querySelector("#admin-step-title");
+  const stepStatus = document.querySelector("#admin-step-status");
+  const prevStepButton = document.querySelector("#admin-prev-step");
+  const nextStepButton = document.querySelector("#admin-next-step");
+
+  let activeStepIndex = 0;
 
   const getSelected = () => workshops.find((workshop) => workshop.slug === selectedSlug);
   const getCopy = (workshop) => window.ND.getWorkshopCopy(workshop, "pt");
@@ -42,6 +51,7 @@
     adminApp.hidden = false;
     renderList();
     fillForm();
+    setActiveStep(0);
   };
 
   const showLogin = () => {
@@ -62,6 +72,57 @@
       .split("\n")
       .map((item) => item.trim())
       .filter(Boolean);
+
+  const currencyFormatter = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+
+  const formatMoney = (value = "") => {
+    const digits = String(value).replace(/\D/g, "");
+    if (!digits) return "";
+    return currencyFormatter.format(Number(digits) / 100).replace(/\u00a0/g, " ");
+  };
+
+  const normalizeCashValue = (value = "") => {
+    const trimmed = String(value).trim();
+    return /\d/.test(trimmed) ? formatMoney(trimmed) : trimmed;
+  };
+
+  const applyMoneyMask = (input) => {
+    input.value = formatMoney(input.value);
+  };
+
+  const setActiveStep = (index) => {
+    if (!stepCards.length) return;
+
+    activeStepIndex = Math.max(0, Math.min(index, stepCards.length - 1));
+    const activeCard = stepCards[activeStepIndex];
+    const label = activeCard.dataset.adminStepLabel || "";
+    const counter = `Etapa ${activeStepIndex + 1} de ${stepCards.length}`;
+
+    stepCards.forEach((card, cardIndex) => {
+      const isActive = cardIndex === activeStepIndex;
+      card.classList.toggle("is-active", isActive);
+      card.setAttribute("aria-hidden", String(!isActive));
+    });
+
+    stepLinks.forEach((link) => {
+      const isActive = link.dataset.adminStepTarget === activeCard.dataset.adminStep;
+      link.classList.toggle("is-active", isActive);
+      link.setAttribute("aria-current", isActive ? "step" : "false");
+    });
+
+    if (stepCurrent) stepCurrent.textContent = counter;
+    if (stepStatus) stepStatus.textContent = counter;
+    if (stepTitle) stepTitle.textContent = label;
+    if (prevStepButton) prevStepButton.disabled = activeStepIndex === 0;
+    if (nextStepButton) {
+      nextStepButton.disabled = activeStepIndex === stepCards.length - 1;
+      nextStepButton.textContent =
+        activeStepIndex === stepCards.length - 1 ? "Última etapa" : "Próxima etapa";
+    }
+  };
 
   const imageLabel = (value = "") =>
     value.startsWith("data:image") ? "Imagem enviada pelo navegador" : value;
@@ -160,6 +221,7 @@
       button.addEventListener("click", () => {
         selectedSlug = button.dataset.adminSlug;
         fillForm();
+        setActiveStep(0);
         renderList();
       });
     });
@@ -274,7 +336,7 @@
     form.schedule.value = next.schedule || "";
     form.workload.value = next.workload || "";
     form.location.value = next.location || "";
-    form.cash.value = investment.cash || "";
+    form.cash.value = normalizeCashValue(investment.cash || "");
     form.installments.value = investment.installments || "";
     form.investmentNotes.value = investment.notes || "";
     form.coordinatorName.value = coordinator.name || "";
@@ -294,8 +356,51 @@
 
   const getStatusText = () => form.status.options[form.status.selectedIndex].text;
 
+  const validateRequiredFields = () => {
+    const invalidField = Array.from(form.querySelectorAll("[required]")).find(
+      (field) => !field.value.trim(),
+    );
+
+    if (!invalidField) return true;
+
+    const card = invalidField.closest("[data-admin-step]");
+    const index = stepCards.indexOf(card);
+    if (index >= 0) setActiveStep(index);
+    invalidField.focus();
+    invalidField.reportValidity();
+    return false;
+  };
+
+  stepLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      const index = stepCards.findIndex(
+        (card) => card.dataset.adminStep === link.dataset.adminStepTarget,
+      );
+      setActiveStep(index);
+    });
+  });
+
+  prevStepButton?.addEventListener("click", () => {
+    setActiveStep(activeStepIndex - 1);
+  });
+
+  nextStepButton?.addEventListener("click", () => {
+    setActiveStep(activeStepIndex + 1);
+  });
+
+  form.cash.addEventListener("input", () => {
+    applyMoneyMask(form.cash);
+  });
+
+  form.cash.addEventListener("blur", () => {
+    if (form.cash.value.trim()) applyMoneyMask(form.cash);
+  });
+
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+    if (!validateRequiredFields()) return;
+
     const currentSlug = selectedSlug;
     const nextSlug = slugify(form.slug.value || form.title.value);
     const existing = workshops.find((workshop) => workshop.slug === currentSlug);
@@ -320,7 +425,7 @@
         statusText: getStatusText(),
       },
       investment: {
-        cash: form.cash.value.trim(),
+        cash: normalizeCashValue(form.cash.value),
         installments: form.installments.value.trim(),
         notes: form.investmentNotes.value.trim(),
       },
@@ -461,6 +566,7 @@
     selectedSlug = slug;
     renderList();
     fillForm();
+    setActiveStep(0);
   });
 
   document.querySelector("#delete-workshop").addEventListener("click", () => {
@@ -470,6 +576,7 @@
     window.ND.saveWorkshops(workshops);
     renderList();
     fillForm();
+    setActiveStep(0);
   });
 
   document.querySelector("#reset-workshops").addEventListener("click", () => {
@@ -479,6 +586,7 @@
     window.ND.saveWorkshops(workshops);
     renderList();
     fillForm();
+    setActiveStep(0);
   });
 
   document.querySelector("#export-workshops").addEventListener("click", () => {

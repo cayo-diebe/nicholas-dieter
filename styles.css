@@ -263,6 +263,12 @@ h3 {
   transform: translateY(-1px);
 }
 
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+  transform: none;
+}
+
 .button--primary {
   background: var(--nd-cream);
   color: var(--nd-purple);
@@ -773,6 +779,10 @@ h3 {
   background: rgba(247, 241, 223, 0.04);
 }
 
+.admin-form {
+  align-content: start;
+}
+
 .admin-panel {
   align-self: start;
 }
@@ -807,12 +817,50 @@ h3 {
   color: var(--nd-cream);
 }
 
+.admin-flow a.is-active {
+  border-color: var(--nd-cream);
+  background: rgba(244, 232, 184, 0.12);
+  color: var(--nd-cream);
+}
+
+.admin-step-indicator {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(244, 232, 184, 0.16);
+  background: rgba(7, 6, 8, 0.36);
+}
+
+.admin-step-indicator span,
+.admin-step-controls span {
+  color: var(--mist-blue);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.admin-step-indicator strong {
+  color: var(--nd-cream);
+  font-family: var(--display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
+  line-height: 0.9;
+}
+
 .admin-card {
-  display: grid;
+  display: none;
   gap: 1rem;
-  padding: clamp(1rem, 3vw, 1.35rem);
+  padding: clamp(1rem, 3vw, 1.5rem);
   border: 1px solid rgba(244, 232, 184, 0.18);
   background: rgba(7, 6, 8, 0.28);
+}
+
+.admin-card.is-active {
+  display: grid;
 }
 
 .admin-card__header {
@@ -882,7 +930,13 @@ h3 {
 
 .admin-form fieldset {
   border: 1px solid rgba(244, 232, 184, 0.16);
-  padding: 1rem;
+  padding: clamp(1rem, 2vw, 1.2rem);
+  background: rgba(247, 241, 223, 0.025);
+}
+
+.admin-inline-fieldset {
+  display: grid;
+  gap: 1rem;
 }
 
 .admin-form legend {
@@ -1076,6 +1130,25 @@ h3 {
   gap: 0.75rem;
 }
 
+.admin-step-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid rgba(244, 232, 184, 0.16);
+  background: rgba(7, 6, 8, 0.28);
+}
+
+.admin-step-controls .button:last-child {
+  justify-self: end;
+}
+
+.admin-step-controls span {
+  justify-self: center;
+  text-align: center;
+}
+
 .admin-actions--sticky {
   margin: 0;
   padding: 1rem;
@@ -1211,7 +1284,7 @@ h3 {
   }
 
   .header-admin-mobile {
-    display: inline-flex;
+    display: none;
   }
 
   .language-switcher button {
@@ -1222,5 +1295,19 @@ h3 {
   .workshop-card dl div {
     grid-template-columns: 1fr;
     gap: 0.2rem;
+  }
+
+  .admin-step-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-step-controls .button,
+  .admin-step-controls .button:last-child {
+    justify-self: stretch;
+    width: 100%;
+  }
+
+  .admin-flow {
+    grid-template-columns: 1fr 1fr;
   }
 }

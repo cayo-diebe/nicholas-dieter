@@ -81,15 +81,20 @@
               <button class="button button--ghost" type="button" id="reset-workshops">Restaurar padrão</button>
             </div>
             <nav class="admin-flow" aria-label="Fluxo do cadastro">
-              <a href="#admin-basic">01 Essencial</a>
-              <a href="#admin-media">02 Imagens</a>
-              <a href="#admin-sales">03 Turmas</a>
-              <a href="#admin-content">04 Conteúdo</a>
+              <a href="#admin-basic" data-admin-step-target="basic">01 Essencial</a>
+              <a href="#admin-media" data-admin-step-target="media">02 Imagens</a>
+              <a href="#admin-sales" data-admin-step-target="sales">03 Turmas</a>
+              <a href="#admin-content" data-admin-step-target="content">04 Conteúdo</a>
             </nav>
           </aside>
 
-          <form class="admin-form" id="admin-form">
-            <section class="admin-card" id="admin-basic">
+          <form class="admin-form" id="admin-form" novalidate>
+            <div class="admin-step-indicator" aria-live="polite">
+              <span id="admin-step-current">Etapa 1 de 4</span>
+              <strong id="admin-step-title">Essencial</strong>
+            </div>
+
+            <section class="admin-card is-active" id="admin-basic" data-admin-step="basic" data-admin-step-label="Essencial">
               <div class="admin-card__header">
                 <span>01</span>
                 <div>
@@ -149,7 +154,7 @@
               </fieldset>
             </section>
 
-            <section class="admin-card" id="admin-media">
+            <section class="admin-card" id="admin-media" data-admin-step="media" data-admin-step-label="Imagens">
               <div class="admin-card__header">
                 <span>02</span>
                 <div>
@@ -220,7 +225,7 @@
               </article>
             </section>
 
-            <section class="admin-card" id="admin-sales">
+            <section class="admin-card" id="admin-sales" data-admin-step="sales" data-admin-step-label="Turmas e venda">
               <div class="admin-card__header">
                 <span>03</span>
                 <div>
@@ -244,7 +249,7 @@
               <fieldset class="admin-inline-fieldset">
                 <legend>Investimento</legend>
                 <div class="form-row form-row--two">
-                  <label>Valor à vista <input name="cash"></label>
+                  <label>Valor à vista <input name="cash" inputmode="numeric" autocomplete="off" placeholder="R$ 0,00" data-money-mask></label>
                   <label>Parcelamento <input name="installments"></label>
                 </div>
                 <label>Observações <textarea name="investmentNotes" rows="3"></textarea></label>
@@ -260,7 +265,7 @@
               </fieldset>
             </section>
 
-            <section class="admin-card" id="admin-content">
+            <section class="admin-card" id="admin-content" data-admin-step="content" data-admin-step-label="Conteúdo">
               <div class="admin-card__header">
                 <span>04</span>
                 <div>
@@ -281,6 +286,12 @@
                 <button class="button button--ghost" type="button" id="add-faq">Adicionar pergunta</button>
               </fieldset>
             </section>
+
+            <div class="admin-step-controls">
+              <button class="button button--ghost" type="button" id="admin-prev-step">Voltar</button>
+              <span id="admin-step-status">Etapa 1 de 4</span>
+              <button class="button button--primary" type="button" id="admin-next-step">Próxima etapa</button>
+            </div>
 
             <div class="admin-actions admin-actions--sticky">
               <button class="button button--primary" type="submit">Salvar oficina</button>
