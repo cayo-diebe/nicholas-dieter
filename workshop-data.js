@@ -491,6 +491,9 @@
 
     if (clean) {
       const query = language && language !== DEFAULT_LANGUAGE ? `?lang=${language}` : "";
+      if (window.location.protocol === "file:") {
+        return `${getRootPath()}oficinas/${encodedSlug}/index.html${query}`;
+      }
       return `${getRootPath()}oficinas/${encodedSlug}/${query}`;
     }
 
