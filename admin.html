@@ -72,23 +72,66 @@
           </p>
         </section>
 
-        <section class="admin-grid">
-          <aside class="admin-panel">
-            <h2>Oficinas</h2>
-            <div class="admin-list" id="admin-list"></div>
-            <div class="admin-panel-actions">
-              <button class="button button--ghost" type="button" id="new-workshop">Nova oficina</button>
-              <button class="button button--ghost" type="button" id="reset-workshops">Restaurar padrão</button>
-            </div>
-            <nav class="admin-flow" aria-label="Fluxo do cadastro">
-              <a href="#admin-basic" data-admin-step-target="basic">01 Essencial</a>
-              <a href="#admin-media" data-admin-step-target="media">02 Imagens</a>
-              <a href="#admin-sales" data-admin-step-target="sales">03 Turmas</a>
-              <a href="#admin-content" data-admin-step-target="content">04 Conteúdo</a>
-            </nav>
-          </aside>
+        <section class="admin-section admin-section--site" aria-labelledby="site-settings-title">
+          <div class="admin-section-heading">
+            <p class="eyebrow">Configurações do site</p>
+            <h2 id="site-settings-title">Visual geral</h2>
+            <p>Itens que afetam o site inteiro, fora do cadastro das oficinas.</p>
+          </div>
 
-          <form class="admin-form" id="admin-form" novalidate>
+          <form class="admin-form admin-form--site" id="site-settings-form" novalidate>
+            <article class="image-uploader image-uploader--wide">
+              <div class="image-uploader__preview" data-image-preview="homeHeroImage"></div>
+              <div class="image-uploader__body">
+                <h3>Banner de fundo da home</h3>
+                <p>Imagem grande usada no fundo do primeiro bloco do site.</p>
+                <label class="upload-button">
+                  Enviar banner
+                  <input type="file" accept="image/*" data-image-upload="homeHeroImage">
+                </label>
+                <details class="admin-advanced">
+                  <summary>Usar caminho/URL manual</summary>
+                  <label class="admin-path-label">
+                    Caminho ou URL
+                    <input name="homeHeroImage" placeholder="assets/nicholas-dieter-nevoa.png">
+                  </label>
+                </details>
+                <button class="admin-mini-button" type="button" data-clear-image="homeHeroImage">Limpar banner</button>
+              </div>
+            </article>
+
+            <div class="admin-actions">
+              <button class="button button--primary" type="submit">Salvar configurações</button>
+              <button class="button button--ghost" type="button" id="reset-site-settings">Restaurar banner padrão</button>
+              <p class="admin-save-status" id="site-settings-status" aria-live="polite"></p>
+            </div>
+          </form>
+        </section>
+
+        <section class="admin-section admin-section--workshops" aria-labelledby="workshop-settings-title">
+          <div class="admin-section-heading">
+            <p class="eyebrow">Cadastro de oficina</p>
+            <h2 id="workshop-settings-title">Oficinas</h2>
+            <p>Tudo abaixo pertence à oficina selecionada: textos, imagens, turmas, investimento e conteúdo.</p>
+          </div>
+
+          <section class="admin-grid">
+            <aside class="admin-panel">
+              <h2>Oficinas</h2>
+              <div class="admin-list" id="admin-list"></div>
+              <div class="admin-panel-actions">
+                <button class="button button--ghost" type="button" id="new-workshop">Nova oficina</button>
+                <button class="button button--ghost" type="button" id="reset-workshops">Restaurar padrão</button>
+              </div>
+              <nav class="admin-flow" aria-label="Fluxo do cadastro">
+                <a href="#admin-basic" data-admin-step-target="basic">01 Essencial</a>
+                <a href="#admin-media" data-admin-step-target="media">02 Imagens</a>
+                <a href="#admin-sales" data-admin-step-target="sales">03 Turmas</a>
+                <a href="#admin-content" data-admin-step-target="content">04 Conteúdo</a>
+              </nav>
+            </aside>
+
+            <form class="admin-form" id="admin-form" novalidate>
             <div class="admin-step-indicator" aria-live="polite">
               <span id="admin-step-current">Etapa 1 de 4</span>
               <strong id="admin-step-title">Essencial</strong>
@@ -159,29 +202,9 @@
                 <span>02</span>
                 <div>
                   <h2>Imagens</h2>
-                  <p>Troque o banner da home e as imagens da oficina sem mexer em código.</p>
+                  <p>Imagens específicas da oficina selecionada.</p>
                 </div>
               </div>
-
-              <article class="image-uploader image-uploader--wide">
-                <div class="image-uploader__preview" data-image-preview="homeHeroImage"></div>
-                <div class="image-uploader__body">
-                  <h3>Banner de fundo da home</h3>
-                  <p>Imagem grande usada no fundo do primeiro bloco do site.</p>
-                  <label class="upload-button">
-                    Enviar banner
-                    <input type="file" accept="image/*" data-image-upload="homeHeroImage">
-                  </label>
-                  <details class="admin-advanced">
-                    <summary>Usar caminho/URL manual</summary>
-                    <label class="admin-path-label">
-                      Caminho ou URL
-                      <input name="homeHeroImage" placeholder="assets/nicholas-dieter-nevoa.png">
-                    </label>
-                  </details>
-                  <button class="admin-mini-button" type="button" data-clear-image="homeHeroImage">Limpar banner</button>
-                </div>
-              </article>
 
               <div class="image-uploader-grid">
                 <article class="image-uploader">
@@ -328,7 +351,8 @@
 
             <p class="admin-url" id="campaign-url"></p>
             <textarea class="export-box" id="export-box" rows="10" readonly placeholder="Clique em Exportar dados para copiar o conteúdo atualizado."></textarea>
-          </form>
+            </form>
+          </section>
         </section>
       </section>
     </main>

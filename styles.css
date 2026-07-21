@@ -733,16 +733,18 @@ h3 {
   z-index: 70;
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
-  min-height: 3.15rem;
-  padding: 0.75rem 1rem;
-  border: 1px solid rgba(244, 232, 184, 0.24);
-  background: #25d366;
-  color: #04110a;
+  gap: 0.7rem;
+  min-height: 3.45rem;
+  padding: 0.48rem 1rem 0.48rem 0.5rem;
+  border: 1px solid rgba(37, 211, 102, 0.72);
+  border-radius: 999px;
+  background: rgba(247, 241, 223, 0.96);
+  color: #071711;
   box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.34);
   font-size: 0.86rem;
   font-weight: 900;
   letter-spacing: 0.01em;
+  line-height: 1;
   transition: transform 180ms var(--ease), box-shadow 180ms var(--ease);
 }
 
@@ -751,14 +753,25 @@ h3 {
   transform: translateY(-2px);
 }
 
+.floating-whatsapp__icon {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 2.45rem;
+  height: 2.45rem;
+  border-radius: 50%;
+  background: #25d366;
+  color: #04110a;
+}
+
 .floating-whatsapp svg {
   width: 1.35rem;
   height: 1.35rem;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.65;
+  fill: currentColor;
+}
+
+.floating-whatsapp__label {
+  white-space: nowrap;
 }
 
 .divider {
@@ -866,10 +879,42 @@ h3 {
   line-height: 0.86;
 }
 
+.admin-section {
+  margin-top: 3rem;
+}
+
+.admin-section-heading {
+  max-width: 760px;
+}
+
+.admin-section-heading h2 {
+  color: var(--nd-cream);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  line-height: 0.88;
+}
+
+.admin-section-heading p:not(.eyebrow) {
+  color: rgba(247, 241, 223, 0.68);
+  font-size: 1.02rem;
+  line-height: 1.6;
+}
+
+.admin-form--site {
+  margin-top: 1rem;
+}
+
+.admin-save-status {
+  align-self: center;
+  margin: 0;
+  color: var(--mist-blue);
+  font-size: 0.86rem;
+  font-weight: 900;
+}
+
 .admin-grid {
   display: grid;
   gap: 1.5rem;
-  margin-top: 3rem;
+  margin-top: 1rem;
 }
 
 .admin-panel,
@@ -1419,12 +1464,19 @@ h3 {
   .floating-whatsapp {
     right: 1rem;
     bottom: 1rem;
+    width: 3.45rem;
+    height: 3.45rem;
     min-width: 3.15rem;
     justify-content: center;
-    padding-inline: 0.85rem;
+    padding: 0.5rem;
   }
 
-  .floating-whatsapp span {
+  .floating-whatsapp__icon {
+    width: 2.45rem;
+    height: 2.45rem;
+  }
+
+  .floating-whatsapp__label {
     display: none;
   }
 

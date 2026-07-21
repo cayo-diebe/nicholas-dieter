@@ -12,6 +12,8 @@
   const loginForm = document.querySelector("#login-form");
   const loginError = document.querySelector("#login-error");
   const form = document.querySelector("#admin-form");
+  const settingsForm = document.querySelector("#site-settings-form");
+  const siteSettingsStatus = document.querySelector("#site-settings-status");
   const list = document.querySelector("#admin-list");
   const exportBox = document.querySelector("#export-box");
   const campaignUrl = document.querySelector("#campaign-url");
@@ -51,6 +53,7 @@
   const showAdmin = () => {
     loginSection.hidden = true;
     adminApp.hidden = false;
+    fillSiteSettingsForm();
     renderList();
     fillForm();
     setActiveStep(0);
@@ -180,11 +183,12 @@
     });
   };
 
-  const renderSingleImagePreview = (fieldName) => {
+  const renderSingleImagePreview = (fieldName, sourceForm = form) => {
     const preview = document.querySelector(`[data-image-preview="${fieldName}"]`);
     if (!preview) return;
 
-    const value = form[fieldName].value.trim();
+    const field = sourceForm?.elements?.[fieldName];
+    const value = field?.value.trim() || "";
     if (!value) {
       preview.innerHTML = "<span>Sem imagem</span>";
       return;
@@ -217,10 +221,16 @@
   };
 
   const syncImagePreviews = () => {
-    renderSingleImagePreview("homeHeroImage");
+    renderSingleImagePreview("homeHeroImage", settingsForm);
     renderSingleImagePreview("cardImage");
     renderSingleImagePreview("heroImage");
     renderGalleryPreview();
+  };
+
+  const fillSiteSettingsForm = () => {
+    siteSettings = window.ND.loadSiteSettings();
+    settingsForm.homeHeroImage.value = siteSettings.homeHeroImage || window.ND.defaultSiteSettings.homeHeroImage;
+    renderSingleImagePreview("homeHeroImage", settingsForm);
   };
 
   const renderList = () => {
@@ -375,13 +385,9 @@
       .filter((item) => item.question || item.answer);
 
   const fillForm = () => {
-    siteSettings = window.ND.loadSiteSettings();
-    form.homeHeroImage.value = siteSettings.homeHeroImage || window.ND.defaultSiteSettings.homeHeroImage;
-
     const workshop = getSelected();
     if (!workshop) {
       form.reset();
-      form.homeHeroImage.value = siteSettings.homeHeroImage || window.ND.defaultSiteSettings.homeHeroImage;
       renderProgramEditor([{ title: "", items: [] }]);
       renderVideoEditor([emptyVideo]);
       renderFaqEditor([{ question: "", answer: "" }]);
@@ -538,14 +544,20 @@
     workshops = workshops.filter((workshop) => workshop.slug !== currentSlug);
     workshops.push(nextWorkshop);
     selectedSlug = nextSlug;
-    siteSettings = {
-      ...siteSettings,
-      homeHeroImage: form.homeHeroImage.value.trim() || window.ND.defaultSiteSettings.homeHeroImage,
-    };
     window.ND.saveWorkshops(workshops);
-    window.ND.saveSiteSettings(siteSettings);
     renderList();
     fillForm();
+  });
+
+  settingsForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    siteSettings = {
+      ...siteSettings,
+      homeHeroImage: settingsForm.homeHeroImage.value.trim() || window.ND.defaultSiteSettings.homeHeroImage,
+    };
+    window.ND.saveSiteSettings(siteSettings);
+    fillSiteSettingsForm();
+    siteSettingsStatus.textContent = "Configurações salvas.";
   });
 
   document.querySelector("#add-program").addEventListener("click", () => {
@@ -584,10 +596,11 @@
 
       try {
         const images = await Promise.all(files.map(prepareImageFile));
-        if (target === "gallery") {
+        const targetForm = input.closest("form") || form;
+        if (target === "gallery" && targetForm === form) {
           form.gallery.value = splitLines(form.gallery.value).concat(images).join("\n");
-        } else if (form[target]) {
-          form[target].value = images[0];
+        } else if (targetForm.elements[target]) {
+          targetForm.elements[target].value = images[0];
         }
         syncImagePreviews();
       } catch (error) {
@@ -602,12 +615,13 @@
   document.querySelectorAll("[data-clear-image]").forEach((button) => {
     button.addEventListener("click", () => {
       const field = button.dataset.clearImage;
-      if (form[field]) form[field].value = "";
+      const targetForm = button.closest("form") || form;
+      if (targetForm.elements[field]) targetForm.elements[field].value = "";
       syncImagePreviews();
     });
   });
 
-  form.homeHeroImage.addEventListener("input", syncImagePreviews);
+  settingsForm.homeHeroImage.addEventListener("input", syncImagePreviews);
   form.cardImage.addEventListener("input", syncImagePreviews);
   form.heroImage.addEventListener("input", syncImagePreviews);
   form.gallery.addEventListener("input", syncImagePreviews);
@@ -671,13 +685,18 @@
   document.querySelector("#reset-workshops").addEventListener("click", () => {
     if (!confirm("Restaurar dados padrão e apagar alterações locais?")) return;
     workshops = window.ND.clone(window.ND.defaultWorkshops);
-    siteSettings = window.ND.clone(window.ND.defaultSiteSettings);
     selectedSlug = workshops[0]?.slug || "";
     window.ND.saveWorkshops(workshops);
-    window.ND.saveSiteSettings(siteSettings);
     renderList();
     fillForm();
     setActiveStep(0);
+  });
+
+  document.querySelector("#reset-site-settings").addEventListener("click", () => {
+    siteSettings = window.ND.clone(window.ND.defaultSiteSettings);
+    window.ND.saveSiteSettings(siteSettings);
+    fillSiteSettingsForm();
+    siteSettingsStatus.textContent = "Banner padrão restaurado.";
   });
 
   document.querySelector("#export-workshops").addEventListener("click", () => {
