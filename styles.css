@@ -378,7 +378,7 @@ h3 {
 
 .workshop-card dl div {
   display: grid;
-  grid-template-columns: 9rem 1fr;
+  grid-template-columns: minmax(0, 9rem) minmax(0, 1fr);
   gap: 1rem;
   padding-top: 0.7rem;
 }
@@ -393,6 +393,8 @@ h3 {
 
 .workshop-card dd {
   margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .records-strip {
@@ -485,8 +487,18 @@ h3 {
   background: #070608;
 }
 
+.course-hero > *,
+.course-hero__image,
+.course-hero__copy,
+.commerce-panel,
+.program-item,
+.video-card {
+  min-width: 0;
+}
+
 .course-hero__image {
-  min-height: 360px;
+  height: clamp(280px, 42vw, 520px);
+  min-height: 0;
   overflow: hidden;
   border: 1px solid var(--line);
 }
@@ -864,6 +876,10 @@ h3 {
 
 .admin-shell {
   padding: 7rem clamp(1rem, 6vw, 5rem) 4rem;
+}
+
+.admin-mobile-gate {
+  display: none;
 }
 
 .admin-login {
@@ -1559,6 +1575,32 @@ h3 {
   }
 }
 
+@media (min-width: 621px) and (max-width: 899px) {
+  .section--split,
+  .course-about,
+  .coordinator-section,
+  .language-section,
+  .workshop-card,
+  .course-hero,
+  .course-commerce {
+    grid-template-columns: 1fr;
+  }
+
+  .course-commerce {
+    min-height: 0;
+  }
+
+  .commerce-panel {
+    min-height: auto;
+  }
+
+  .program-grid,
+  .records-strip,
+  .course-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 620px) {
   .site-header {
     grid-template-columns: minmax(0, 1fr) auto auto auto;
@@ -1578,6 +1620,62 @@ h3 {
 
   .header-admin-mobile {
     display: none;
+  }
+
+  body[data-page="admin"] .admin-shell {
+    display: none;
+  }
+
+  body[data-page="admin"] .admin-login,
+  body[data-page="admin"] .admin-app {
+    display: none !important;
+  }
+
+  body[data-page="admin"] .admin-mobile-gate {
+    display: grid;
+    min-height: 100svh;
+    align-content: center;
+    gap: 1rem;
+    padding: 7rem 1rem 3rem;
+  }
+
+  .admin-mobile-gate h1 {
+    max-width: 8ch;
+    color: var(--nd-cream);
+    font-size: clamp(3rem, 18vw, 4.6rem);
+    line-height: 0.82;
+  }
+
+  .admin-mobile-gate p:not(.eyebrow) {
+    max-width: 34rem;
+    color: rgba(247, 241, 223, 0.74);
+    line-height: 1.6;
+  }
+
+  .home-hero,
+  .course-hero {
+    padding-top: 6.5rem;
+  }
+
+  .course-hero__image {
+    height: clamp(220px, 70vw, 300px);
+    min-height: 0;
+  }
+
+  .course-hero h1 {
+    font-size: clamp(3.2rem, 16vw, 4.6rem);
+  }
+
+  .course-commerce {
+    min-height: 0;
+  }
+
+  .commerce-panel {
+    min-height: auto;
+  }
+
+  .course-gallery {
+    grid-template-columns: 1fr;
   }
 
   .language-switcher button {
