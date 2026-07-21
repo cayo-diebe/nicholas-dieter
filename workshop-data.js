@@ -506,6 +506,9 @@
     globalFaq,
   };
 
+  const publishedData =
+    window.ND_PUBLISHED_DATA && typeof window.ND_PUBLISHED_DATA === "object" ? window.ND_PUBLISHED_DATA : {};
+
   const normalizeWorkshops = (workshops) =>
     (workshops || []).map((workshop) => ({
       ...workshop,
@@ -532,6 +535,16 @@
 
     return normalized;
   };
+
+  const getPublishedWorkshops = () =>
+    Array.isArray(publishedData.workshops) && publishedData.workshops.length
+      ? normalizeWorkshops(publishedData.workshops)
+      : normalizeWorkshops(defaultWorkshops);
+
+  const getPublishedSiteSettings = () =>
+    publishedData.siteSettings && typeof publishedData.siteSettings === "object"
+      ? normalizeSiteSettings(publishedData.siteSettings)
+      : normalizeSiteSettings(defaultSiteSettings);
 
   const getLanguage = () => {
     const params = new URLSearchParams(window.location.search);
@@ -561,9 +574,9 @@
   const loadWorkshops = () => {
     try {
       const saved = window.localStorage.getItem(STORAGE_KEY);
-      return saved ? normalizeWorkshops(JSON.parse(saved)) : clone(defaultWorkshops);
+      return saved ? normalizeWorkshops(JSON.parse(saved)) : clone(getPublishedWorkshops());
     } catch {
-      return clone(defaultWorkshops);
+      return clone(getPublishedWorkshops());
     }
   };
 
@@ -574,9 +587,9 @@
   const loadSiteSettings = () => {
     try {
       const saved = window.localStorage.getItem(SETTINGS_KEY);
-      return saved ? normalizeSiteSettings(JSON.parse(saved)) : clone(defaultSiteSettings);
+      return saved ? normalizeSiteSettings(JSON.parse(saved)) : clone(getPublishedSiteSettings());
     } catch {
-      return clone(defaultSiteSettings);
+      return clone(getPublishedSiteSettings());
     }
   };
 
@@ -725,8 +738,8 @@
   window.ND = {
     PHONE,
     VIMEO_URL,
-    defaultWorkshops,
-    defaultSiteSettings,
+    defaultWorkshops: clone(getPublishedWorkshops()),
+    defaultSiteSettings: clone(getPublishedSiteSettings()),
     globalFaq,
     ui,
     clone,

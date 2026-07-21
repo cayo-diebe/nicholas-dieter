@@ -19,6 +19,8 @@
   const recordsPreview = document.querySelector("#records-preview");
   const list = document.querySelector("#admin-list");
   const exportBox = document.querySelector("#export-box");
+  const publicationExportBox = document.querySelector("#publication-export-box");
+  const workshopSaveStatus = document.querySelector("#workshop-save-status");
   const campaignUrl = document.querySelector("#campaign-url");
   const programEditor = document.querySelector("#program-editor");
   const videoEditor = document.querySelector("#video-editor");
@@ -215,7 +217,7 @@
     return new Promise((resolve) => {
       const image = new Image();
       image.addEventListener("load", () => {
-        const maxSize = 1800;
+        const maxSize = 1500;
         const scale = Math.min(1, maxSize / Math.max(image.width, image.height));
         const canvas = document.createElement("canvas");
         canvas.width = Math.round(image.width * scale);
@@ -224,7 +226,7 @@
         context.fillStyle = "#070608";
         context.fillRect(0, 0, canvas.width, canvas.height);
         context.drawImage(image, 0, 0, canvas.width, canvas.height);
-        resolve(canvas.toDataURL("image/jpeg", 0.86));
+        resolve(canvas.toDataURL("image/jpeg", 0.74));
       });
       image.addEventListener("error", () => resolve(original));
       image.src = original;
@@ -353,6 +355,41 @@
       ...(siteSettings.globalFaq || {}),
       [activeSiteLanguage]: readSiteFaqEditor(),
     };
+  };
+
+  const readCurrentSiteSettings = () => {
+    storeActiveSiteLanguageDraft();
+    return window.ND.normalizeSiteSettings({
+      ...siteSettings,
+      homeHeroImage: settingsForm.homeHeroImage.value.trim() || window.ND.defaultSiteSettings.homeHeroImage,
+      instagramUrl: settingsForm.instagramUrl.value.trim() || window.ND.defaultSiteSettings.instagramUrl,
+      vimeoUrl: settingsForm.vimeoUrl.value.trim() || window.ND.defaultSiteSettings.vimeoUrl,
+      whatsappPhone: settingsForm.whatsappPhone.value.trim() || window.ND.defaultSiteSettings.whatsappPhone,
+      whatsappMessage: settingsForm.whatsappMessage.value.trim() || window.ND.defaultSiteSettings.whatsappMessage,
+      recordsImages: splitLines(settingsForm.recordsImages.value),
+    });
+  };
+
+  const buildPublicationFileContent = () => {
+    const payload = {
+      exportedAt: new Date().toISOString(),
+      siteSettings: readCurrentSiteSettings(),
+      workshops: window.ND.normalizeWorkshops(workshops),
+    };
+    return `window.ND_PUBLISHED_DATA = ${JSON.stringify(payload, null, 2)};\n`;
+  };
+
+  const showPublicationExport = (targetBox = exportBox) => {
+    if (!targetBox) return;
+    const content = buildPublicationFileContent();
+    targetBox.value = content;
+    targetBox.classList.add("is-visible");
+    targetBox.select();
+    navigator.clipboard?.writeText(content).catch(() => {});
+  };
+
+  const setWorkshopStatus = (message) => {
+    if (workshopSaveStatus) workshopSaveStatus.textContent = message;
   };
 
   const syncImagePreviews = () => {
@@ -707,7 +744,17 @@
     workshops = workshops.filter((workshop) => workshop.slug !== currentSlug);
     workshops.push(nextWorkshop);
     selectedSlug = nextSlug;
-    window.ND.saveWorkshops(workshops);
+
+    try {
+      window.ND.saveWorkshops(workshops);
+      setWorkshopStatus("Oficina salva neste navegador. Para refletir em desktop e mobile, gere a publicacao.");
+    } catch {
+      setWorkshopStatus(
+        "Nao foi possivel salvar no navegador. As imagens podem estar pesadas; gere a publicacao ou remova algumas fotos.",
+      );
+      showPublicationExport(exportBox);
+    }
+
     renderList();
     fillForm();
   });
@@ -715,32 +762,19 @@
   settingsForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const nextCopy = {
-      ...(siteSettings.copy || {}),
-      [activeSiteLanguage]: {
-        ...(siteSettings.copy?.[activeSiteLanguage] || {}),
-        ...readSiteCopyFields(),
-      },
-    };
-    const nextGlobalFaq = {
-      ...(siteSettings.globalFaq || {}),
-      [activeSiteLanguage]: readSiteFaqEditor(),
-    };
+    siteSettings = readCurrentSiteSettings();
 
-    siteSettings = {
-      ...siteSettings,
-      homeHeroImage: settingsForm.homeHeroImage.value.trim() || window.ND.defaultSiteSettings.homeHeroImage,
-      instagramUrl: settingsForm.instagramUrl.value.trim() || window.ND.defaultSiteSettings.instagramUrl,
-      vimeoUrl: settingsForm.vimeoUrl.value.trim() || window.ND.defaultSiteSettings.vimeoUrl,
-      whatsappPhone: settingsForm.whatsappPhone.value.trim() || window.ND.defaultSiteSettings.whatsappPhone,
-      whatsappMessage: settingsForm.whatsappMessage.value.trim() || window.ND.defaultSiteSettings.whatsappMessage,
-      recordsImages: splitLines(settingsForm.recordsImages.value),
-      copy: nextCopy,
-      globalFaq: nextGlobalFaq,
-    };
-    window.ND.saveSiteSettings(siteSettings);
+    try {
+      window.ND.saveSiteSettings(siteSettings);
+      siteSettingsStatus.textContent =
+        "Configuracoes salvas neste navegador. Para refletir em desktop e mobile, gere a publicacao.";
+    } catch {
+      siteSettingsStatus.textContent =
+        "Nao foi possivel salvar no navegador. As imagens podem estar pesadas; gere a publicacao.";
+      showPublicationExport(publicationExportBox);
+    }
+
     fillSiteSettingsForm();
-    siteSettingsStatus.textContent = "Configurações salvas.";
   });
 
   document.querySelector("#add-program").addEventListener("click", () => {
@@ -908,9 +942,11 @@
   });
 
   document.querySelector("#export-workshops").addEventListener("click", () => {
-    exportBox.value = JSON.stringify(workshops, null, 2);
-    exportBox.classList.add("is-visible");
-    exportBox.select();
+    showPublicationExport(exportBox);
+  });
+
+  document.querySelector("#export-publication").addEventListener("click", () => {
+    showPublicationExport(publicationExportBox);
   });
 
   document.querySelector("#logout-admin").addEventListener("click", () => {

@@ -15,6 +15,7 @@
       rel="stylesheet"
     >
     <link rel="stylesheet" href="styles.css">
+    <script src="published-data.js" defer></script>
     <script src="workshop-data.js" defer></script>
     <script src="admin.js" defer></script>
   </head>
@@ -104,6 +105,26 @@
             <small>Campanhas e inscrições</small>
           </a>
         </nav>
+
+        <details class="admin-publish-panel">
+          <summary>Publicacao desktop + mobile</summary>
+          <div class="admin-publish-panel__body">
+            <p>
+              Gere o pacote publicado depois de salvar imagens e textos. Esse arquivo e a fonte que o site usa
+              quando abre em outro celular, computador ou navegador.
+            </p>
+            <div class="admin-actions">
+              <button class="button button--primary" type="button" id="export-publication">Gerar arquivo publicado</button>
+            </div>
+            <textarea
+              class="export-box"
+              id="publication-export-box"
+              rows="8"
+              readonly
+              placeholder="Clique em Gerar arquivo publicado para montar o conteudo do published-data.js."
+            ></textarea>
+          </div>
+        </details>
 
         <section class="admin-section admin-section--site" aria-labelledby="site-settings-title" data-admin-route-panel="site-visual site-textos site-registros">
           <div class="admin-section-heading">
@@ -497,11 +518,12 @@
             <div class="admin-actions admin-actions--sticky">
               <button class="button button--primary" type="submit">Salvar oficina</button>
               <button class="button button--ghost" type="button" id="delete-workshop">Excluir</button>
-              <button class="button button--ghost" type="button" id="export-workshops">Exportar dados</button>
+              <button class="button button--ghost" type="button" id="export-workshops">Exportar publicacao</button>
             </div>
 
+            <p class="admin-save-status" id="workshop-save-status" aria-live="polite"></p>
             <p class="admin-url" id="campaign-url"></p>
-            <textarea class="export-box" id="export-box" rows="10" readonly placeholder="Clique em Exportar dados para copiar o conteúdo atualizado."></textarea>
+            <textarea class="export-box" id="export-box" rows="10" readonly placeholder="Clique em Exportar publicacao para copiar o conteudo atualizado."></textarea>
             </form>
           </section>
         </section>

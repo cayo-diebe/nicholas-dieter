@@ -1,0 +1,1 @@
+window.ND_PUBLISHED_DATA = window.ND_PUBLISHED_DATA || {};
