@@ -194,7 +194,7 @@ select {
   background:
     linear-gradient(90deg, rgba(7, 6, 8, 0.92), rgba(7, 6, 8, 0.3) 52%, rgba(7, 6, 8, 0.9)),
     linear-gradient(0deg, #070608, transparent 38%),
-    url("assets/nicholas-dieter-nevoa.png") center / cover no-repeat;
+    var(--home-hero-image, url("assets/nicholas-dieter-nevoa.png")) center / cover no-repeat;
 }
 
 .home-hero__content,
@@ -293,6 +293,7 @@ h3 {
 
 .section__intro {
   max-width: 520px;
+  min-width: 0;
 }
 
 .section h2 {
@@ -324,10 +325,12 @@ h3 {
 .workshop-list {
   display: grid;
   gap: 1rem;
+  min-width: 0;
 }
 
 .workshop-card {
   display: grid;
+  min-width: 0;
   border: 1px solid var(--line);
   background: rgba(247, 241, 223, 0.04);
 }
@@ -357,6 +360,7 @@ h3 {
   font-size: clamp(3rem, 5vw, 4rem);
   font-style: italic;
   line-height: 0.82;
+  overflow-wrap: anywhere;
 }
 
 .workshop-card p {
@@ -720,6 +724,41 @@ h3 {
 .commerce-panel--form h2,
 .commerce-panel--form p {
   text-align: center;
+}
+
+.floating-whatsapp {
+  position: fixed;
+  right: clamp(1rem, 3vw, 1.5rem);
+  bottom: clamp(1rem, 3vw, 1.5rem);
+  z-index: 70;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 3.15rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(244, 232, 184, 0.24);
+  background: #25d366;
+  color: #04110a;
+  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.34);
+  font-size: 0.86rem;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  transition: transform 180ms var(--ease), box-shadow 180ms var(--ease);
+}
+
+.floating-whatsapp:hover {
+  box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.42);
+  transform: translateY(-2px);
+}
+
+.floating-whatsapp svg {
+  width: 1.35rem;
+  height: 1.35rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.65;
 }
 
 .divider {
@@ -1366,6 +1405,27 @@ h3 {
   .workshop-card dl div {
     grid-template-columns: 1fr;
     gap: 0.2rem;
+  }
+
+  .section--records h2,
+  .section--faq h2 {
+    font-size: clamp(1.6rem, 6.4vw, 2.2rem);
+  }
+
+  .workshop-card h3 {
+    font-size: clamp(2.2rem, 10vw, 3rem);
+  }
+
+  .floating-whatsapp {
+    right: 1rem;
+    bottom: 1rem;
+    min-width: 3.15rem;
+    justify-content: center;
+    padding-inline: 0.85rem;
+  }
+
+  .floating-whatsapp span {
+    display: none;
   }
 
   .admin-step-controls {

@@ -4,6 +4,7 @@
   const ADMIN_PASSWORD = "123";
 
   let workshops = window.ND.loadWorkshops();
+  let siteSettings = window.ND.loadSiteSettings();
   let selectedSlug = workshops[0]?.slug || "";
 
   const loginSection = document.querySelector("#admin-login");
@@ -216,6 +217,7 @@
   };
 
   const syncImagePreviews = () => {
+    renderSingleImagePreview("homeHeroImage");
     renderSingleImagePreview("cardImage");
     renderSingleImagePreview("heroImage");
     renderGalleryPreview();
@@ -373,9 +375,13 @@
       .filter((item) => item.question || item.answer);
 
   const fillForm = () => {
+    siteSettings = window.ND.loadSiteSettings();
+    form.homeHeroImage.value = siteSettings.homeHeroImage || window.ND.defaultSiteSettings.homeHeroImage;
+
     const workshop = getSelected();
     if (!workshop) {
       form.reset();
+      form.homeHeroImage.value = siteSettings.homeHeroImage || window.ND.defaultSiteSettings.homeHeroImage;
       renderProgramEditor([{ title: "", items: [] }]);
       renderVideoEditor([emptyVideo]);
       renderFaqEditor([{ question: "", answer: "" }]);
@@ -532,7 +538,12 @@
     workshops = workshops.filter((workshop) => workshop.slug !== currentSlug);
     workshops.push(nextWorkshop);
     selectedSlug = nextSlug;
+    siteSettings = {
+      ...siteSettings,
+      homeHeroImage: form.homeHeroImage.value.trim() || window.ND.defaultSiteSettings.homeHeroImage,
+    };
     window.ND.saveWorkshops(workshops);
+    window.ND.saveSiteSettings(siteSettings);
     renderList();
     fillForm();
   });
@@ -596,6 +607,7 @@
     });
   });
 
+  form.homeHeroImage.addEventListener("input", syncImagePreviews);
   form.cardImage.addEventListener("input", syncImagePreviews);
   form.heroImage.addEventListener("input", syncImagePreviews);
   form.gallery.addEventListener("input", syncImagePreviews);
@@ -659,8 +671,10 @@
   document.querySelector("#reset-workshops").addEventListener("click", () => {
     if (!confirm("Restaurar dados padrão e apagar alterações locais?")) return;
     workshops = window.ND.clone(window.ND.defaultWorkshops);
+    siteSettings = window.ND.clone(window.ND.defaultSiteSettings);
     selectedSlug = workshops[0]?.slug || "";
     window.ND.saveWorkshops(workshops);
+    window.ND.saveSiteSettings(siteSettings);
     renderList();
     fillForm();
     setActiveStep(0);

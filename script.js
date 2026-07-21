@@ -1,5 +1,6 @@
 (function () {
   const workshops = window.ND.loadWorkshops();
+  const siteSettings = window.ND.loadSiteSettings();
   let language = window.ND.getLanguage();
 
   const t = (path) =>
@@ -16,6 +17,14 @@
     document.querySelectorAll("[data-language-option]").forEach((button) => {
       button.setAttribute("aria-pressed", String(button.dataset.languageOption === language));
     });
+  };
+
+  const applyHomeHero = () => {
+    const media = document.querySelector(".home-hero__media");
+    if (!media) return;
+
+    const image = siteSettings.homeHeroImage || window.ND.defaultSiteSettings.homeHeroImage;
+    media.style.setProperty("--home-hero-image", `url("${window.ND.resolveAsset(image)}")`);
   };
 
   const renderWorkshops = () => {
@@ -84,6 +93,7 @@
 
   const render = () => {
     applyLanguage();
+    applyHomeHero();
     renderWorkshops();
     renderRecords();
     renderFaq();

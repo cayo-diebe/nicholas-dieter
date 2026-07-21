@@ -159,9 +159,29 @@
                 <span>02</span>
                 <div>
                   <h2>Imagens</h2>
-                  <p>Faça upload das imagens ou mantenha caminhos já existentes.</p>
+                  <p>Troque o banner da home e as imagens da oficina sem mexer em código.</p>
                 </div>
               </div>
+
+              <article class="image-uploader image-uploader--wide">
+                <div class="image-uploader__preview" data-image-preview="homeHeroImage"></div>
+                <div class="image-uploader__body">
+                  <h3>Banner de fundo da home</h3>
+                  <p>Imagem grande usada no fundo do primeiro bloco do site.</p>
+                  <label class="upload-button">
+                    Enviar banner
+                    <input type="file" accept="image/*" data-image-upload="homeHeroImage">
+                  </label>
+                  <details class="admin-advanced">
+                    <summary>Usar caminho/URL manual</summary>
+                    <label class="admin-path-label">
+                      Caminho ou URL
+                      <input name="homeHeroImage" placeholder="assets/nicholas-dieter-nevoa.png">
+                    </label>
+                  </details>
+                  <button class="admin-mini-button" type="button" data-clear-image="homeHeroImage">Limpar banner</button>
+                </div>
+              </article>
 
               <div class="image-uploader-grid">
                 <article class="image-uploader">

@@ -1,5 +1,6 @@
 (function () {
   const STORAGE_KEY = "nicholas-dieter-workshops";
+  const SETTINGS_KEY = "nicholas-dieter-site-settings";
   const LANGUAGE_KEY = "nicholas-dieter-language";
   const DEFAULT_LANGUAGE = "pt";
   const PHONE = "5511992978145";
@@ -464,6 +465,10 @@
     en: "Portuguese",
   };
 
+  const defaultSiteSettings = {
+    homeHeroImage: "assets/nicholas-dieter-nevoa.png",
+  };
+
   const clone = (value) => JSON.parse(JSON.stringify(value));
 
   const normalizeWorkshops = (workshops) =>
@@ -475,6 +480,11 @@
         ...(workshop.languages || {}),
       },
     }));
+
+  const normalizeSiteSettings = (settings = {}) => ({
+    ...defaultSiteSettings,
+    ...(settings || {}),
+  });
 
   const getLanguage = () => {
     const params = new URLSearchParams(window.location.search);
@@ -514,6 +524,19 @@
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(workshops));
   };
 
+  const loadSiteSettings = () => {
+    try {
+      const saved = window.localStorage.getItem(SETTINGS_KEY);
+      return saved ? normalizeSiteSettings(JSON.parse(saved)) : clone(defaultSiteSettings);
+    } catch {
+      return clone(defaultSiteSettings);
+    }
+  };
+
+  const saveSiteSettings = (settings) => {
+    window.localStorage.setItem(SETTINGS_KEY, JSON.stringify(normalizeSiteSettings(settings)));
+  };
+
   const getWorkshopCopy = (workshop, language) =>
     workshop.copy?.[language] || workshop.copy?.pt || Object.values(workshop.copy || {})[0] || {};
 
@@ -546,6 +569,26 @@
 
   const createWhatsAppUrl = (message, extra = "") =>
     `https://wa.me/${PHONE}?text=${encodeURIComponent(`${message}${extra}`)}`;
+
+  const enableFloatingWhatsApp = () => {
+    if (document.body.dataset.page === "admin" || document.querySelector(".floating-whatsapp")) return;
+
+    const link = document.createElement("a");
+    link.className = "floating-whatsapp";
+    link.href = createWhatsAppUrl("Olá, Nicholas! Vim pelo site e gostaria de falar no WhatsApp.");
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.setAttribute("aria-label", "Falar no WhatsApp");
+    link.innerHTML = `
+      <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+        <path d="M20.5 11.8a8.4 8.4 0 0 1-12.4 7.4L4 20.3l1.1-4A8.4 8.4 0 1 1 20.5 11.8Z"></path>
+        <path d="M9.3 8.2c-.2-.5-.4-.5-.7-.5H8c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.3 0 1.4 1 2.7 1.1 2.9.1.2 2 3.2 4.9 4.3 2.4 1 2.9.8 3.4.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4 0-.1-.2-.2-.5-.4l-1.8-.9c-.3-.1-.5-.2-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6L9.3 8.2Z"></path>
+      </svg>
+      <span>Falar no WhatsApp</span>
+    `;
+
+    document.body.append(link);
+  };
 
   const enableImageLightbox = () => {
     if (document.documentElement.dataset.lightboxReady === "true") return;
@@ -603,22 +646,28 @@
     PHONE,
     VIMEO_URL,
     defaultWorkshops,
+    defaultSiteSettings,
     globalFaq,
     ui,
     clone,
     normalizeWorkshops,
+    normalizeSiteSettings,
     getRootPath,
     getLanguage,
     setLanguage,
     loadWorkshops,
     saveWorkshops,
+    loadSiteSettings,
+    saveSiteSettings,
     getWorkshopCopy,
     getWorkshopLanguages,
     getWorkshopUrl,
     resolveAsset,
     createWhatsAppUrl,
     enableImageLightbox,
+    enableFloatingWhatsApp,
   };
 
   document.addEventListener("DOMContentLoaded", enableImageLightbox);
+  document.addEventListener("DOMContentLoaded", enableFloatingWhatsApp);
 })();
