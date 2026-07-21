@@ -733,44 +733,74 @@ h3 {
   z-index: 70;
   display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
-  min-height: 3.45rem;
-  padding: 0.48rem 1rem 0.48rem 0.5rem;
-  border: 1px solid rgba(37, 211, 102, 0.72);
+  gap: 0.78rem;
+  min-height: 3.85rem;
+  padding: 0.6rem 1.15rem 0.6rem 0.6rem;
+  border: 1px solid rgba(37, 211, 102, 0.42);
   border-radius: 999px;
-  background: rgba(247, 241, 223, 0.96);
-  color: #071711;
-  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.34);
-  font-size: 0.86rem;
-  font-weight: 900;
-  letter-spacing: 0.01em;
-  line-height: 1;
+  background: linear-gradient(135deg, rgba(6, 23, 17, 0.98), rgba(10, 35, 26, 0.96));
+  color: var(--warm-white);
+  box-shadow:
+    0 1rem 2.6rem rgba(0, 0, 0, 0.42),
+    inset 0 0 0 1px rgba(247, 241, 223, 0.08);
+  font-family: "Segoe UI", Arial, sans-serif;
+  text-decoration: none;
   transition: transform 180ms var(--ease), box-shadow 180ms var(--ease);
 }
 
 .floating-whatsapp:hover {
-  box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.42);
+  border-color: rgba(37, 211, 102, 0.7);
+  box-shadow:
+    0 1.25rem 3.1rem rgba(0, 0, 0, 0.5),
+    0 0 0 0.35rem rgba(37, 211, 102, 0.08),
+    inset 0 0 0 1px rgba(247, 241, 223, 0.12);
   transform: translateY(-2px);
+}
+
+.floating-whatsapp:focus-visible {
+  outline: 2px solid #25d366;
+  outline-offset: 4px;
 }
 
 .floating-whatsapp__icon {
   display: inline-grid;
   flex: 0 0 auto;
   place-items: center;
-  width: 2.45rem;
-  height: 2.45rem;
+  width: 2.55rem;
+  height: 2.55rem;
   border-radius: 50%;
   background: #25d366;
   color: #04110a;
+  box-shadow:
+    0 0.55rem 1.2rem rgba(37, 211, 102, 0.24),
+    inset 0 0 0 1px rgba(4, 17, 10, 0.14);
 }
 
 .floating-whatsapp svg {
-  width: 1.35rem;
-  height: 1.35rem;
+  width: 1.38rem;
+  height: 1.38rem;
   fill: currentColor;
 }
 
+.floating-whatsapp__copy {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.floating-whatsapp__eyebrow {
+  color: rgba(247, 241, 223, 0.68);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1;
+}
+
 .floating-whatsapp__label {
+  color: #fffbe9;
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1;
   white-space: nowrap;
 }
 
@@ -1464,8 +1494,8 @@ h3 {
   .floating-whatsapp {
     right: 1rem;
     bottom: 1rem;
-    width: 3.45rem;
-    height: 3.45rem;
+    width: 3.6rem;
+    height: 3.6rem;
     min-width: 3.15rem;
     justify-content: center;
     padding: 0.5rem;
@@ -1476,7 +1506,7 @@ h3 {
     height: 2.45rem;
   }
 
-  .floating-whatsapp__label {
+  .floating-whatsapp__copy {
     display: none;
   }
 
