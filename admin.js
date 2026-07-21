@@ -1,5 +1,9 @@
 (function () {
   const AUTH_KEY = "nicholas-dieter-admin-auth";
+  const GITHUB_TOKEN_KEY = "nicholas-dieter-github-token";
+  const GITHUB_OWNER = "cayo-diebe";
+  const GITHUB_REPO = "nicholas-dieter";
+  const GITHUB_DEFAULT_BRANCH = "main";
   const ADMIN_USER = "admin";
   const ADMIN_PASSWORD = "123";
 
@@ -21,6 +25,10 @@
   const exportBox = document.querySelector("#export-box");
   const publicationExportBox = document.querySelector("#publication-export-box");
   const workshopSaveStatus = document.querySelector("#workshop-save-status");
+  const githubTokenInput = document.querySelector("#github-token");
+  const githubBranchInput = document.querySelector("#github-branch");
+  const publishServerButton = document.querySelector("#publish-server");
+  const publishStatus = document.querySelector("#publish-status");
   const campaignUrl = document.querySelector("#campaign-url");
   const programEditor = document.querySelector("#program-editor");
   const videoEditor = document.querySelector("#video-editor");
@@ -59,6 +67,14 @@
       window.sessionStorage.removeItem(AUTH_KEY);
     }
   };
+
+  if (githubTokenInput) {
+    githubTokenInput.value = window.sessionStorage.getItem(GITHUB_TOKEN_KEY) || "";
+  }
+
+  if (githubBranchInput && !githubBranchInput.value) {
+    githubBranchInput.value = GITHUB_DEFAULT_BRANCH;
+  }
 
   const showAdmin = () => {
     loginSection.hidden = true;
@@ -388,6 +404,226 @@
     navigator.clipboard?.writeText(content).catch(() => {});
   };
 
+  const setPublishStatus = (message, isError = false) => {
+    if (!publishStatus) return;
+    publishStatus.textContent = message;
+    publishStatus.classList.toggle("is-error", isError);
+  };
+
+  const getGitHubToken = () => githubTokenInput?.value.trim() || window.sessionStorage.getItem(GITHUB_TOKEN_KEY) || "";
+
+  const rememberGitHubToken = (token) => {
+    if (!token) return;
+    window.sessionStorage.setItem(GITHUB_TOKEN_KEY, token);
+    if (githubTokenInput) githubTokenInput.value = token;
+  };
+
+  const getGitHubBranch = () => githubBranchInput?.value.trim() || GITHUB_DEFAULT_BRANCH;
+
+  const githubRequest = async (endpoint, options = {}, token = getGitHubToken()) => {
+    const response = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/${endpoint}`, {
+      ...options,
+      headers: {
+        Accept: "application/vnd.github+json",
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        "X-GitHub-Api-Version": "2022-11-28",
+        ...(options.headers || {}),
+      },
+    });
+    const payload = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(payload.message || `GitHub respondeu com erro ${response.status}.`);
+    }
+
+    return payload;
+  };
+
+  const parseImageDataUrl = (value = "") => {
+    const match = String(value).match(/^data:(image\/[a-z0-9.+-]+);base64,(.+)$/i);
+    return match ? { mime: match[1].toLowerCase(), base64: match[2] } : null;
+  };
+
+  const getImageExtension = (mime) =>
+    ({
+      "image/jpeg": "jpg",
+      "image/jpg": "jpg",
+      "image/png": "png",
+      "image/webp": "webp",
+      "image/gif": "gif",
+      "image/svg+xml": "svg",
+      "image/avif": "avif",
+    })[mime] || "jpg";
+
+  const hashValue = async (value) => {
+    if (window.crypto?.subtle && window.TextEncoder) {
+      const hash = await window.crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
+      return Array.from(new Uint8Array(hash))
+        .map((byte) => byte.toString(16).padStart(2, "0"))
+        .join("");
+    }
+
+    let hash = 0;
+    for (let index = 0; index < value.length; index += 1) {
+      hash = (hash * 31 + value.charCodeAt(index)) >>> 0;
+    }
+    return `${Date.now().toString(16)}-${hash.toString(16)}`;
+  };
+
+  const prepareServerPublication = async () => {
+    const uploads = [];
+    const uploadCache = new Map();
+    const uploadFolder = new Date().toISOString().slice(0, 10);
+
+    const moveImageToUpload = async (value) => {
+      const parsed = parseImageDataUrl(value);
+      if (!parsed) return value;
+      if (uploadCache.has(value)) return uploadCache.get(value).path;
+
+      const hash = await hashValue(value);
+      const path = `assets/uploads/${uploadFolder}/${hash.slice(0, 24)}.${getImageExtension(parsed.mime)}`;
+      const upload = { path, content: parsed.base64, encoding: "base64" };
+      uploadCache.set(value, upload);
+      uploads.push(upload);
+      return path;
+    };
+
+    const nextSettings = window.ND.clone(readCurrentSiteSettings());
+    nextSettings.homeHeroImage = await moveImageToUpload(nextSettings.homeHeroImage);
+    nextSettings.recordsImages = await Promise.all((nextSettings.recordsImages || []).map(moveImageToUpload));
+
+    const nextWorkshops = await Promise.all(
+      window.ND.normalizeWorkshops(workshops).map(async (workshop) => ({
+        ...workshop,
+        cardImage: await moveImageToUpload(workshop.cardImage),
+        heroImage: await moveImageToUpload(workshop.heroImage),
+        gallery: await Promise.all((workshop.gallery || []).map(moveImageToUpload)),
+      })),
+    );
+
+    const payload = {
+      exportedAt: new Date().toISOString(),
+      siteSettings: nextSettings,
+      workshops: nextWorkshops,
+    };
+
+    return {
+      payload,
+      uploads,
+      content: `window.ND_PUBLISHED_DATA = ${JSON.stringify(payload, null, 2)};\n`,
+    };
+  };
+
+  const publishToGitHub = async (successMessage = "Conteudo publicado no servidor.") => {
+    const token = getGitHubToken();
+    const branch = getGitHubBranch();
+
+    if (!token) {
+      setPublishStatus("Informe um token do GitHub com permissao de Contents read/write.", true);
+      return false;
+    }
+
+    rememberGitHubToken(token);
+    if (publishServerButton) publishServerButton.disabled = true;
+    setPublishStatus("Preparando imagens e conteudo para o servidor...");
+
+    try {
+      const publication = await prepareServerPublication();
+      setPublishStatus("Criando commit no GitHub...");
+
+      const ref = await githubRequest(`git/ref/heads/${encodeURIComponent(branch)}`, undefined, token);
+      const baseCommit = await githubRequest(`git/commits/${ref.object.sha}`, undefined, token);
+      const files = [
+        { path: "published-data.js", content: publication.content, encoding: "utf-8" },
+        ...publication.uploads,
+      ];
+      const treeEntries = [];
+
+      for (const file of files) {
+        const blob = await githubRequest(
+          "git/blobs",
+          {
+            method: "POST",
+            body: JSON.stringify({ content: file.content, encoding: file.encoding }),
+          },
+          token,
+        );
+        treeEntries.push({ path: file.path, mode: "100644", type: "blob", sha: blob.sha });
+      }
+
+      const tree = await githubRequest(
+        "git/trees",
+        {
+          method: "POST",
+          body: JSON.stringify({ base_tree: baseCommit.tree.sha, tree: treeEntries }),
+        },
+        token,
+      );
+      const commit = await githubRequest(
+        "git/commits",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            message: `Publish site content from admin (${new Date().toLocaleString("pt-BR")})`,
+            tree: tree.sha,
+            parents: [ref.object.sha],
+          }),
+        },
+        token,
+      );
+
+      await githubRequest(
+        `git/refs/heads/${encodeURIComponent(branch)}`,
+        {
+          method: "PATCH",
+          body: JSON.stringify({ sha: commit.sha, force: false }),
+        },
+        token,
+      );
+
+      siteSettings = publication.payload.siteSettings;
+      workshops = publication.payload.workshops;
+      selectedSlug = workshops.find((workshop) => workshop.slug === selectedSlug)?.slug || workshops[0]?.slug || "";
+
+      try {
+        window.ND.saveSiteSettings(siteSettings);
+        window.ND.saveWorkshops(workshops);
+      } catch {
+        // The server already has the published content. Local cache is only a convenience.
+      }
+
+      if (publicationExportBox) {
+        publicationExportBox.value = publication.content;
+        publicationExportBox.classList.add("is-visible");
+      }
+
+      fillSiteSettingsForm({ keepCurrent: true });
+      renderList();
+      fillForm();
+      setPublishStatus(`${successMessage} Commit ${commit.sha.slice(0, 7)}. Pode levar alguns segundos para aparecer.`);
+      return true;
+    } catch (error) {
+      setPublishStatus(error.message || "Nao foi possivel publicar no servidor.", true);
+      return false;
+    } finally {
+      if (publishServerButton) publishServerButton.disabled = false;
+    }
+  };
+
+  const publishAfterSaveIfPossible = (onSuccess, onMissingToken) => {
+    if (!getGitHubToken()) {
+      onMissingToken?.();
+      return;
+    }
+
+    publishToGitHub(onSuccess).then((published) => {
+      if (!published) return;
+      setWorkshopStatus(onSuccess);
+      if (siteSettingsStatus) siteSettingsStatus.textContent = onSuccess;
+    });
+  };
+
   const setWorkshopStatus = (message) => {
     if (workshopSaveStatus) workshopSaveStatus.textContent = message;
   };
@@ -400,8 +636,8 @@
     renderGalleryPreview();
   };
 
-  const fillSiteSettingsForm = () => {
-    siteSettings = window.ND.loadSiteSettings();
+  const fillSiteSettingsForm = (options = {}) => {
+    if (!options.keepCurrent) siteSettings = window.ND.loadSiteSettings();
     settingsForm.homeHeroImage.value = siteSettings.homeHeroImage || window.ND.defaultSiteSettings.homeHeroImage;
     settingsForm.instagramUrl.value = siteSettings.instagramUrl || "";
     settingsForm.vimeoUrl.value = siteSettings.vimeoUrl || "";
@@ -747,12 +983,24 @@
 
     try {
       window.ND.saveWorkshops(workshops);
-      setWorkshopStatus("Oficina salva neste navegador. Para refletir em desktop e mobile, gere a publicacao.");
+      publishAfterSaveIfPossible(
+        "Oficina salva e publicada no servidor.",
+        () => setWorkshopStatus("Oficina salva neste navegador. Informe o token no painel Publicacao e clique em Salvar no servidor."),
+      );
     } catch {
       setWorkshopStatus(
-        "Nao foi possivel salvar no navegador. As imagens podem estar pesadas; gere a publicacao ou remova algumas fotos.",
+        "Nao foi possivel salvar no navegador. Tentando publicar direto no servidor...",
       );
-      showPublicationExport(exportBox);
+      if (getGitHubToken()) {
+        publishToGitHub("Oficina publicada no servidor.").then((published) => {
+          if (published) setWorkshopStatus("Oficina publicada no servidor.");
+        });
+      } else {
+        setWorkshopStatus(
+          "Nao foi possivel salvar no navegador. Informe o token no painel Publicacao e clique em Salvar no servidor.",
+        );
+        showPublicationExport(exportBox);
+      }
     }
 
     renderList();
@@ -766,15 +1014,28 @@
 
     try {
       window.ND.saveSiteSettings(siteSettings);
-      siteSettingsStatus.textContent =
-        "Configuracoes salvas neste navegador. Para refletir em desktop e mobile, gere a publicacao.";
+      publishAfterSaveIfPossible(
+        "Configuracoes salvas e publicadas no servidor.",
+        () => {
+          siteSettingsStatus.textContent =
+            "Configuracoes salvas neste navegador. Informe o token no painel Publicacao e clique em Salvar no servidor.";
+        },
+      );
     } catch {
       siteSettingsStatus.textContent =
-        "Nao foi possivel salvar no navegador. As imagens podem estar pesadas; gere a publicacao.";
-      showPublicationExport(publicationExportBox);
+        "Nao foi possivel salvar no navegador. Tentando publicar direto no servidor...";
+      if (getGitHubToken()) {
+        publishToGitHub("Configuracoes publicadas no servidor.").then((published) => {
+          if (published) siteSettingsStatus.textContent = "Configuracoes publicadas no servidor.";
+        });
+      } else {
+        siteSettingsStatus.textContent =
+          "Nao foi possivel salvar no navegador. Informe o token no painel Publicacao e clique em Salvar no servidor.";
+        showPublicationExport(publicationExportBox);
+      }
     }
 
-    fillSiteSettingsForm();
+    fillSiteSettingsForm({ keepCurrent: true });
   });
 
   document.querySelector("#add-program").addEventListener("click", () => {
@@ -947,6 +1208,10 @@
 
   document.querySelector("#export-publication").addEventListener("click", () => {
     showPublicationExport(publicationExportBox);
+  });
+
+  publishServerButton?.addEventListener("click", () => {
+    publishToGitHub("Conteudo salvo no servidor.");
   });
 
   document.querySelector("#logout-admin").addEventListener("click", () => {

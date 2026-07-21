@@ -110,12 +110,24 @@
           <summary>Publicacao desktop + mobile</summary>
           <div class="admin-publish-panel__body">
             <p>
-              Gere o pacote publicado depois de salvar imagens e textos. Esse arquivo e a fonte que o site usa
-              quando abre em outro celular, computador ou navegador.
+              Salve no servidor depois de cadastrar oficinas, alterar textos ou enviar imagens. O GitHub guarda o
+              conteudo publicado e todos os visitantes passam a consumir a mesma versao.
             </p>
-            <div class="admin-actions">
-              <button class="button button--primary" type="button" id="export-publication">Gerar arquivo publicado</button>
+            <div class="form-row form-row--two">
+              <label>
+                Token do GitHub
+                <input id="github-token" type="password" autocomplete="off" placeholder="github_pat_...">
+              </label>
+              <label>
+                Branch
+                <input id="github-branch" value="main" placeholder="main">
+              </label>
             </div>
+            <div class="admin-actions">
+              <button class="button button--primary" type="button" id="publish-server">Salvar no servidor</button>
+              <button class="button button--ghost" type="button" id="export-publication">Gerar arquivo manual</button>
+            </div>
+            <p class="admin-save-status" id="publish-status" aria-live="polite"></p>
             <textarea
               class="export-box"
               id="publication-export-box"

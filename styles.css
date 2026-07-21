@@ -1091,6 +1091,10 @@ h3 {
   font-weight: 900;
 }
 
+.admin-save-status.is-error {
+  color: #ffd0c4;
+}
+
 .admin-grid {
   display: grid;
   gap: 1.5rem;
