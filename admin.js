@@ -31,9 +31,13 @@
   const stepStatus = document.querySelector("#admin-step-status");
   const prevStepButton = document.querySelector("#admin-prev-step");
   const nextStepButton = document.querySelector("#admin-next-step");
+  const adminRouteLinks = Array.from(document.querySelectorAll("[data-admin-route-link]"));
+  const adminRoutePanels = Array.from(document.querySelectorAll("[data-admin-route-panel]"));
+  const adminRoutes = new Set(adminRouteLinks.map((link) => link.dataset.adminRouteLink));
 
   let activeStepIndex = 0;
   let activeSiteLanguage = "pt";
+  let activeAdminRoute = "site-visual";
 
   const getSelected = () => workshops.find((workshop) => workshop.slug === selectedSlug);
   const getCopy = (workshop) => window.ND.getWorkshopCopy(workshop, "pt");
@@ -61,6 +65,7 @@
     renderList();
     fillForm();
     setActiveStep(0);
+    setAdminRoute(getAdminRouteFromHash());
   };
 
   const showLogin = () => {
@@ -94,6 +99,31 @@
     }, target);
     parent[lastKey] = value;
     return target;
+  };
+
+  const getAdminRouteFromHash = () => {
+    const hash = window.location.hash.replace("#", "");
+    return adminRoutes.has(hash) ? hash : activeAdminRoute;
+  };
+
+  const setAdminRoute = (route) => {
+    const nextRoute = adminRoutes.has(route) ? route : "site-visual";
+    activeAdminRoute = nextRoute;
+
+    adminRouteLinks.forEach((link) => {
+      const isActive = link.dataset.adminRouteLink === nextRoute;
+      link.classList.toggle("is-active", isActive);
+      link.setAttribute("aria-current", isActive ? "page" : "false");
+    });
+
+    adminRoutePanels.forEach((panel) => {
+      const routes = panel.dataset.adminRoutePanel.split(/\s+/);
+      panel.hidden = !routes.includes(nextRoute);
+    });
+
+    if (nextRoute === "oficinas") {
+      setActiveStep(activeStepIndex);
+    }
   };
 
   const currencyFormatter = new Intl.NumberFormat("pt-BR", {
@@ -568,6 +598,24 @@
     invalidField.reportValidity();
     return false;
   };
+
+  adminRouteLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      const route = link.dataset.adminRouteLink;
+      window.history.pushState(null, "", `#${route}`);
+      setAdminRoute(route);
+    });
+  });
+
+  window.addEventListener("hashchange", () => {
+    const route = getAdminRouteFromHash();
+    if (route !== activeAdminRoute) setAdminRoute(route);
+  });
+
+  window.addEventListener("popstate", () => {
+    setAdminRoute(getAdminRouteFromHash());
+  });
 
   stepLinks.forEach((link) => {
     link.addEventListener("click", (event) => {

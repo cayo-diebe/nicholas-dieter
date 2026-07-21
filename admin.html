@@ -62,25 +62,48 @@
           <div class="admin-hero__top">
             <div>
               <p class="eyebrow">Admin</p>
-              <h1>Cadastro de oficinas</h1>
+              <h1>Painel do site</h1>
             </div>
             <button class="button button--ghost" type="button" id="logout-admin">Sair</button>
           </div>
           <p>
-            Cadastre a oficina em etapas, envie imagens pelo próprio navegador e exporte os dados
-            finais para publicação.
+            Gerencie o site e as oficinas por áreas, envie imagens pelo próprio navegador e mantenha
+            o conteúdo pronto para publicação.
           </p>
         </section>
 
-        <section class="admin-section admin-section--site" aria-labelledby="site-settings-title">
+        <nav class="admin-route-nav" aria-label="Áreas do administrador">
+          <a href="#site-visual" data-admin-route-link="site-visual">
+            <span>01</span>
+            <strong>Visual e links</strong>
+            <small>Banner, redes e WhatsApp</small>
+          </a>
+          <a href="#site-textos" data-admin-route-link="site-textos">
+            <span>02</span>
+            <strong>Textos</strong>
+            <small>Home, menus e idiomas</small>
+          </a>
+          <a href="#site-registros" data-admin-route-link="site-registros">
+            <span>03</span>
+            <strong>Registros e FAQ</strong>
+            <small>Fotos e perguntas globais</small>
+          </a>
+          <a href="#oficinas" data-admin-route-link="oficinas">
+            <span>04</span>
+            <strong>Oficinas</strong>
+            <small>Campanhas e inscrições</small>
+          </a>
+        </nav>
+
+        <section class="admin-section admin-section--site" aria-labelledby="site-settings-title" data-admin-route-panel="site-visual site-textos site-registros">
           <div class="admin-section-heading">
             <p class="eyebrow">Configurações do site</p>
-            <h2 id="site-settings-title">Visual geral</h2>
-            <p>Itens que afetam o site inteiro, fora do cadastro das oficinas.</p>
+            <h2 id="site-settings-title">Conteúdo global</h2>
+            <p>Escolha uma área acima para editar somente o necessário, sem misturar com o cadastro das oficinas.</p>
           </div>
 
           <form class="admin-form admin-form--site" id="site-settings-form" novalidate>
-            <article class="image-uploader image-uploader--wide">
+            <article class="image-uploader image-uploader--wide" data-admin-route-panel="site-visual">
               <div class="image-uploader__preview" data-image-preview="homeHeroImage"></div>
               <div class="image-uploader__body">
                 <h3>Banner de fundo da home</h3>
@@ -100,7 +123,7 @@
               </div>
             </article>
 
-            <fieldset class="admin-inline-fieldset admin-site-block">
+            <fieldset class="admin-inline-fieldset admin-site-block" data-admin-route-panel="site-visual">
               <legend>Links e contato</legend>
               <div class="form-row form-row--two">
                 <label>
@@ -124,7 +147,7 @@
               </div>
             </fieldset>
 
-            <fieldset class="admin-inline-fieldset admin-site-block">
+            <fieldset class="admin-inline-fieldset admin-site-block" data-admin-route-panel="site-textos">
               <legend>Textos do site</legend>
               <label class="admin-language-picker">
                 Idioma que deseja editar
@@ -194,7 +217,7 @@
               </details>
             </fieldset>
 
-            <fieldset class="admin-inline-fieldset admin-site-block">
+            <fieldset class="admin-inline-fieldset admin-site-block" data-admin-route-panel="site-registros">
               <legend>Registros de processos</legend>
               <p class="admin-field-hint">Estas imagens alimentam a seção de registros da home. Se ficar vazio, o site usa automaticamente as galerias das oficinas.</p>
               <label class="upload-button upload-button--wide">
@@ -211,14 +234,14 @@
               </details>
             </fieldset>
 
-            <fieldset class="admin-inline-fieldset admin-site-block">
+            <fieldset class="admin-inline-fieldset admin-site-block" data-admin-route-panel="site-registros">
               <legend>FAQ global</legend>
               <p class="admin-field-hint">Perguntas exibidas na home e somadas ao FAQ de cada oficina no idioma selecionado acima.</p>
               <div class="admin-repeater" id="site-faq-editor"></div>
               <button class="button button--ghost" type="button" id="add-site-faq">Adicionar pergunta global</button>
             </fieldset>
 
-            <div class="admin-actions">
+            <div class="admin-actions admin-actions--route-save" data-admin-route-panel="site-visual site-textos site-registros">
               <button class="button button--primary" type="submit">Salvar configurações</button>
               <button class="button button--ghost" type="button" id="reset-site-settings">Restaurar configurações padrão</button>
               <p class="admin-save-status" id="site-settings-status" aria-live="polite"></p>
@@ -226,7 +249,7 @@
           </form>
         </section>
 
-        <section class="admin-section admin-section--workshops" aria-labelledby="workshop-settings-title">
+        <section class="admin-section admin-section--workshops" aria-labelledby="workshop-settings-title" data-admin-route-panel="oficinas">
           <div class="admin-section-heading">
             <p class="eyebrow">Cadastro de oficina</p>
             <h2 id="workshop-settings-title">Oficinas</h2>

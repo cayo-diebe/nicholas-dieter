@@ -909,6 +909,70 @@ h3 {
   line-height: 0.86;
 }
 
+.admin-route-nav {
+  position: sticky;
+  top: 0.75rem;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding: 0.65rem;
+  border: 1px solid rgba(244, 232, 184, 0.16);
+  background: rgba(7, 6, 8, 0.86);
+  backdrop-filter: blur(18px);
+}
+
+.admin-route-nav a {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.1rem 0.65rem;
+  align-items: center;
+  min-height: 4.2rem;
+  padding: 0.8rem;
+  border: 1px solid rgba(244, 232, 184, 0.14);
+  color: rgba(247, 241, 223, 0.72);
+  background: rgba(247, 241, 223, 0.035);
+}
+
+.admin-route-nav a:hover,
+.admin-route-nav a.is-active {
+  border-color: var(--nd-cream);
+  color: var(--nd-cream);
+  background: rgba(244, 232, 184, 0.1);
+}
+
+.admin-route-nav span {
+  grid-row: span 2;
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid currentColor;
+  color: var(--mist-blue);
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+.admin-route-nav strong {
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.admin-route-nav small {
+  color: rgba(247, 241, 223, 0.54);
+  font-size: 0.76rem;
+  line-height: 1.25;
+}
+
+.admin-route-nav a.is-active span {
+  background: var(--nd-cream);
+  color: var(--nd-purple);
+}
+
 .admin-section {
   margin-top: 3rem;
 }
@@ -1488,6 +1552,13 @@ h3 {
   }
 }
 
+@media (max-width: 980px) {
+  .admin-route-nav {
+    position: static;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 620px) {
   .site-header {
     grid-template-columns: minmax(0, 1fr) auto auto auto;
@@ -1545,6 +1616,16 @@ h3 {
 
   .floating-whatsapp__copy {
     display: none;
+  }
+
+  .admin-route-nav {
+    grid-template-columns: repeat(4, minmax(13.5rem, 1fr));
+    overflow-x: auto;
+    padding-bottom: 0.8rem;
+  }
+
+  .admin-route-nav a {
+    min-width: 13.5rem;
   }
 
   .admin-step-controls {
