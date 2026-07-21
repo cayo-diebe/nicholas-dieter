@@ -11,6 +11,7 @@
     pt: {
       nav: { workshops: "Oficinas", faq: "FAQ", about: "Sobre" },
       home: {
+        title: "Nicholas Dieter",
         eyebrow: "Diretor • Dramaturgo • Pesquisador",
         statement: "Laboratórios de teatro, cinema, pesquisa e formação artística.",
         primaryCta: "Ver oficinas",
@@ -21,15 +22,18 @@
           "Cada oficina tem uma página de campanha com programação, próximas turmas, investimento e formulário de inscrição.",
         recordsKicker: "Arquivo vivo",
         recordsTitle: "Registros de processos",
+        faqKicker: "FAQ",
         faqTitle: "Perguntas frequentes",
         aboutKicker: "Sobre",
         aboutTitle: "Pesquisa cênica com presença, escuta e composição.",
         aboutText:
           "Nicholas Dieter conduz laboratórios de teatro, cinema e formação artística voltados à presença, imaginação dramática, pesquisa cênica e composição coletiva.",
+        aboutInstagramLabel: "Nicholas Dieter",
         footer: "Laboratórios de Teatro, Cinema, Pesquisa e Formação Artística.",
         openWorkshop: "Abrir oficina",
         nextClass: "Próxima turma",
       },
+      whatsapp: { eyebrow: "Falar no", label: "WhatsApp" },
       workshop: {
         navProgram: "Programa",
         navEnrollment: "Inscrição",
@@ -69,6 +73,7 @@
     es: {
       nav: { workshops: "Talleres", faq: "FAQ", about: "Sobre" },
       home: {
+        title: "Nicholas Dieter",
         eyebrow: "Director • Dramaturgo • Investigador",
         statement: "Laboratorios de teatro, cine, investigación y formación artística.",
         primaryCta: "Ver talleres",
@@ -79,15 +84,18 @@
           "Cada taller tiene una página de campaña con programa, próximas fechas, inversión y formulario de inscripción.",
         recordsKicker: "Archivo vivo",
         recordsTitle: "Registros de procesos",
+        faqKicker: "FAQ",
         faqTitle: "Preguntas frecuentes",
         aboutKicker: "Sobre",
         aboutTitle: "Investigación escénica con presencia, escucha y composición.",
         aboutText:
           "Nicholas Dieter conduce laboratorios de teatro, cine y formación artística orientados a la presencia, la imaginación dramática, la investigación escénica y la composición colectiva.",
+        aboutInstagramLabel: "Nicholas Dieter",
         footer: "Laboratorios de Teatro, Cine, Investigación y Formación Artística.",
         openWorkshop: "Abrir taller",
         nextClass: "Próxima fecha",
       },
+      whatsapp: { eyebrow: "Hablar por", label: "WhatsApp" },
       workshop: {
         navProgram: "Programa",
         navEnrollment: "Inscripción",
@@ -127,6 +135,7 @@
     en: {
       nav: { workshops: "Workshops", faq: "FAQ", about: "About" },
       home: {
+        title: "Nicholas Dieter",
         eyebrow: "Director • Playwright • Researcher",
         statement: "Theater, film, research and artistic training labs.",
         primaryCta: "View workshops",
@@ -137,15 +146,18 @@
           "Each workshop has a campaign page with program, upcoming groups, investment and an enrollment form.",
         recordsKicker: "Living archive",
         recordsTitle: "Process records",
+        faqKicker: "FAQ",
         faqTitle: "Frequently asked questions",
         aboutKicker: "About",
         aboutTitle: "Scenic research through presence, listening and composition.",
         aboutText:
           "Nicholas Dieter leads theater, film and artistic training labs centered on presence, dramatic imagination, scenic research and collective composition.",
+        aboutInstagramLabel: "Nicholas Dieter",
         footer: "Theater, Film, Research and Artistic Training Labs.",
         openWorkshop: "Open workshop",
         nextClass: "Next group",
       },
+      whatsapp: { eyebrow: "Talk on", label: "WhatsApp" },
       workshop: {
         navProgram: "Program",
         navEnrollment: "Enrollment",
@@ -465,11 +477,34 @@
     en: "Portuguese",
   };
 
-  const defaultSiteSettings = {
-    homeHeroImage: "assets/nicholas-dieter-nevoa.png",
+  const clone = (value) => JSON.parse(JSON.stringify(value));
+
+  const mergeDeep = (base, override) => {
+    if (Array.isArray(base) || Array.isArray(override)) {
+      return Array.isArray(override) ? clone(override) : clone(base || []);
+    }
+
+    if (!base || typeof base !== "object" || !override || typeof override !== "object") {
+      return override === undefined ? base : override;
+    }
+
+    const result = { ...base };
+    Object.keys(override).forEach((key) => {
+      result[key] = mergeDeep(base[key], override[key]);
+    });
+    return result;
   };
 
-  const clone = (value) => JSON.parse(JSON.stringify(value));
+  const defaultSiteSettings = {
+    homeHeroImage: "assets/nicholas-dieter-nevoa.png",
+    instagramUrl: "https://www.instagram.com/nicholas.dieter/",
+    vimeoUrl: VIMEO_URL,
+    whatsappPhone: PHONE,
+    whatsappMessage: "Olá, Nicholas! Vim pelo site e gostaria de falar no WhatsApp.",
+    recordsImages: [],
+    copy: ui,
+    globalFaq,
+  };
 
   const normalizeWorkshops = (workshops) =>
     (workshops || []).map((workshop) => ({
@@ -481,10 +516,22 @@
       },
     }));
 
-  const normalizeSiteSettings = (settings = {}) => ({
-    ...defaultSiteSettings,
-    ...(settings || {}),
-  });
+  const normalizeSiteSettings = (settings = {}) => {
+    const normalized = mergeDeep(defaultSiteSettings, settings || {});
+    normalized.recordsImages = Array.isArray(normalized.recordsImages) ? normalized.recordsImages : [];
+    normalized.copy = normalized.copy && typeof normalized.copy === "object" ? normalized.copy : clone(ui);
+    normalized.globalFaq =
+      normalized.globalFaq && typeof normalized.globalFaq === "object" ? normalized.globalFaq : clone(globalFaq);
+
+    Object.keys(ui).forEach((language) => {
+      normalized.copy[language] = mergeDeep(ui[language], normalized.copy?.[language] || {});
+      normalized.globalFaq[language] = Array.isArray(normalized.globalFaq?.[language])
+        ? normalized.globalFaq[language]
+        : clone(globalFaq[language] || []);
+    });
+
+    return normalized;
+  };
 
   const getLanguage = () => {
     const params = new URLSearchParams(window.location.search);
@@ -543,6 +590,16 @@
   const getWorkshopLanguages = (workshop, language) =>
     workshop.languages?.[language] || workshop.languages?.pt || defaultLanguages[language] || defaultLanguages.pt;
 
+  const getSiteCopy = (language, settings) => {
+    const normalized = settings ? normalizeSiteSettings(settings) : loadSiteSettings();
+    return normalized.copy?.[language] || normalized.copy?.pt || ui[language] || ui.pt;
+  };
+
+  const getGlobalFaq = (language, settings) => {
+    const normalized = settings ? normalizeSiteSettings(settings) : loadSiteSettings();
+    return normalized.globalFaq?.[language] || normalized.globalFaq?.pt || globalFaq[language] || globalFaq.pt;
+  };
+
   const getRootPath = () => (window.location.pathname.includes("/oficinas/") ? "../../" : "");
 
   const resolveAsset = (path = "") => {
@@ -567,18 +624,36 @@
     return `${getRootPath()}oficina.html?${params.toString()}`;
   };
 
-  const createWhatsAppUrl = (message, extra = "") =>
-    `https://wa.me/${PHONE}?text=${encodeURIComponent(`${message}${extra}`)}`;
+  const getWhatsAppPhone = (phone) => String(phone || PHONE).replace(/\D/g, "") || PHONE;
+
+  const createWhatsAppUrl = (message, extra = "", phone) => {
+    const settings = loadSiteSettings();
+    const targetPhone = getWhatsAppPhone(phone || settings.whatsappPhone);
+    return `https://wa.me/${targetPhone}?text=${encodeURIComponent(`${message}${extra}`)}`;
+  };
+
+  const escapeHtml = (value = "") =>
+    String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;");
 
   const enableFloatingWhatsApp = () => {
     if (document.body.dataset.page === "admin" || document.querySelector(".floating-whatsapp")) return;
 
+    const settings = loadSiteSettings();
+    const copy = getSiteCopy(getLanguage(), settings);
+    const whatsappCopy = copy.whatsapp || ui.pt.whatsapp;
+    const eyebrow = whatsappCopy.eyebrow || "Falar no";
+    const label = whatsappCopy.label || "WhatsApp";
+
     const link = document.createElement("a");
     link.className = "floating-whatsapp";
-    link.href = createWhatsAppUrl("Olá, Nicholas! Vim pelo site e gostaria de falar no WhatsApp.");
+    link.href = createWhatsAppUrl(settings.whatsappMessage, "", settings.whatsappPhone);
     link.target = "_blank";
     link.rel = "noopener";
-    link.setAttribute("aria-label", "Falar no WhatsApp");
+    link.setAttribute("aria-label", `${eyebrow} ${label}`);
     link.innerHTML = `
       <span class="floating-whatsapp__icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" focusable="false">
@@ -587,8 +662,8 @@
         </svg>
       </span>
       <span class="floating-whatsapp__copy">
-        <span class="floating-whatsapp__eyebrow">Falar no</span>
-        <span class="floating-whatsapp__label">WhatsApp</span>
+        <span class="floating-whatsapp__eyebrow">${escapeHtml(eyebrow)}</span>
+        <span class="floating-whatsapp__label">${escapeHtml(label)}</span>
       </span>
     `;
 
@@ -664,6 +739,8 @@
     saveWorkshops,
     loadSiteSettings,
     saveSiteSettings,
+    getSiteCopy,
+    getGlobalFaq,
     getWorkshopCopy,
     getWorkshopLanguages,
     getWorkshopUrl,

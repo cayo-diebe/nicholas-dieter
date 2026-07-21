@@ -1,5 +1,6 @@
 (function () {
   const workshops = window.ND.loadWorkshops();
+  const siteSettings = window.ND.loadSiteSettings();
   let language = window.ND.getLanguage();
   const params = new URLSearchParams(window.location.search);
   const slugFromQuery = params.get("slug");
@@ -9,7 +10,7 @@
   const homeUrl = `${window.ND.getRootPath()}index.html`;
 
   const t = (path) =>
-    path.split(".").reduce((value, key) => value?.[key], window.ND.ui[language]) || "";
+    path.split(".").reduce((value, key) => value?.[key], window.ND.getSiteCopy(language, siteSettings)) || "";
 
   const escapeHtml = (value = "") =>
     String(value)
@@ -71,6 +72,10 @@
     document.querySelectorAll("[data-language-option]").forEach((button) => {
       button.setAttribute("aria-pressed", String(button.dataset.languageOption === language));
     });
+
+    document.querySelectorAll('[data-site-link="instagram"]').forEach((link) => {
+      link.href = siteSettings.instagramUrl || window.ND.defaultSiteSettings.instagramUrl;
+    });
   };
 
   const renderProgram = (program = []) =>
@@ -93,15 +98,15 @@
       .map(
         (item) => `
           <details class="faq-item">
-            <summary>${item.question}</summary>
-            <p>${item.answer}</p>
+            <summary>${escapeHtml(item.question)}</summary>
+            <p>${escapeHtml(item.answer)}</p>
           </details>
         `,
       )
       .join("");
 
   const renderGallery = (gallery = []) =>
-    gallery.map((src) => `<img src="${window.ND.resolveAsset(src)}" alt="">`).join("");
+    gallery.map((src) => `<img src="${escapeHtml(window.ND.resolveAsset(src))}" alt="">`).join("");
 
   const renderVideos = (videos = []) => {
     const items = videos
@@ -166,7 +171,7 @@
     const investment = workshop.investment || copy.investment || {};
     const coordinator = copy.coordinator || {};
     const registration = copy.registration || {};
-    const faq = [...(copy.faq || []), ...(window.ND.globalFaq[language] || [])];
+    const faq = [...(copy.faq || []), ...window.ND.getGlobalFaq(language, siteSettings)];
     const videos = copy.videos || workshop.videos || [];
     const workshopLanguages = window.ND.getWorkshopLanguages(workshop, language);
 
@@ -267,7 +272,7 @@
 
       <section class="section section--faq" id="faq">
         <div class="section__intro">
-          <p class="eyebrow">FAQ</p>
+          <p class="eyebrow">${t("home.faqKicker")}</p>
           <h2>${t("home.faqTitle")}</h2>
         </div>
         <div class="faq-list">${renderFaq(faq)}</div>

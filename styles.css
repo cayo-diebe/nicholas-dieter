@@ -933,6 +933,43 @@ h3 {
   margin-top: 1rem;
 }
 
+.admin-site-block {
+  margin-top: 1rem;
+  background: rgba(7, 6, 8, 0.22);
+}
+
+.admin-language-picker {
+  max-width: 320px;
+}
+
+.admin-copy-group {
+  border: 1px solid rgba(244, 232, 184, 0.14);
+  background: rgba(247, 241, 223, 0.035);
+}
+
+.admin-copy-group + .admin-copy-group {
+  margin-top: 0.8rem;
+}
+
+.admin-copy-group summary {
+  cursor: pointer;
+  padding: 0.85rem 1rem;
+  color: var(--nd-cream);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.admin-copy-group[open] summary {
+  border-bottom: 1px solid rgba(244, 232, 184, 0.12);
+}
+
+.admin-copy-group > label,
+.admin-copy-group > .form-row {
+  margin: 1rem;
+}
+
 .admin-save-status {
   align-self: center;
   margin: 0;

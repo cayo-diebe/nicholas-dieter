@@ -4,7 +4,14 @@
   let language = window.ND.getLanguage();
 
   const t = (path) =>
-    path.split(".").reduce((value, key) => value?.[key], window.ND.ui[language]) || "";
+    path.split(".").reduce((value, key) => value?.[key], window.ND.getSiteCopy(language, siteSettings)) || "";
+
+  const escapeHtml = (value = "") =>
+    String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;");
 
   const applyLanguage = () => {
     document.documentElement.lang = language === "pt" ? "pt-BR" : language;
@@ -16,6 +23,16 @@
 
     document.querySelectorAll("[data-language-option]").forEach((button) => {
       button.setAttribute("aria-pressed", String(button.dataset.languageOption === language));
+    });
+  };
+
+  const applySiteLinks = () => {
+    document.querySelectorAll('[data-site-link="instagram"]').forEach((link) => {
+      link.href = siteSettings.instagramUrl || window.ND.defaultSiteSettings.instagramUrl;
+    });
+
+    document.querySelectorAll('[data-site-link="vimeo"]').forEach((link) => {
+      link.href = siteSettings.vimeoUrl || window.ND.defaultSiteSettings.vimeoUrl;
     });
   };
 
@@ -69,9 +86,12 @@
     const strip = document.querySelector("#records-strip");
     if (!strip) return;
 
-    const images = workshops.flatMap((workshop) => workshop.gallery || []).slice(0, 8);
+    const images = (siteSettings.recordsImages?.length
+      ? siteSettings.recordsImages
+      : workshops.flatMap((workshop) => workshop.gallery || [])
+    ).slice(0, 10);
     strip.innerHTML = images
-      .map((src) => `<img src="${window.ND.resolveAsset(src)}" alt="">`)
+      .map((src) => `<img src="${escapeHtml(window.ND.resolveAsset(src))}" alt="">`)
       .join("");
   };
 
@@ -79,12 +99,12 @@
     const list = document.querySelector("#faq-list");
     if (!list) return;
 
-    list.innerHTML = (window.ND.globalFaq[language] || window.ND.globalFaq.pt)
+    list.innerHTML = window.ND.getGlobalFaq(language, siteSettings)
       .map(
         (item) => `
           <details class="faq-item">
-            <summary>${item.question}</summary>
-            <p>${item.answer}</p>
+            <summary>${escapeHtml(item.question)}</summary>
+            <p>${escapeHtml(item.answer)}</p>
           </details>
         `,
       )
@@ -93,6 +113,7 @@
 
   const render = () => {
     applyLanguage();
+    applySiteLinks();
     applyHomeHero();
     renderWorkshops();
     renderRecords();

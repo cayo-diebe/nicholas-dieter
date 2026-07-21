@@ -14,6 +14,9 @@
   const form = document.querySelector("#admin-form");
   const settingsForm = document.querySelector("#site-settings-form");
   const siteSettingsStatus = document.querySelector("#site-settings-status");
+  const siteContentLanguage = document.querySelector("#site-content-language");
+  const siteFaqEditor = document.querySelector("#site-faq-editor");
+  const recordsPreview = document.querySelector("#records-preview");
   const list = document.querySelector("#admin-list");
   const exportBox = document.querySelector("#export-box");
   const campaignUrl = document.querySelector("#campaign-url");
@@ -30,6 +33,7 @@
   const nextStepButton = document.querySelector("#admin-next-step");
 
   let activeStepIndex = 0;
+  let activeSiteLanguage = "pt";
 
   const getSelected = () => workshops.find((workshop) => workshop.slug === selectedSlug);
   const getCopy = (workshop) => window.ND.getWorkshopCopy(workshop, "pt");
@@ -77,6 +81,20 @@
       .split("\n")
       .map((item) => item.trim())
       .filter(Boolean);
+
+  const getNestedValue = (source, path) =>
+    path.split(".").reduce((value, key) => value?.[key], source) || "";
+
+  const setNestedValue = (target, path, value) => {
+    const keys = path.split(".");
+    const lastKey = keys.pop();
+    const parent = keys.reduce((current, key) => {
+      current[key] = current[key] || {};
+      return current[key];
+    }, target);
+    parent[lastKey] = value;
+    return target;
+  };
 
   const currencyFormatter = new Intl.NumberFormat("pt-BR", {
     style: "currency",
@@ -220,8 +238,96 @@
       .join("");
   };
 
+  const renderRecordsPreview = () => {
+    const images = splitLines(settingsForm.recordsImages.value);
+    if (!images.length) {
+      recordsPreview.innerHTML = '<p class="empty-gallery">Sem imagens próprias. A home usará as galerias das oficinas.</p>';
+      return;
+    }
+
+    recordsPreview.innerHTML = images
+      .map(
+        (src, index) => `
+          <figure class="admin-gallery-item">
+            <img src="${escapeHtml(window.ND.resolveAsset(src))}" alt="">
+            <figcaption>${escapeHtml(imageLabel(src))}</figcaption>
+            <button class="admin-mini-button" type="button" data-remove-record="${index}">Remover</button>
+          </figure>
+        `,
+      )
+      .join("");
+  };
+
+  const fillSiteCopyFields = () => {
+    const copy = window.ND.getSiteCopy(activeSiteLanguage, siteSettings);
+    settingsForm.querySelectorAll("[data-site-copy-field]").forEach((field) => {
+      field.value = getNestedValue(copy, field.dataset.siteCopyField);
+    });
+  };
+
+  const readSiteCopyFields = () => {
+    const copy = {};
+    settingsForm.querySelectorAll("[data-site-copy-field]").forEach((field) => {
+      setNestedValue(copy, field.dataset.siteCopyField, field.value.trim());
+    });
+    return copy;
+  };
+
+  const renderSiteFaqEditor = (faq = []) => {
+    siteFaqEditor.innerHTML = faq
+      .map(
+        (item, index) => `
+          <article class="admin-repeater-item" data-site-faq-item>
+            <div class="admin-repeater-heading">
+              <strong>Pergunta global ${index + 1}</strong>
+              <button class="admin-mini-button" type="button" data-remove-site-faq>Remover</button>
+            </div>
+            <label>
+              Pergunta
+              <input data-site-faq-question placeholder="As oficinas são presenciais ou online?" value="${escapeHtml(item.question || "")}">
+            </label>
+            <label>
+              Resposta
+              <textarea data-site-faq-answer rows="3" placeholder="Explique de forma curta e clara.">${escapeHtml(item.answer || "")}</textarea>
+            </label>
+          </article>
+        `,
+      )
+      .join("");
+
+    siteFaqEditor.querySelectorAll("[data-remove-site-faq]").forEach((button) => {
+      button.addEventListener("click", () => {
+        button.closest("[data-site-faq-item]").remove();
+        if (!siteFaqEditor.children.length) renderSiteFaqEditor([{ question: "", answer: "" }]);
+      });
+    });
+  };
+
+  const readSiteFaqEditor = () =>
+    Array.from(siteFaqEditor.querySelectorAll("[data-site-faq-item]"))
+      .map((item) => ({
+        question: item.querySelector("[data-site-faq-question]").value.trim(),
+        answer: item.querySelector("[data-site-faq-answer]").value.trim(),
+      }))
+      .filter((item) => item.question || item.answer);
+
+  const storeActiveSiteLanguageDraft = () => {
+    siteSettings.copy = {
+      ...(siteSettings.copy || {}),
+      [activeSiteLanguage]: {
+        ...(siteSettings.copy?.[activeSiteLanguage] || {}),
+        ...readSiteCopyFields(),
+      },
+    };
+    siteSettings.globalFaq = {
+      ...(siteSettings.globalFaq || {}),
+      [activeSiteLanguage]: readSiteFaqEditor(),
+    };
+  };
+
   const syncImagePreviews = () => {
     renderSingleImagePreview("homeHeroImage", settingsForm);
+    renderRecordsPreview();
     renderSingleImagePreview("cardImage");
     renderSingleImagePreview("heroImage");
     renderGalleryPreview();
@@ -230,7 +336,16 @@
   const fillSiteSettingsForm = () => {
     siteSettings = window.ND.loadSiteSettings();
     settingsForm.homeHeroImage.value = siteSettings.homeHeroImage || window.ND.defaultSiteSettings.homeHeroImage;
+    settingsForm.instagramUrl.value = siteSettings.instagramUrl || "";
+    settingsForm.vimeoUrl.value = siteSettings.vimeoUrl || "";
+    settingsForm.whatsappPhone.value = siteSettings.whatsappPhone || "";
+    settingsForm.whatsappMessage.value = siteSettings.whatsappMessage || "";
+    settingsForm.recordsImages.value = (siteSettings.recordsImages || []).join("\n");
+    siteContentLanguage.value = activeSiteLanguage;
+    fillSiteCopyFields();
+    renderSiteFaqEditor(window.ND.getGlobalFaq(activeSiteLanguage, siteSettings));
     renderSingleImagePreview("homeHeroImage", settingsForm);
+    renderRecordsPreview();
   };
 
   const renderList = () => {
@@ -551,9 +666,29 @@
 
   settingsForm.addEventListener("submit", (event) => {
     event.preventDefault();
+
+    const nextCopy = {
+      ...(siteSettings.copy || {}),
+      [activeSiteLanguage]: {
+        ...(siteSettings.copy?.[activeSiteLanguage] || {}),
+        ...readSiteCopyFields(),
+      },
+    };
+    const nextGlobalFaq = {
+      ...(siteSettings.globalFaq || {}),
+      [activeSiteLanguage]: readSiteFaqEditor(),
+    };
+
     siteSettings = {
       ...siteSettings,
       homeHeroImage: settingsForm.homeHeroImage.value.trim() || window.ND.defaultSiteSettings.homeHeroImage,
+      instagramUrl: settingsForm.instagramUrl.value.trim() || window.ND.defaultSiteSettings.instagramUrl,
+      vimeoUrl: settingsForm.vimeoUrl.value.trim() || window.ND.defaultSiteSettings.vimeoUrl,
+      whatsappPhone: settingsForm.whatsappPhone.value.trim() || window.ND.defaultSiteSettings.whatsappPhone,
+      whatsappMessage: settingsForm.whatsappMessage.value.trim() || window.ND.defaultSiteSettings.whatsappMessage,
+      recordsImages: splitLines(settingsForm.recordsImages.value),
+      copy: nextCopy,
+      globalFaq: nextGlobalFaq,
     };
     window.ND.saveSiteSettings(siteSettings);
     fillSiteSettingsForm();
@@ -585,6 +720,18 @@
     renderFaqEditor(readFaqEditor().concat({ question: "", answer: "" }));
   });
 
+  document.querySelector("#add-site-faq").addEventListener("click", () => {
+    renderSiteFaqEditor(readSiteFaqEditor().concat({ question: "", answer: "" }));
+  });
+
+  siteContentLanguage.addEventListener("change", () => {
+    storeActiveSiteLanguageDraft();
+    activeSiteLanguage = siteContentLanguage.value;
+    fillSiteCopyFields();
+    renderSiteFaqEditor(window.ND.getGlobalFaq(activeSiteLanguage, siteSettings));
+    siteSettingsStatus.textContent = "";
+  });
+
   document.querySelectorAll("[data-image-upload]").forEach((input) => {
     input.addEventListener("change", async () => {
       const files = Array.from(input.files || []);
@@ -599,6 +746,8 @@
         const targetForm = input.closest("form") || form;
         if (target === "gallery" && targetForm === form) {
           form.gallery.value = splitLines(form.gallery.value).concat(images).join("\n");
+        } else if (target === "recordsImages" && targetForm === settingsForm) {
+          settingsForm.recordsImages.value = splitLines(settingsForm.recordsImages.value).concat(images).join("\n");
         } else if (targetForm.elements[target]) {
           targetForm.elements[target].value = images[0];
         }
@@ -622,6 +771,7 @@
   });
 
   settingsForm.homeHeroImage.addEventListener("input", syncImagePreviews);
+  settingsForm.recordsImages.addEventListener("input", syncImagePreviews);
   form.cardImage.addEventListener("input", syncImagePreviews);
   form.heroImage.addEventListener("input", syncImagePreviews);
   form.gallery.addEventListener("input", syncImagePreviews);
@@ -633,6 +783,16 @@
     const images = splitLines(form.gallery.value);
     images.splice(Number(button.dataset.removeGallery), 1);
     form.gallery.value = images.join("\n");
+    syncImagePreviews();
+  });
+
+  recordsPreview.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-remove-record]");
+    if (!button) return;
+
+    const images = splitLines(settingsForm.recordsImages.value);
+    images.splice(Number(button.dataset.removeRecord), 1);
+    settingsForm.recordsImages.value = images.join("\n");
     syncImagePreviews();
   });
 
@@ -696,7 +856,7 @@
     siteSettings = window.ND.clone(window.ND.defaultSiteSettings);
     window.ND.saveSiteSettings(siteSettings);
     fillSiteSettingsForm();
-    siteSettingsStatus.textContent = "Banner padrão restaurado.";
+    siteSettingsStatus.textContent = "Configurações padrão restauradas.";
   });
 
   document.querySelector("#export-workshops").addEventListener("click", () => {

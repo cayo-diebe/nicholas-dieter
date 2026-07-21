@@ -100,9 +100,127 @@
               </div>
             </article>
 
+            <fieldset class="admin-inline-fieldset admin-site-block">
+              <legend>Links e contato</legend>
+              <div class="form-row form-row--two">
+                <label>
+                  Instagram
+                  <input name="instagramUrl" type="url" placeholder="https://www.instagram.com/nicholas.dieter/">
+                </label>
+                <label>
+                  Vimeo / aulas
+                  <input name="vimeoUrl" type="url" placeholder="https://vimeo.com/user131484859">
+                </label>
+              </div>
+              <div class="form-row form-row--two">
+                <label>
+                  WhatsApp
+                  <input name="whatsappPhone" inputmode="numeric" placeholder="5511992978145">
+                </label>
+                <label>
+                  Mensagem inicial do WhatsApp
+                  <input name="whatsappMessage" placeholder="Olá, Nicholas! Vim pelo site e gostaria de falar no WhatsApp.">
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="admin-inline-fieldset admin-site-block">
+              <legend>Textos do site</legend>
+              <label class="admin-language-picker">
+                Idioma que deseja editar
+                <select id="site-content-language">
+                  <option value="pt">Português</option>
+                  <option value="es">Espanhol</option>
+                  <option value="en">Inglês</option>
+                </select>
+              </label>
+
+              <details class="admin-copy-group" open>
+                <summary>Navegação e WhatsApp</summary>
+                <div class="form-row form-row--three">
+                  <label>Menu oficinas <input data-site-copy-field="nav.workshops" placeholder="Oficinas"></label>
+                  <label>Menu FAQ <input data-site-copy-field="nav.faq" placeholder="FAQ"></label>
+                  <label>Menu sobre <input data-site-copy-field="nav.about" placeholder="Sobre"></label>
+                </div>
+                <div class="form-row form-row--two">
+                  <label>Texto menor do WhatsApp <input data-site-copy-field="whatsapp.eyebrow" placeholder="Falar no"></label>
+                  <label>Texto maior do WhatsApp <input data-site-copy-field="whatsapp.label" placeholder="WhatsApp"></label>
+                </div>
+              </details>
+
+              <details class="admin-copy-group" open>
+                <summary>Primeira dobra / hero</summary>
+                <div class="form-row form-row--two">
+                  <label>Título principal <input data-site-copy-field="home.title" placeholder="Nicholas Dieter"></label>
+                  <label>Eyebrow <input data-site-copy-field="home.eyebrow" placeholder="Diretor • Dramaturgo • Pesquisador"></label>
+                </div>
+                <label>Frase de apresentação <textarea data-site-copy-field="home.statement" rows="2" placeholder="Laboratórios de teatro, cinema, pesquisa e formação artística."></textarea></label>
+                <div class="form-row form-row--two">
+                  <label>CTA principal <input data-site-copy-field="home.primaryCta" placeholder="Ver oficinas"></label>
+                  <label>CTA secundário <input data-site-copy-field="home.secondaryCta" placeholder="Ver outras aulas"></label>
+                </div>
+              </details>
+
+              <details class="admin-copy-group">
+                <summary>Seção oficinas</summary>
+                <div class="form-row form-row--two">
+                  <label>Chamada pequena <input data-site-copy-field="home.workshopsKicker" placeholder="Campanhas e inscrições"></label>
+                  <label>Título <input data-site-copy-field="home.workshopsTitle" placeholder="OFICINAS"></label>
+                </div>
+                <label>Texto da seção <textarea data-site-copy-field="home.workshopsText" rows="3" placeholder="Cada oficina tem uma página de campanha com programação, próximas turmas, investimento e formulário de inscrição."></textarea></label>
+                <div class="form-row form-row--two">
+                  <label>Botão do card <input data-site-copy-field="home.openWorkshop" placeholder="Abrir oficina"></label>
+                  <label>Rótulo próxima turma <input data-site-copy-field="home.nextClass" placeholder="Próxima turma"></label>
+                </div>
+              </details>
+
+              <details class="admin-copy-group">
+                <summary>Registros, FAQ, Sobre e rodapé</summary>
+                <div class="form-row form-row--two">
+                  <label>Registros: chamada <input data-site-copy-field="home.recordsKicker" placeholder="Arquivo vivo"></label>
+                  <label>Registros: título <input data-site-copy-field="home.recordsTitle" placeholder="Registros de processos"></label>
+                </div>
+                <div class="form-row form-row--two">
+                  <label>FAQ: chamada <input data-site-copy-field="home.faqKicker" placeholder="FAQ"></label>
+                  <label>FAQ: título <input data-site-copy-field="home.faqTitle" placeholder="Perguntas frequentes"></label>
+                </div>
+                <div class="form-row form-row--two">
+                  <label>Sobre: chamada <input data-site-copy-field="home.aboutKicker" placeholder="Sobre"></label>
+                  <label>Instagram: texto do link <input data-site-copy-field="home.aboutInstagramLabel" placeholder="Nicholas Dieter"></label>
+                </div>
+                <label>Sobre: título <textarea data-site-copy-field="home.aboutTitle" rows="2" placeholder="Pesquisa cênica com presença, escuta e composição."></textarea></label>
+                <label>Sobre: texto <textarea data-site-copy-field="home.aboutText" rows="3" placeholder="Nicholas conduz laboratórios de teatro, cinema e formação artística..."></textarea></label>
+                <label>Rodapé <input data-site-copy-field="home.footer" placeholder="Laboratórios de Teatro, Cinema, Pesquisa e Formação Artística."></label>
+              </details>
+            </fieldset>
+
+            <fieldset class="admin-inline-fieldset admin-site-block">
+              <legend>Registros de processos</legend>
+              <p class="admin-field-hint">Estas imagens alimentam a seção de registros da home. Se ficar vazio, o site usa automaticamente as galerias das oficinas.</p>
+              <label class="upload-button upload-button--wide">
+                Enviar fotos dos registros
+                <input type="file" accept="image/*" multiple data-image-upload="recordsImages">
+              </label>
+              <div class="admin-gallery-preview" id="records-preview"></div>
+              <details class="admin-advanced">
+                <summary>Usar caminhos/URLs manuais</summary>
+                <label class="admin-path-label">
+                  Caminhos ou URLs dos registros
+                  <textarea name="recordsImages" rows="4" placeholder="Um caminho de imagem por linha"></textarea>
+                </label>
+              </details>
+            </fieldset>
+
+            <fieldset class="admin-inline-fieldset admin-site-block">
+              <legend>FAQ global</legend>
+              <p class="admin-field-hint">Perguntas exibidas na home e somadas ao FAQ de cada oficina no idioma selecionado acima.</p>
+              <div class="admin-repeater" id="site-faq-editor"></div>
+              <button class="button button--ghost" type="button" id="add-site-faq">Adicionar pergunta global</button>
+            </fieldset>
+
             <div class="admin-actions">
               <button class="button button--primary" type="submit">Salvar configurações</button>
-              <button class="button button--ghost" type="button" id="reset-site-settings">Restaurar banner padrão</button>
+              <button class="button button--ghost" type="button" id="reset-site-settings">Restaurar configurações padrão</button>
               <p class="admin-save-status" id="site-settings-status" aria-live="polite"></p>
             </div>
           </form>
