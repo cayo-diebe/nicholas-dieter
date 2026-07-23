@@ -297,13 +297,13 @@ const handleApi = async (request, env) => {
       return jsonResponse({ authenticated: await verifySession(request, env) });
     }
     if (url.pathname === "/api/login" && request.method === "POST") {
-      return handleLogin(request, env);
+      return await handleLogin(request, env);
     }
     if (url.pathname === "/api/logout" && request.method === "POST") {
       return handleLogout();
     }
     if (url.pathname === "/api/publish" && request.method === "POST") {
-      return handlePublish(request, env);
+      return await handlePublish(request, env);
     }
     return jsonResponse({ message: "Endpoint nao encontrado." }, 404);
   } catch (error) {
@@ -313,12 +313,16 @@ const handleApi = async (request, env) => {
 
 export default {
   async fetch(request, env) {
-    const url = new URL(request.url);
+    try {
+      const url = new URL(request.url);
 
-    if (url.pathname.startsWith("/api/")) {
-      return handleApi(request, env);
+      if (url.pathname.startsWith("/api/")) {
+        return await handleApi(request, env);
+      }
+
+      return await env.ASSETS.fetch(request);
+    } catch (error) {
+      return jsonResponse({ message: error.message || "Erro no servidor." }, error.status || 500);
     }
-
-    return env.ASSETS.fetch(request);
   },
 };
