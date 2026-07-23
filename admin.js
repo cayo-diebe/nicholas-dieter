@@ -405,7 +405,14 @@
         ...(options.headers || {}),
       },
     });
-    const payload = await response.json().catch(() => ({}));
+    const responseText = await response.text();
+    let payload = {};
+
+    try {
+      payload = responseText ? JSON.parse(responseText) : {};
+    } catch {
+      payload = { message: responseText.trim().slice(0, 240) };
+    }
 
     if (!response.ok) {
       throw new Error(payload.message || `Servidor respondeu com erro ${response.status}.`);
@@ -552,7 +559,10 @@
       renderList();
       fillForm();
       const shortSha = result.commitSha ? ` Commit ${result.commitSha.slice(0, 7)}.` : "";
-      setPublishStatus(`${successMessage}${shortSha} Pode levar alguns segundos para aparecer.`);
+      const mirrorWarning = result.mirrorFailures?.length
+        ? ` Aviso: nao foi possivel espelhar ${result.mirrorFailures.map((failure) => failure.branch).join(", ")}.`
+        : "";
+      setPublishStatus(`${successMessage}${shortSha}${mirrorWarning} Pode levar alguns segundos para aparecer.`);
       return true;
     } catch (error) {
       setPublishStatus(error.message || "Nao foi possivel publicar no servidor.", true);

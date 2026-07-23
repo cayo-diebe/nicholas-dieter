@@ -1,7 +1,7 @@
 const GITHUB_OWNER = "cayo-diebe";
 const GITHUB_REPO = "nicholas-dieter";
 const DEFAULT_PRIMARY_BRANCH = "main";
-const DEFAULT_MIRROR_BRANCHES = "cloudflare/workers-autoconfig";
+const DEFAULT_MIRROR_BRANCHES = "";
 const SESSION_COOKIE = "nd_admin_session";
 const SESSION_TTL_SECONDS = 60 * 60 * 12;
 
@@ -232,13 +232,18 @@ const handlePublish = async (request, env) => {
   const primaryBranch = env.GITHUB_BRANCH || DEFAULT_PRIMARY_BRANCH;
   const commitSha = await createPublicationCommit(env, publication, primaryBranch);
   const mirroredBranches = [];
+  const mirrorFailures = [];
 
   for (const branch of getMirrorBranches(env, primaryBranch)) {
-    await mirrorCommit(env, commitSha, branch);
-    mirroredBranches.push(branch);
+    try {
+      await mirrorCommit(env, commitSha, branch);
+      mirroredBranches.push(branch);
+    } catch (error) {
+      mirrorFailures.push({ branch, message: error.message || "Falha ao espelhar branch." });
+    }
   }
 
-  return jsonResponse({ commitSha, branch: primaryBranch, mirroredBranches });
+  return jsonResponse({ commitSha, branch: primaryBranch, mirroredBranches, mirrorFailures });
 };
 
 const handleApi = async (request, env) => {
