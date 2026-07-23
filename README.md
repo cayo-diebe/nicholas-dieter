@@ -7,21 +7,16 @@ Site estático para oficinas, laboratórios e campanhas de Nicholas Dieter.
 - `index.html`: página principal com lista de oficinas, registros, FAQ e sobre.
 - `oficinas/subpersonalidades/index.html`: URL limpa da oficina Subpersonalidades.
 - `oficina.html?slug=subpersonalidades`: rota dinâmica de fallback para oficinas.
-- `admin.html`: cadastro local com login, oficinas, idiomas, turmas, investimento, programa e FAQ.
+- `admin.html`: pagina desativada para impedir edicao pelo front em producao.
 - `workshop-data.js`: dados editáveis, traduções em PT/ES/EN e configurações globais.
 - `script.js`: renderização da home.
 - `oficina.js`: renderização das páginas de oficina e inscrição via WhatsApp.
-- `admin.js`: CRUD local, login client-side e exportação dos dados finais.
+- `admin.js`: trava qualquer painel antigo carregado em cache.
 - `styles.css`: identidade visual e responsividade.
 
-## Admin
+## Atualizacoes
 
-O admin é client-side e usa login simples:
-
-- usuário: `admin`
-- senha: `123`
-
-Depois do login, o cadastro salva no `localStorage` do navegador e exporta os dados finais. O admin aceita upload de imagens para card, imagem principal e galeria, salvando os arquivos como dados embutidos no export. Como o projeto é estático, novos cadastros só entram em produção quando os dados exportados forem levados para `workshop-data.js` e publicados no GitHub.
+O site nao deixa edicao ativa no front. Mudancas de conteudo devem ser feitas diretamente nos arquivos versionados, principalmente `workshop-data.js` e `published-data.js`, antes do deploy.
 
 Cada oficina precisa de:
 

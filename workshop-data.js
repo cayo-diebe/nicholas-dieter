@@ -1,6 +1,4 @@
 (function () {
-  const STORAGE_KEY = "nicholas-dieter-workshops";
-  const SETTINGS_KEY = "nicholas-dieter-site-settings";
   const LANGUAGE_KEY = "nicholas-dieter-language";
   const DEFAULT_LANGUAGE = "pt";
   const PHONE = "5511992978145";
@@ -571,30 +569,16 @@
     }
   };
 
-  const loadWorkshops = () => {
-    try {
-      const saved = window.localStorage.getItem(STORAGE_KEY);
-      return saved ? normalizeWorkshops(JSON.parse(saved)) : clone(getPublishedWorkshops());
-    } catch {
-      return clone(getPublishedWorkshops());
-    }
+  const loadWorkshops = () => clone(getPublishedWorkshops());
+
+  const saveWorkshops = () => {
+    throw new Error("Edicao pelo front desativada. Atualize os dados nos arquivos do projeto.");
   };
 
-  const saveWorkshops = (workshops) => {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(workshops));
-  };
+  const loadSiteSettings = () => clone(getPublishedSiteSettings());
 
-  const loadSiteSettings = () => {
-    try {
-      const saved = window.localStorage.getItem(SETTINGS_KEY);
-      return saved ? normalizeSiteSettings(JSON.parse(saved)) : clone(getPublishedSiteSettings());
-    } catch {
-      return clone(getPublishedSiteSettings());
-    }
-  };
-
-  const saveSiteSettings = (settings) => {
-    window.localStorage.setItem(SETTINGS_KEY, JSON.stringify(normalizeSiteSettings(settings)));
+  const saveSiteSettings = () => {
+    throw new Error("Edicao pelo front desativada. Atualize os dados nos arquivos do projeto.");
   };
 
   const getWorkshopCopy = (workshop, language) =>

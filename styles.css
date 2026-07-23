@@ -878,6 +878,31 @@ h3 {
   padding: 7rem clamp(1rem, 6vw, 5rem) 4rem;
 }
 
+.admin-disabled {
+  display: grid;
+  min-height: 100svh;
+  place-content: center;
+  gap: 1rem;
+  padding: 7rem clamp(1rem, 6vw, 5rem) 4rem;
+}
+
+.admin-disabled h1 {
+  max-width: 760px;
+  font-size: clamp(3.2rem, 9vw, 7rem);
+  line-height: 0.86;
+}
+
+.admin-disabled p:not(.eyebrow) {
+  max-width: 520px;
+  margin: 0;
+  color: rgba(247, 241, 223, 0.74);
+  font-size: 1.12rem;
+}
+
+.admin-disabled .button {
+  width: fit-content;
+}
+
 .admin-mobile-gate {
   display: none;
 }
