@@ -18,10 +18,7 @@
   const recordsPreview = document.querySelector("#records-preview");
   const list = document.querySelector("#admin-list");
   const exportBox = document.querySelector("#export-box");
-  const publicationExportBox = document.querySelector("#publication-export-box");
   const workshopSaveStatus = document.querySelector("#workshop-save-status");
-  const publishServerButton = document.querySelector("#publish-server");
-  const publishStatus = document.querySelector("#publish-status");
   const campaignUrl = document.querySelector("#campaign-url");
   const programEditor = document.querySelector("#program-editor");
   const videoEditor = document.querySelector("#video-editor");
@@ -449,12 +446,6 @@
     navigator.clipboard?.writeText(content).catch(() => {});
   };
 
-  const setPublishStatus = (message, isError = false) => {
-    if (!publishStatus) return;
-    publishStatus.textContent = message;
-    publishStatus.classList.toggle("is-error", isError);
-  };
-
   const apiRequest = async (endpoint, options = {}) => {
     const response = await fetch(`${API_BASE}${endpoint}`, {
       credentials: "same-origin",
@@ -584,14 +575,11 @@
   };
 
   const publishToServer = async (successMessage = "Conteudo enviado para producao.") => {
-    if (publishServerButton) publishServerButton.disabled = true;
     setAdminBusy(true, "Preparando imagens e conteudo para publicar.");
-    setPublishStatus("Preparando imagens e conteudo para o servidor...");
 
     try {
       const publication = await prepareServerPublication();
       setAdminBusy(true, "Enviando para o servidor. Nao feche esta tela.");
-      setPublishStatus("Enviando publicacao para o servidor...");
 
       const result = await apiRequest("/publish", {
         method: "POST",
@@ -613,11 +601,6 @@
         // The server already has the published content. Local cache is only a convenience.
       }
 
-      if (publicationExportBox) {
-        publicationExportBox.value = publication.content;
-        publicationExportBox.classList.add("is-visible");
-      }
-
       fillSiteSettingsForm({ keepCurrent: true });
       renderList();
       fillForm();
@@ -625,13 +608,16 @@
       const mirrorWarning = result.mirrorFailures?.length
         ? ` Aviso: nao foi possivel espelhar ${result.mirrorFailures.map((failure) => failure.branch).join(", ")}.`
         : "";
-      setPublishStatus(`${successMessage}${shortSha}${mirrorWarning} Pode levar alguns segundos para a producao refletir.`);
+      const message = `${successMessage}${shortSha}${mirrorWarning}`;
+      setWorkshopStatus(message);
+      if (siteSettingsStatus) siteSettingsStatus.textContent = message;
       return true;
     } catch (error) {
-      setPublishStatus(error.message || "Nao foi possivel publicar no servidor.", true);
+      const message = error.message || "Nao foi possivel publicar no servidor.";
+      setWorkshopStatus(message);
+      if (siteSettingsStatus) siteSettingsStatus.textContent = message;
       return false;
     } finally {
-      if (publishServerButton) publishServerButton.disabled = false;
       setAdminBusy(false);
     }
   };
@@ -1045,7 +1031,6 @@
         "Nao foi possivel salvar no navegador. Tentando publicar direto em producao...";
       publishToServer("Configuracoes enviadas para producao.").then((published) => {
         if (published) siteSettingsStatus.textContent = "Configuracoes enviadas para producao.";
-        if (!published) showPublicationExport(publicationExportBox);
       });
     }
 
@@ -1218,14 +1203,6 @@
 
   document.querySelector("#export-workshops").addEventListener("click", () => {
     showPublicationExport(exportBox);
-  });
-
-  document.querySelector("#export-publication").addEventListener("click", () => {
-    showPublicationExport(publicationExportBox);
-  });
-
-  publishServerButton?.addEventListener("click", () => {
-    publishToServer("Conteudo enviado para producao.");
   });
 
   document.querySelector("#logout-admin").addEventListener("click", async () => {
