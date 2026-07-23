@@ -1095,6 +1095,64 @@ h3 {
   color: #ffd0c4;
 }
 
+.admin-busy-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(7, 6, 8, 0.78);
+  backdrop-filter: blur(10px);
+}
+
+.admin-busy-overlay[hidden] {
+  display: none;
+}
+
+body.is-admin-busy {
+  overflow: hidden;
+}
+
+.admin-busy-card {
+  display: grid;
+  justify-items: center;
+  gap: 0.75rem;
+  width: min(100%, 360px);
+  border: 1px solid rgba(244, 232, 184, 0.22);
+  background: #100c13;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.admin-busy-card strong {
+  color: var(--nd-cream);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.admin-busy-card p {
+  margin: 0;
+  color: rgba(247, 241, 223, 0.72);
+  line-height: 1.45;
+}
+
+.admin-busy-spinner {
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 3px solid rgba(244, 232, 184, 0.2);
+  border-top-color: var(--nd-cream);
+  border-radius: 50%;
+  animation: admin-spin 850ms linear infinite;
+}
+
+@keyframes admin-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .admin-grid {
   display: grid;
   gap: 1.5rem;

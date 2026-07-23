@@ -37,10 +37,15 @@
   const adminRouteLinks = Array.from(document.querySelectorAll("[data-admin-route-link]"));
   const adminRoutePanels = Array.from(document.querySelectorAll("[data-admin-route-panel]"));
   const adminRoutes = new Set(adminRouteLinks.map((link) => link.dataset.adminRouteLink));
+  const adminBusy = document.querySelector("#admin-busy");
+  const adminBusyMessage = document.querySelector("#admin-busy-message");
 
   let activeStepIndex = 0;
   let activeSiteLanguage = "pt";
   let activeAdminRoute = "site-visual";
+  const IMAGE_PREVIEW_CACHE_KEY = "nicholas-dieter-upload-previews";
+  const MAX_PREVIEW_CACHE_ITEMS = 12;
+  const imagePreviewCache = new Map();
 
   const getSelected = () => workshops.find((workshop) => workshop.slug === selectedSlug);
   const getCopy = (workshop) => window.ND.getWorkshopCopy(workshop, "pt");
@@ -89,6 +94,59 @@
       .split("\n")
       .map((item) => item.trim())
       .filter(Boolean);
+
+  const loadImagePreviewCache = () => {
+    try {
+      const entries = JSON.parse(window.sessionStorage.getItem(IMAGE_PREVIEW_CACHE_KEY) || "[]");
+      entries
+        .filter(([path, dataUrl]) => path && String(dataUrl).startsWith("data:image"))
+        .forEach(([path, dataUrl]) => imagePreviewCache.set(path, dataUrl));
+    } catch {
+      imagePreviewCache.clear();
+    }
+  };
+
+  const persistImagePreviewCache = () => {
+    try {
+      const entries = Array.from(imagePreviewCache.entries()).slice(-MAX_PREVIEW_CACHE_ITEMS);
+      window.sessionStorage.setItem(IMAGE_PREVIEW_CACHE_KEY, JSON.stringify(entries));
+    } catch {
+      try {
+        window.sessionStorage.removeItem(IMAGE_PREVIEW_CACHE_KEY);
+      } catch {
+        // Preview cache is optional.
+      }
+    }
+  };
+
+  const normalizePreviewPath = (value = "") =>
+    String(value || "").trim().replace(/\\/g, "/").replace(/^\/+/, "");
+
+  const rememberImagePreview = (path, dataUrl) => {
+    if (!path || !String(dataUrl).startsWith("data:image")) return;
+    imagePreviewCache.set(normalizePreviewPath(path), dataUrl);
+    persistImagePreviewCache();
+  };
+
+  const getImagePreviewSrc = (value = "") => {
+    const src = String(value || "").trim();
+    if (!src || src.startsWith("data:image")) return window.ND.resolveAsset(src);
+    return imagePreviewCache.get(normalizePreviewPath(src)) || window.ND.resolveAsset(src);
+  };
+
+  const setAdminBusy = (isBusy, message = "Aguarde a resposta do servidor.") => {
+    if (adminBusyMessage) adminBusyMessage.textContent = message;
+    if (adminBusy) {
+      adminBusy.hidden = !isBusy;
+      adminBusy.setAttribute("aria-hidden", String(!isBusy));
+      if (isBusy) window.requestAnimationFrame(() => {
+        if (!adminBusy.hidden) adminBusy.focus();
+      });
+    }
+    document.body.classList.toggle("is-admin-busy", isBusy);
+    adminApp?.setAttribute("aria-busy", String(isBusy));
+    if (adminApp && "inert" in adminApp) adminApp.inert = isBusy;
+  };
 
   const getNestedValue = (source, path) =>
     path.split(".").reduce((value, key) => value?.[key], source) || "";
@@ -215,7 +273,7 @@
     const original = await readFileAsDataUrl(file);
     if (file.type === "image/svg+xml" || file.type === "image/gif") return original;
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       const image = new Image();
       image.addEventListener("load", () => {
         const maxSize = 1500;
@@ -229,7 +287,9 @@
         context.drawImage(image, 0, 0, canvas.width, canvas.height);
         resolve(canvas.toDataURL("image/jpeg", 0.74));
       });
-      image.addEventListener("error", () => resolve(original));
+      image.addEventListener("error", () => {
+        reject(new Error("Nao foi possivel processar esta imagem. Envie em JPG, PNG ou WebP."));
+      });
       image.src = original;
     });
   };
@@ -246,7 +306,7 @@
     }
 
     preview.innerHTML = `
-      <img src="${escapeHtml(window.ND.resolveAsset(value))}" alt="">
+      <img src="${escapeHtml(getImagePreviewSrc(value))}" alt="">
       <small>${escapeHtml(imageLabel(value))}</small>
     `;
   };
@@ -262,7 +322,7 @@
       .map(
         (src, index) => `
           <figure class="admin-gallery-item">
-            <img src="${escapeHtml(window.ND.resolveAsset(src))}" alt="">
+            <img src="${escapeHtml(getImagePreviewSrc(src))}" alt="">
             <figcaption>${escapeHtml(imageLabel(src))}</figcaption>
             <button class="admin-mini-button" type="button" data-remove-gallery="${index}">Remover</button>
           </figure>
@@ -282,7 +342,7 @@
       .map(
         (src, index) => `
           <figure class="admin-gallery-item">
-            <img src="${escapeHtml(window.ND.resolveAsset(src))}" alt="">
+            <img src="${escapeHtml(getImagePreviewSrc(src))}" alt="">
             <figcaption>${escapeHtml(imageLabel(src))}</figcaption>
             <button class="admin-mini-button" type="button" data-remove-record="${index}">Remover</button>
           </figure>
@@ -492,6 +552,7 @@
       const path = `assets/uploads/${uploadFolder}/${hash.slice(0, 24)}.${getImageExtension(parsed.mime)}`;
       const upload = { path, content: parsed.base64, encoding: "base64" };
       uploadCache.set(value, upload);
+      rememberImagePreview(path, value);
       uploads.push(upload);
       return path;
     };
@@ -524,10 +585,12 @@
 
   const publishToServer = async (successMessage = "Conteudo enviado para producao.") => {
     if (publishServerButton) publishServerButton.disabled = true;
+    setAdminBusy(true, "Preparando imagens e conteudo para publicar.");
     setPublishStatus("Preparando imagens e conteudo para o servidor...");
 
     try {
       const publication = await prepareServerPublication();
+      setAdminBusy(true, "Enviando para o servidor. Nao feche esta tela.");
       setPublishStatus("Enviando publicacao para o servidor...");
 
       const result = await apiRequest("/publish", {
@@ -569,6 +632,7 @@
       return false;
     } finally {
       if (publishServerButton) publishServerButton.disabled = false;
+      setAdminBusy(false);
     }
   };
 
@@ -1161,7 +1225,7 @@
   });
 
   publishServerButton?.addEventListener("click", () => {
-    publishToServer("Conteudo salvo no servidor.");
+    publishToServer("Conteudo enviado para producao.");
   });
 
   document.querySelector("#logout-admin").addEventListener("click", async () => {
@@ -1185,6 +1249,8 @@
     setAuthenticated(true);
     showAdmin();
   });
+
+  loadImagePreviewCache();
 
   checkServerSession().then((authenticated) => {
     if (!authenticated) {
