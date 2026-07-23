@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-07-23T13:44:32.293Z",
+  "exportedAt": "2026-07-23T13:53:28.880Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -8,8 +8,7 @@ window.ND_PUBLISHED_DATA = {
     "whatsappMessage": "Olá, Nicholas! Vim pelo site e gostaria de falar no WhatsApp.",
     "recordsImages": [
       "assets/uploads/2026-07-23/8383f0bcd8f004ef29b6079c.jpg",
-      "assets/uploads/2026-07-23/8383f0bcd8f004ef29b6079c.jpg",
-      "assets/uploads/2026-07-23/c7c2dd07275dc930ffb0f4c5.jpg"
+      "assets/uploads/2026-07-23/8383f0bcd8f004ef29b6079c.jpg"
     ],
     "copy": {
       "pt": {
