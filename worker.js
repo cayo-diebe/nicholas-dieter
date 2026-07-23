@@ -7,6 +7,15 @@ const SESSION_TTL_SECONDS = 60 * 60 * 12;
 
 const textEncoder = new TextEncoder();
 
+class HttpError extends Error {
+  constructor(message, status = 500) {
+    super(message);
+    this.status = status;
+  }
+}
+
+const getEnvValue = (env, key) => env?.[key] || globalThis.process?.env?.[key] || "";
+
 const jsonResponse = (payload, status = 200, extraHeaders = {}) =>
   new Response(JSON.stringify(payload), {
     status,
@@ -40,6 +49,17 @@ const toBase64Url = (value) => {
   return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
 };
 
+const toBase64 = (value) => {
+  const bytes = typeof value === "string" ? textEncoder.encode(value) : value;
+  let binary = "";
+
+  bytes.forEach((byte) => {
+    binary += String.fromCharCode(byte);
+  });
+
+  return btoa(binary);
+};
+
 const fromBase64UrlJson = (value) => {
   const base64 = value.replaceAll("-", "+").replaceAll("_", "/").padEnd(Math.ceil(value.length / 4) * 4, "=");
   const binary = atob(base64);
@@ -47,7 +67,11 @@ const fromBase64UrlJson = (value) => {
   return JSON.parse(new TextDecoder().decode(bytes));
 };
 
-const getSessionSecret = (env) => env.SESSION_SECRET || env.GITHUB_TOKEN || env.ADMIN_PASSWORD || "nicholas-dieter-admin";
+const getSessionSecret = (env) =>
+  getEnvValue(env, "SESSION_SECRET") ||
+  getEnvValue(env, "GITHUB_TOKEN") ||
+  getEnvValue(env, "ADMIN_PASSWORD") ||
+  "nicholas-dieter-admin";
 
 const signValue = async (value, secret) => {
   const key = await crypto.subtle.importKey(
@@ -92,8 +116,8 @@ const verifySession = async (request, env) => {
 };
 
 const getLoginConfig = (env) => ({
-  username: env.ADMIN_USER || "admin",
-  password: env.ADMIN_PASSWORD || "123",
+  username: getEnvValue(env, "ADMIN_USER") || "admin",
+  password: getEnvValue(env, "ADMIN_PASSWORD") || "123",
 });
 
 const handleLogin = async (request, env) => {
@@ -126,21 +150,26 @@ const handleLogout = () =>
 const encodeBranchPath = (branch) => branch.split("/").map(encodeURIComponent).join("/");
 
 const getMirrorBranches = (env, primaryBranch) =>
-  (env.GITHUB_MIRROR_BRANCHES || DEFAULT_MIRROR_BRANCHES)
+  (getEnvValue(env, "GITHUB_MIRROR_BRANCHES") || DEFAULT_MIRROR_BRANCHES)
     .split(",")
     .map((branch) => branch.trim())
     .filter((branch) => branch && branch !== primaryBranch);
 
 const githubRequest = async (env, endpoint, options = {}) => {
-  if (!env.GITHUB_TOKEN) {
-    throw new Error("GITHUB_TOKEN nao configurado no Cloudflare.");
+  const token = getEnvValue(env, "GITHUB_TOKEN");
+
+  if (!token) {
+    throw new HttpError(
+      "GITHUB_TOKEN nao esta disponivel no runtime do Worker. Configure em Settings > Variables & Secrets, nao em Build.",
+      503,
+    );
   }
 
   const response = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/${endpoint}`, {
     ...options,
     headers: {
       Accept: "application/vnd.github+json",
-      Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
       "User-Agent": "nicholas-dieter-admin",
       "X-GitHub-Api-Version": "2022-11-28",
@@ -150,11 +179,13 @@ const githubRequest = async (env, endpoint, options = {}) => {
   const payload = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    throw new Error(payload.message || `GitHub respondeu com erro ${response.status}.`);
+    throw new HttpError(payload.message || `GitHub respondeu com erro ${response.status}.`, response.status);
   }
 
   return payload;
 };
+
+const encodeContentPath = (path) => path.split("/").map(encodeURIComponent).join("/");
 
 const validatePublication = (body) => {
   if (!body || typeof body.content !== "string" || !body.content.includes("window.ND_PUBLISHED_DATA")) {
@@ -177,43 +208,53 @@ const validatePublication = (body) => {
   };
 };
 
-const createPublicationCommit = async (env, publication, branch) => {
-  const branchPath = encodeBranchPath(branch);
-  const ref = await githubRequest(env, `git/ref/heads/${branchPath}`);
-  const baseCommit = await githubRequest(env, `git/commits/${ref.object.sha}`);
-  const files = [
-    { path: "published-data.js", content: publication.content, encoding: "utf-8" },
-    ...publication.uploads,
-  ];
-  const treeEntries = [];
+const getExistingContentSha = async (env, path, branch) => {
+  try {
+    const file = await githubRequest(env, `contents/${encodeContentPath(path)}?ref=${encodeURIComponent(branch)}`);
+    return file.sha || null;
+  } catch (error) {
+    if (error.status === 404) return null;
+    throw error;
+  }
+};
 
-  for (const file of files) {
-    const blob = await githubRequest(env, "git/blobs", {
-      method: "POST",
-      body: JSON.stringify({ content: file.content, encoding: file.encoding || "base64" }),
+const putContentFile = async (env, file, branch, index) => {
+  const existingSha = await getExistingContentSha(env, file.path, branch);
+  const content = file.encoding === "base64" ? file.content : toBase64(file.content);
+  const body = {
+    message: `Publish site content from admin (${new Date().toLocaleString("pt-BR")})`,
+    content,
+    branch,
+    ...(existingSha ? { sha: existingSha } : {}),
+  };
+
+  try {
+    const result = await githubRequest(env, `contents/${encodeContentPath(file.path)}`, {
+      method: "PUT",
+      body: JSON.stringify(body),
     });
-    treeEntries.push({ path: file.path, mode: "100644", type: "blob", sha: blob.sha });
+    return result.commit?.sha || null;
+  } catch (error) {
+    if (error.status === 422 && /content is unchanged/i.test(error.message || "")) {
+      return null;
+    }
+    throw new HttpError(`Falha ao publicar ${file.path}: ${error.message}`, error.status || 500);
+  }
+};
+
+const createPublicationCommit = async (env, publication, branch) => {
+  const files = [
+    ...publication.uploads,
+    { path: "published-data.js", content: publication.content, encoding: "utf-8" },
+  ];
+  let lastCommitSha = null;
+
+  for (let index = 0; index < files.length; index += 1) {
+    const commitSha = await putContentFile(env, files[index], branch, index);
+    if (commitSha) lastCommitSha = commitSha;
   }
 
-  const tree = await githubRequest(env, "git/trees", {
-    method: "POST",
-    body: JSON.stringify({ base_tree: baseCommit.tree.sha, tree: treeEntries }),
-  });
-  const commit = await githubRequest(env, "git/commits", {
-    method: "POST",
-    body: JSON.stringify({
-      message: `Publish site content from admin (${new Date().toLocaleString("pt-BR")})`,
-      tree: tree.sha,
-      parents: [ref.object.sha],
-    }),
-  });
-
-  await githubRequest(env, `git/refs/heads/${branchPath}`, {
-    method: "PATCH",
-    body: JSON.stringify({ sha: commit.sha, force: false }),
-  });
-
-  return commit.sha;
+  return lastCommitSha;
 };
 
 const mirrorCommit = async (env, commitSha, branch) =>
@@ -229,17 +270,19 @@ const handlePublish = async (request, env) => {
 
   const body = await request.json().catch(() => ({}));
   const publication = validatePublication(body);
-  const primaryBranch = env.GITHUB_BRANCH || DEFAULT_PRIMARY_BRANCH;
+  const primaryBranch = getEnvValue(env, "GITHUB_BRANCH") || DEFAULT_PRIMARY_BRANCH;
   const commitSha = await createPublicationCommit(env, publication, primaryBranch);
   const mirroredBranches = [];
   const mirrorFailures = [];
 
-  for (const branch of getMirrorBranches(env, primaryBranch)) {
-    try {
-      await mirrorCommit(env, commitSha, branch);
-      mirroredBranches.push(branch);
-    } catch (error) {
-      mirrorFailures.push({ branch, message: error.message || "Falha ao espelhar branch." });
+  if (commitSha) {
+    for (const branch of getMirrorBranches(env, primaryBranch)) {
+      try {
+        await mirrorCommit(env, commitSha, branch);
+        mirroredBranches.push(branch);
+      } catch (error) {
+        mirrorFailures.push({ branch, message: error.message || "Falha ao espelhar branch." });
+      }
     }
   }
 
@@ -264,7 +307,7 @@ const handleApi = async (request, env) => {
     }
     return jsonResponse({ message: "Endpoint nao encontrado." }, 404);
   } catch (error) {
-    return jsonResponse({ message: error.message || "Erro no servidor." }, 500);
+    return jsonResponse({ message: error.message || "Erro no servidor." }, error.status || 500);
   }
 };
 

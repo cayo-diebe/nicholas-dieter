@@ -23,7 +23,7 @@ O admin fica disponivel pelo front em `admin.html`, mas a sessao e a publicacao 
 - usuario padrao: `admin`
 - senha padrao: `123`
 
-Para publicar sem expor token no navegador, configure `GITHUB_TOKEN` como segredo do Worker no Cloudflare. Opcionalmente configure `ADMIN_USER`, `ADMIN_PASSWORD`, `SESSION_SECRET`, `GITHUB_BRANCH` e `GITHUB_MIRROR_BRANCHES`. Por padrao, a publicacao commita em `main`, que tambem e a branch de producao no Cloudflare.
+Para publicar sem expor token no navegador, configure `GITHUB_TOKEN` como segredo do Worker no Cloudflare em Settings > Variables & Secrets. Nao use Build > Variables and secrets para esse token, porque variaveis de build nao ficam disponiveis em runtime. Opcionalmente configure `ADMIN_USER`, `ADMIN_PASSWORD`, `SESSION_SECRET`, `GITHUB_BRANCH` e `GITHUB_MIRROR_BRANCHES`. Por padrao, a publicacao commita em `main`, que tambem e a branch de producao no Cloudflare.
 
 Depois do login, o cadastro salva no `localStorage` do navegador e o botao Salvar no servidor publica `published-data.js` e uploads de imagem pelo Worker. O admin tambem mantem exportacao manual como fallback.
 
