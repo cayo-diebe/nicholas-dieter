@@ -49,17 +49,6 @@ const toBase64Url = (value) => {
   return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
 };
 
-const toBase64 = (value) => {
-  const bytes = typeof value === "string" ? textEncoder.encode(value) : value;
-  let binary = "";
-
-  bytes.forEach((byte) => {
-    binary += String.fromCharCode(byte);
-  });
-
-  return btoa(binary);
-};
-
 const fromBase64UrlJson = (value) => {
   const base64 = value.replaceAll("-", "+").replaceAll("_", "/").padEnd(Math.ceil(value.length / 4) * 4, "=");
   const binary = atob(base64);
@@ -185,8 +174,6 @@ const githubRequest = async (env, endpoint, options = {}) => {
   return payload;
 };
 
-const encodeContentPath = (path) => path.split("/").map(encodeURIComponent).join("/");
-
 const validatePublication = (body) => {
   if (!body || typeof body.content !== "string" || !body.content.includes("window.ND_PUBLISHED_DATA")) {
     throw new Error("Publicacao invalida.");
@@ -208,53 +195,72 @@ const validatePublication = (body) => {
   };
 };
 
-const getExistingContentSha = async (env, path, branch) => {
+const getBranchRef = async (env, branch) => {
   try {
-    const file = await githubRequest(env, `contents/${encodeContentPath(path)}?ref=${encodeURIComponent(branch)}`);
-    return file.sha || null;
+    return await githubRequest(env, `git/ref/heads/${encodeBranchPath(branch)}`);
   } catch (error) {
-    if (error.status === 404) return null;
+    if (error.status === 404) {
+      throw new HttpError(
+        `Nao encontrei o repositorio ${GITHUB_OWNER}/${GITHUB_REPO} ou a branch ${branch}. Verifique se o token tem acesso a este repo e permissao Contents read/write.`,
+        404,
+      );
+    }
     throw error;
   }
 };
 
-const putContentFile = async (env, file, branch, index) => {
-  const existingSha = await getExistingContentSha(env, file.path, branch);
-  const content = file.encoding === "base64" ? file.content : toBase64(file.content);
-  const body = {
-    message: `Publish site content from admin (${new Date().toLocaleString("pt-BR")})`,
-    content,
-    branch,
-    ...(existingSha ? { sha: existingSha } : {}),
-  };
+const getPublicationFiles = (publication) => {
+  const filesByPath = new Map();
 
-  try {
-    const result = await githubRequest(env, `contents/${encodeContentPath(file.path)}`, {
-      method: "PUT",
-      body: JSON.stringify(body),
+  publication.uploads.forEach((upload) => {
+    filesByPath.set(upload.path, {
+      path: upload.path,
+      content: upload.content,
+      encoding: "base64",
     });
-    return result.commit?.sha || null;
-  } catch (error) {
-    if (error.status === 422 && /content is unchanged/i.test(error.message || "")) {
-      return null;
-    }
-    throw new HttpError(`Falha ao publicar ${file.path}: ${error.message}`, error.status || 500);
-  }
+  });
+
+  filesByPath.set("published-data.js", {
+    path: "published-data.js",
+    content: publication.content,
+    encoding: "utf-8",
+  });
+
+  return Array.from(filesByPath.values());
 };
 
 const createPublicationCommit = async (env, publication, branch) => {
-  const files = [
-    ...publication.uploads,
-    { path: "published-data.js", content: publication.content, encoding: "utf-8" },
-  ];
-  let lastCommitSha = null;
+  const ref = await getBranchRef(env, branch);
+  const baseCommit = await githubRequest(env, `git/commits/${ref.object.sha}`);
+  const treeEntries = [];
 
-  for (let index = 0; index < files.length; index += 1) {
-    const commitSha = await putContentFile(env, files[index], branch, index);
-    if (commitSha) lastCommitSha = commitSha;
+  for (const file of getPublicationFiles(publication)) {
+    const blob = await githubRequest(env, "git/blobs", {
+      method: "POST",
+      body: JSON.stringify({ content: file.content, encoding: file.encoding }),
+    });
+    treeEntries.push({ path: file.path, mode: "100644", type: "blob", sha: blob.sha });
   }
 
-  return lastCommitSha;
+  const tree = await githubRequest(env, "git/trees", {
+    method: "POST",
+    body: JSON.stringify({ base_tree: baseCommit.tree.sha, tree: treeEntries }),
+  });
+  const commit = await githubRequest(env, "git/commits", {
+    method: "POST",
+    body: JSON.stringify({
+      message: `Publish site content from admin (${new Date().toLocaleString("pt-BR")})`,
+      tree: tree.sha,
+      parents: [ref.object.sha],
+    }),
+  });
+
+  await githubRequest(env, `git/refs/heads/${encodeBranchPath(branch)}`, {
+    method: "PATCH",
+    body: JSON.stringify({ sha: commit.sha, force: false }),
+  });
+
+  return commit.sha;
 };
 
 const mirrorCommit = async (env, commitSha, branch) =>
