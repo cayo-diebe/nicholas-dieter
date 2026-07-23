@@ -86,12 +86,11 @@
     const strip = document.querySelector("#records-strip");
     if (!strip) return;
 
-    const images = (siteSettings.recordsImages?.length
-      ? siteSettings.recordsImages
-      : workshops.flatMap((workshop) => workshop.gallery || [])
-    ).slice(0, 10);
+    const recordImages = (siteSettings.recordsImages || []).map((src) => String(src || "").trim()).filter(Boolean);
+    const fallbackImages = workshops.flatMap((workshop) => workshop.gallery || []).filter(Boolean);
+    const images = (recordImages.length ? recordImages : fallbackImages).slice(0, 10);
     strip.innerHTML = images
-      .map((src) => `<img src="${escapeHtml(window.ND.resolveAsset(src))}" alt="">`)
+      .map((src) => `<img src="${escapeHtml(window.ND.resolveAsset(src))}" alt="" loading="lazy" decoding="async">`)
       .join("");
   };
 

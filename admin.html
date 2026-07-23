@@ -110,11 +110,11 @@
           <summary>Publicacao desktop + mobile</summary>
           <div class="admin-publish-panel__body">
             <p>
-              Salve no servidor depois de cadastrar oficinas, alterar textos ou enviar imagens. A publicacao acontece
-              por um endpoint seguro do servidor, sem expor token no navegador.
+              Ao clicar em Salvar nas configuracoes ou oficinas, o admin publica direto em producao. Use este painel
+              apenas para reenviar tudo manualmente, sem expor token no navegador.
             </p>
             <div class="admin-actions">
-              <button class="button button--primary" type="button" id="publish-server">Salvar no servidor</button>
+              <button class="button button--primary" type="button" id="publish-server">Publicar agora</button>
               <button class="button button--ghost" type="button" id="export-publication">Gerar arquivo manual</button>
             </div>
             <p class="admin-save-status" id="publish-status" aria-live="polite"></p>
@@ -275,7 +275,7 @@
             </fieldset>
 
             <div class="admin-actions admin-actions--route-save" data-admin-route-panel="site-visual site-textos site-registros">
-              <button class="button button--primary" type="submit">Salvar configurações</button>
+              <button class="button button--primary" type="submit">Salvar e publicar</button>
               <button class="button button--ghost" type="button" id="reset-site-settings">Restaurar configurações padrão</button>
               <p class="admin-save-status" id="site-settings-status" aria-live="polite"></p>
             </div>
@@ -518,7 +518,7 @@
             </div>
 
             <div class="admin-actions admin-actions--sticky">
-              <button class="button button--primary" type="submit">Salvar oficina</button>
+              <button class="button button--primary" type="submit">Salvar e publicar</button>
               <button class="button button--ghost" type="button" id="delete-workshop">Excluir</button>
               <button class="button button--ghost" type="button" id="export-workshops">Exportar publicacao</button>
             </div>

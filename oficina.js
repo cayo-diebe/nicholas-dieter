@@ -106,7 +106,11 @@
       .join("");
 
   const renderGallery = (gallery = []) =>
-    gallery.map((src) => `<img src="${escapeHtml(window.ND.resolveAsset(src))}" alt="">`).join("");
+    gallery
+      .map((src) => String(src || "").trim())
+      .filter(Boolean)
+      .map((src) => `<img src="${escapeHtml(window.ND.resolveAsset(src))}" alt="" loading="lazy" decoding="async">`)
+      .join("");
 
   const renderVideos = (videos = []) => {
     const items = videos

@@ -522,7 +522,7 @@
     };
   };
 
-  const publishToServer = async (successMessage = "Conteudo publicado no servidor.") => {
+  const publishToServer = async (successMessage = "Conteudo enviado para producao.") => {
     if (publishServerButton) publishServerButton.disabled = true;
     setPublishStatus("Preparando imagens e conteudo para o servidor...");
 
@@ -562,7 +562,7 @@
       const mirrorWarning = result.mirrorFailures?.length
         ? ` Aviso: nao foi possivel espelhar ${result.mirrorFailures.map((failure) => failure.branch).join(", ")}.`
         : "";
-      setPublishStatus(`${successMessage}${shortSha}${mirrorWarning} Pode levar alguns segundos para aparecer.`);
+      setPublishStatus(`${successMessage}${shortSha}${mirrorWarning} Pode levar alguns segundos para a producao refletir.`);
       return true;
     } catch (error) {
       setPublishStatus(error.message || "Nao foi possivel publicar no servidor.", true);
@@ -945,15 +945,15 @@
     try {
       window.ND.saveWorkshops(workshops);
       publishAfterSaveIfPossible(
-        "Oficina salva e publicada no servidor.",
-        () => setWorkshopStatus("Oficina salva neste navegador. A publicacao no servidor falhou."),
+        "Oficina salva e enviada para producao.",
+        () => setWorkshopStatus("Oficina salva neste navegador. A publicacao em producao falhou."),
       );
     } catch {
       setWorkshopStatus(
-        "Nao foi possivel salvar no navegador. Tentando publicar direto no servidor...",
+        "Nao foi possivel salvar no navegador. Tentando publicar direto em producao...",
       );
-      publishToServer("Oficina publicada no servidor.").then((published) => {
-        if (published) setWorkshopStatus("Oficina publicada no servidor.");
+      publishToServer("Oficina enviada para producao.").then((published) => {
+        if (published) setWorkshopStatus("Oficina enviada para producao.");
         if (!published) showPublicationExport(exportBox);
       });
     }
@@ -970,17 +970,17 @@
     try {
       window.ND.saveSiteSettings(siteSettings);
       publishAfterSaveIfPossible(
-        "Configuracoes salvas e publicadas no servidor.",
+        "Configuracoes salvas e enviadas para producao.",
         () => {
           siteSettingsStatus.textContent =
-            "Configuracoes salvas neste navegador. A publicacao no servidor falhou.";
+            "Configuracoes salvas neste navegador. A publicacao em producao falhou.";
         },
       );
     } catch {
       siteSettingsStatus.textContent =
-        "Nao foi possivel salvar no navegador. Tentando publicar direto no servidor...";
-      publishToServer("Configuracoes publicadas no servidor.").then((published) => {
-        if (published) siteSettingsStatus.textContent = "Configuracoes publicadas no servidor.";
+        "Nao foi possivel salvar no navegador. Tentando publicar direto em producao...";
+      publishToServer("Configuracoes enviadas para producao.").then((published) => {
+        if (published) siteSettingsStatus.textContent = "Configuracoes enviadas para producao.";
         if (!published) showPublicationExport(publicationExportBox);
       });
     }

@@ -616,8 +616,14 @@
   const getRootPath = () => (window.location.pathname.includes("/oficinas/") ? "../../" : "");
 
   const resolveAsset = (path = "") => {
-    if (!path || /^(https?:|data:|\/)/.test(path)) return path;
-    return `${getRootPath()}${path}`;
+    const value = String(path || "").trim().replace(/\\/g, "/");
+    if (!value || /^[a-z][a-z0-9+.-]*:/i.test(value) || value.startsWith("/") || value.startsWith("#")) {
+      return value;
+    }
+
+    const normalized = value.replace(/^\.?\//, "").replace(/^(\.\.\/)+/, "");
+    if (window.location.protocol === "file:") return `${getRootPath()}${normalized}`;
+    return `/${normalized}`;
   };
 
   const getWorkshopUrl = (slug, language, options = {}) => {
