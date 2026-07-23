@@ -7,16 +7,25 @@ Site estático para oficinas, laboratórios e campanhas de Nicholas Dieter.
 - `index.html`: página principal com lista de oficinas, registros, FAQ e sobre.
 - `oficinas/subpersonalidades/index.html`: URL limpa da oficina Subpersonalidades.
 - `oficina.html?slug=subpersonalidades`: rota dinâmica de fallback para oficinas.
-- `admin.html`: pagina desativada para impedir edicao pelo front em producao.
+- `admin.html`: cadastro local com login, oficinas, idiomas, turmas, investimento, programa e FAQ.
 - `workshop-data.js`: dados editáveis, traduções em PT/ES/EN e configurações globais.
 - `script.js`: renderização da home.
 - `oficina.js`: renderização das páginas de oficina e inscrição via WhatsApp.
-- `admin.js`: trava qualquer painel antigo carregado em cache.
+- `admin.js`: CRUD do painel, uploads e publicacao via API do Worker.
+- `worker.js`: login do admin, sessao e publicacao server-side no GitHub.
+- `wrangler.jsonc`: configuracao do Cloudflare Worker com assets estaticos.
 - `styles.css`: identidade visual e responsividade.
 
-## Atualizacoes
+## Admin e publicacao
 
-O site nao deixa edicao ativa no front. Mudancas de conteudo devem ser feitas diretamente nos arquivos versionados, principalmente `workshop-data.js` e `published-data.js`, antes do deploy.
+O admin fica disponivel pelo front em `admin.html`, mas a sessao e a publicacao rodam pelo Cloudflare Worker:
+
+- usuario padrao: `admin`
+- senha padrao: `123`
+
+Para publicar sem expor token no navegador, configure `GITHUB_TOKEN` como segredo do Worker no Cloudflare. Opcionalmente configure `ADMIN_USER`, `ADMIN_PASSWORD`, `SESSION_SECRET`, `GITHUB_BRANCH` e `GITHUB_MIRROR_BRANCHES`. Por padrao, a publicacao commita em `main` e espelha para `cloudflare/workers-autoconfig`.
+
+Depois do login, o cadastro salva no `localStorage` do navegador e o botao Salvar no servidor publica `published-data.js` e uploads de imagem pelo Worker. O admin tambem mantem exportacao manual como fallback.
 
 Cada oficina precisa de:
 
