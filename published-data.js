@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-07-24T17:23:05.689Z",
+  "exportedAt": "2026-07-24T17:39:22.073Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -7,6 +7,7 @@ window.ND_PUBLISHED_DATA = {
     "whatsappPhone": "5511992978145",
     "whatsappMessage": "Olá, Nicholas! Vim pelo site e gostaria de falar no WhatsApp.",
     "recordsImages": [
+      "assets/uploads/2026-07-23/8383f0bcd8f004ef29b6079c.jpg",
       "assets/uploads/2026-07-23/8383f0bcd8f004ef29b6079c.jpg"
     ],
     "copy": {
