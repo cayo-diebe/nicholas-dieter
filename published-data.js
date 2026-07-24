@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-07-24T18:09:11.930Z",
+  "exportedAt": "2026-07-24T22:19:07.299Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -35,7 +35,7 @@ window.ND_PUBLISHED_DATA = {
           "secondaryCta": "Ver outras aulas",
           "workshopsKicker": "Campanhas e inscrições",
           "workshopsTitle": "OFICINAS",
-          "workshopsText": "Cada oficina tem uma página de campanha com programação, próximas turmas, investimento e formulário de inscrição.",
+          "workshopsText": "Cada oficina tem uma página de campanha com programação, próximas turmas, investimento e formulário de inscrição. Para qualquer dúvida também é possível consultar por whatsapp.",
           "recordsKicker": "Arquivo vivo",
           "recordsTitle": "Registros de processos",
           "faqKicker": "FAQ",
