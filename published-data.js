@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-07-24T22:44:58.263Z",
+  "exportedAt": "2026-07-24T23:43:34.220Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -308,39 +308,55 @@ window.ND_PUBLISHED_DATA = {
           ],
           "program": [
             {
-              "title": "Presença e escuta",
+              "title": "Módulo 1 - Presença: Ação e reação",
               "items": [
-                "aquecimento cênico",
-                "atenção ao corpo",
-                "disponibilidade e relação"
+                "Reconhecendo minha máscara social dominante",
+                "Primeiras subpersonalidades",
+                "Breves situações cênicas",
+                "Convergência entre John Austin, Eric Morris e Stanford Meisner",
+                "O uso performativo da linguagem e a situação social da cena",
+                "Atuar sem representar: atuar é reagir",
+                "Impulso, honestidade, escuta ativa"
               ]
             },
             {
               "title": "Mapeamento das subpersonalidades",
               "items": [
-                "impulsos internos",
-                "contradições",
-                "figuras emocionais e composição"
+                "Subpersonalidades principais e secundárias",
+                "Reconhecendo meu mecanismo interno de ação e reação",
+                "Desconstrução das máscaras sociais",
+                "Uso performativo das subpersonalidades",
+                "Ego Aware versus Presença (Impulso, vulnerabilidade, memória sensorial)"
               ]
             },
             {
               "title": "Imaginação dramática",
               "items": [
-                "situação",
-                "conflito",
-                "imagem, memória e ação"
+                "Expansão dos universos dramáticos",
+                "Subversão das máscaras sociais como motor criativo",
+                "Empoderamento dramático: atuamos com o que não se diz.",
+                "Imaginário emocional",
+                "Exercícios cênicos individuais"
               ]
             },
             {
-              "title": "Dinâmicas coletivas",
+              "title": "Cenas em duplas",
               "items": [
-                "jogo",
-                "contracena",
-                "cena curta e partilha"
+                "Partitura emocional versus improvisação",
+                "Expansão de mundo dramático versus Vivência ética da cena",
+                "Performatividade emocional versus Permeabilidade e comunicação",
+                "Devoluções finais"
               ]
             }
           ],
-          "videos": [],
+          "videos": [
+            {
+              "title": "",
+              "type": "scene",
+              "url": "https://vimeo.com/1212801579?share=copy&fl=sv&fe=ci",
+              "description": "Fragmentos de cenas a partir das dinâmicas grupais"
+            }
+          ],
           "coordinator": {
             "name": "Nicholas Dieter",
             "role": "Diretor • Dramaturgo • Pesquisador",
@@ -369,6 +385,18 @@ window.ND_PUBLISHED_DATA = {
             {
               "question": "A turma é realmente reduzida?",
               "answer": "Sim. O limite proposto é de 12 participantes para preservar acompanhamento e qualidade de troca."
+            },
+            {
+              "question": "A Oficina oferece material bibliográfico em pdf?",
+              "answer": "Sim. Uma vez confirmada a inscrição, cada estudante recebe acesso a uma série de textos selecionados, tanto teóricos quanto dramáticos."
+            },
+            {
+              "question": "Para confirmar minha inscrição é preciso pagar primeiro?",
+              "answer": "Sim. Não aceitaremos a instância de \"aula experimental\" num curso intensivo online como fazemos em casos de aulas presenciais no nosso teatro."
+            },
+            {
+              "question": "Posso solicitar uma entrevista prévia com o professor para tirar dúvidas pontuais?",
+              "answer": "Sim. As entrevistas de até 30 minutos de duração podem ser agendadas por email ou whatsapp."
             }
           ]
         },
@@ -446,7 +474,14 @@ window.ND_PUBLISHED_DATA = {
               "answer": "Sí. El límite propuesto es de 12 participantes para preservar el acompañamiento y la calidad del intercambio."
             }
           ],
-          "videos": []
+          "videos": [
+            {
+              "title": "",
+              "type": "scene",
+              "url": "https://vimeo.com/1212801579?share=copy&fl=sv&fe=ci",
+              "description": "Fragmentos de cenas a partir das dinâmicas grupais"
+            }
+          ]
         },
         "en": {
           "title": "Subpersonalities",
@@ -522,7 +557,14 @@ window.ND_PUBLISHED_DATA = {
               "answer": "Yes. The proposed limit is 12 participants to preserve guidance and quality of exchange."
             }
           ],
-          "videos": []
+          "videos": [
+            {
+              "title": "",
+              "type": "scene",
+              "url": "https://vimeo.com/1212801579?share=copy&fl=sv&fe=ci",
+              "description": "Fragmentos de cenas a partir das dinâmicas grupais"
+            }
+          ]
         }
       },
       "investment": {
