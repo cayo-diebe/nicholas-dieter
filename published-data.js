@@ -1,9 +1,9 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-07-24T23:45:04.327Z",
+  "exportedAt": "2026-07-24T23:46:11.733Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
-    "vimeoUrl": "https://vimeo.com/user131484859",
+    "vimeoUrl": "https://vimeo.com/1212801579?share=copy&fl=sv&fe=ci",
     "whatsappPhone": "5511992978145",
     "whatsappMessage": "Olá, Nicholas! Vim pelo site e gostaria de falar no WhatsApp.",
     "recordsImages": [
