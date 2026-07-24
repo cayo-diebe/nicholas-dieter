@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-07-24T22:19:07.299Z",
+  "exportedAt": "2026-07-24T22:22:42.763Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -231,8 +231,8 @@ window.ND_PUBLISHED_DATA = {
           "answer": "A inscrição começa pelo formulário da página da oficina. Ele abre uma mensagem organizada no WhatsApp para confirmar disponibilidade e próximos passos."
         },
         {
-          "question": "Posso divulgar uma oficina específica em campanha?",
-          "answer": "Sim. Cada oficina tem uma URL própria, como oficinas/subpersonalidades/."
+          "question": "Como posso efetuar o pagamento da oficina?",
+          "answer": "Pelo sistema de cobrança sugerido aqui no site ou via pix, uma vez feita a inscrição."
         }
       ],
       "es": [
