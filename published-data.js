@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-07-24T17:39:22.073Z",
+  "exportedAt": "2026-07-24T18:03:25.784Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -8,7 +8,17 @@ window.ND_PUBLISHED_DATA = {
     "whatsappMessage": "Olá, Nicholas! Vim pelo site e gostaria de falar no WhatsApp.",
     "recordsImages": [
       "assets/uploads/2026-07-23/8383f0bcd8f004ef29b6079c.jpg",
-      "assets/uploads/2026-07-23/8383f0bcd8f004ef29b6079c.jpg"
+      "assets/uploads/2026-07-24/704b648465fb740fc4c98ea7.jpg",
+      "assets/uploads/2026-07-24/41216c42b4e5af8110cffce9.jpg",
+      "assets/uploads/2026-07-24/442250f9b71b81afac709434.jpg",
+      "assets/uploads/2026-07-24/82b8b35b4bcc5168e73f5f73.jpg",
+      "assets/uploads/2026-07-24/83b14bf28b90ca524b8299a5.jpg",
+      "assets/uploads/2026-07-24/86388de24076292f848c8f22.jpg",
+      "assets/uploads/2026-07-24/2f4cdd74f3f0d64e8cf108b5.jpg",
+      "assets/uploads/2026-07-24/e572e7e5ad60250e70b3e38d.jpg",
+      "assets/uploads/2026-07-24/cf9263ab5eb792f4bb7b2455.jpg",
+      "assets/uploads/2026-07-24/6187d1a1456c8e2c0939dbbe.jpg",
+      "assets/uploads/2026-07-24/ed11e7b545cef6fbf59343d2.jpg"
     ],
     "copy": {
       "pt": {
