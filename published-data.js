@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-07-24T18:03:25.784Z",
+  "exportedAt": "2026-07-24T18:09:11.930Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -280,11 +280,13 @@ window.ND_PUBLISHED_DATA = {
       "gallery": [
         "assets/oficina-leitura-palco.png",
         "assets/oficina-mesa-cena.png",
-        "assets/oficina-dupla-mesa.png",
         "assets/oficina-sofa-movimento.png",
         "assets/oficina-mesa-publico.png",
         "assets/oficina-figura-vermelho.png",
-        "assets/oficina-palco-aberto.png"
+        "assets/uploads/2026-07-24/ddb4b3d686a77643142792b3.jpg",
+        "assets/uploads/2026-07-24/83b14bf28b90ca524b8299a5.jpg",
+        "assets/uploads/2026-07-24/702304a05b99bef1136195ac.jpg",
+        "assets/uploads/2026-07-24/1a8ef9df9c008d3faaedbba6.jpg"
       ],
       "copy": {
         "pt": {
@@ -331,6 +333,7 @@ window.ND_PUBLISHED_DATA = {
               ]
             }
           ],
+          "videos": [],
           "coordinator": {
             "name": "Nicholas Dieter",
             "role": "Diretor • Dramaturgo • Pesquisador",
@@ -349,7 +352,7 @@ window.ND_PUBLISHED_DATA = {
             "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato e disponibilidade de vaga."
           },
           "registration": {
-            "message": "Olá, Nicholas! Tenho interesse na oficina Subpersonalidades. Gostaria de receber mais informações sobre datas, formato e inscrição."
+            "message": "Olá, Nicholas! Tenho interesse na oficina Subpersonalidades. Gostaria de receber mais informações."
           },
           "faq": [
             {
@@ -419,9 +422,9 @@ window.ND_PUBLISHED_DATA = {
             "statusText": "Inscripciones abiertas"
           },
           "investment": {
-            "cash": "Ven a conocer",
-            "installments": "Valores y condiciones por WhatsApp",
-            "notes": "Grupo reducido a 12 participantes. La inscripción se confirma después del contacto y disponibilidad."
+            "cash": "Venha conhecer",
+            "installments": "Valores e condições por WhatsApp",
+            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato e disponibilidade de vaga."
           },
           "registration": {
             "message": "Hola, Nicholas! Me interesa el taller Subpersonalidades. Me gustaría recibir más información sobre fechas, formato e inscripción."
@@ -435,7 +438,8 @@ window.ND_PUBLISHED_DATA = {
               "question": "¿El grupo es realmente reducido?",
               "answer": "Sí. El límite propuesto es de 12 participantes para preservar el acompañamiento y la calidad del intercambio."
             }
-          ]
+          ],
+          "videos": []
         },
         "en": {
           "title": "Subpersonalities",
@@ -494,9 +498,9 @@ window.ND_PUBLISHED_DATA = {
             "statusText": "Enrollment open"
           },
           "investment": {
-            "cash": "Come learn more",
-            "installments": "Prices and conditions via WhatsApp",
-            "notes": "Small group limited to 12 participants. Enrollment is confirmed after contact and seat availability."
+            "cash": "Venha conhecer",
+            "installments": "Valores e condições por WhatsApp",
+            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato e disponibilidade de vaga."
           },
           "registration": {
             "message": "Hello, Nicholas! I am interested in the Subpersonalities workshop. I would like to receive more information about dates, format and enrollment."
@@ -510,8 +514,14 @@ window.ND_PUBLISHED_DATA = {
               "question": "Is the group really small?",
               "answer": "Yes. The proposed limit is 12 participants to preserve guidance and quality of exchange."
             }
-          ]
+          ],
+          "videos": []
         }
+      },
+      "investment": {
+        "cash": "Venha conhecer",
+        "installments": "Valores e condições por WhatsApp",
+        "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato e disponibilidade de vaga."
       }
     }
   ]
