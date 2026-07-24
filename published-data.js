@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-07-24T22:42:10.688Z",
+  "exportedAt": "2026-07-24T22:44:58.263Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -344,19 +344,19 @@ window.ND_PUBLISHED_DATA = {
           "coordinator": {
             "name": "Nicholas Dieter",
             "role": "Diretor • Dramaturgo • Pesquisador",
-            "bio": "Nicholas conduz laboratórios de teatro, cinema e formação artística voltados à presença, imaginação dramática, pesquisa cênica e composição coletiva."
+            "bio": "Nicholas Dieter é mestre em dramaturgia pela Universidade Nacional das Artes, em Buenos Aires (Argentina, 2022) e doutor em Sociologia da Arte pela Universidade de Buenos Aires. Atualmente é pós-doutorando na Universidade de São Paulo, no Centro de Artes Cênicas.\nEstudou atuação na Escola de Teatro de Buenos Aires (2012-2015) e no Sportivo Teatral com Ricardo Bartis (2015-2019). Escreveu e/ou dirigiu inúmeras peças como Nada a ver (2015), Mal de arquivo (2016), Glória Onírica (2019), O casório (2020), Homens com ossos cheios de Barro (2021), A briga (2022), O relato (2023), Revezamento (2023), O diário de Ana Franco (2023), Lihuén (2023), Tio Vania (2024), Cenas no abismo (2025), Caim (2025), U(ru)bú Rei (2026), Acompanhantes (2026) e Janta Joana dos Matadouros (2026).\nSua produção audiovisual como roteirista e diretor conta com mais de sessenta curtametragens, entre eles Partir (2022), Se falamos de amor (2023), Satisfiz (2024), Ritinha (2024), Ir embora assim (2025), Desmanche (2025), Paria (2026), entre muitos outros. Em 2024 produziu e codirgiu a minisérie Melhor se queimar, (coprodução Brasil-Argentina) ganhadora do Festival Cannes Series.\nDesde 2024 se desempenha como professor no Teatro Escola Mario Persico em Sorocaba/SP onde oferece diversas oficinas como Técnica Meisner, Subpersonalidades, Performance, Shakespeare, Brecht, Atuação para Cinema (CineLab), entre outras. Em sua pesquisa de pós-doutorado na USP, no Centro de Artes Cênicas, com supervisão do prof. Sergio de Carvalho (Cia do Latão), pesquisando Novas configurações do teatro documental e novas formas de atuação no teatro pósdramático."
           },
           "nextClass": {
-            "dates": "8 • 15 • 22 • 29 de agosto",
-            "schedule": "Sábados, 14h às 17h",
-            "workload": "Carga horária: 12 horas",
+            "dates": "22 • 29 de agosto",
+            "schedule": "Sábados, 14h às 18h",
+            "workload": "Carga horária: 8 horas",
             "location": "Ao vivo, online pelo Meet",
             "statusText": "Inscrições abertas"
           },
           "investment": {
             "cash": "Venha conhecer",
             "installments": "Valores e condições por WhatsApp",
-            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato e disponibilidade de vaga."
+            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento."
           },
           "registration": {
             "message": "Olá, Nicholas! Tenho interesse na oficina Subpersonalidades. Gostaria de receber mais informações."
@@ -431,7 +431,7 @@ window.ND_PUBLISHED_DATA = {
           "investment": {
             "cash": "Venha conhecer",
             "installments": "Valores e condições por WhatsApp",
-            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato e disponibilidade de vaga."
+            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento."
           },
           "registration": {
             "message": "Hola, Nicholas! Me interesa el taller Subpersonalidades. Me gustaría recibir más información sobre fechas, formato e inscripción."
@@ -507,7 +507,7 @@ window.ND_PUBLISHED_DATA = {
           "investment": {
             "cash": "Venha conhecer",
             "installments": "Valores e condições por WhatsApp",
-            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato e disponibilidade de vaga."
+            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento."
           },
           "registration": {
             "message": "Hello, Nicholas! I am interested in the Subpersonalities workshop. I would like to receive more information about dates, format and enrollment."
@@ -528,7 +528,7 @@ window.ND_PUBLISHED_DATA = {
       "investment": {
         "cash": "Venha conhecer",
         "installments": "Valores e condições por WhatsApp",
-        "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato e disponibilidade de vaga."
+        "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento."
       }
     }
   ]
