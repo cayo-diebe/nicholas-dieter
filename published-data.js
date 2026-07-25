@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-07-24T23:46:11.733Z",
+  "exportedAt": "2026-07-25T01:09:15.046Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -289,7 +289,7 @@ window.ND_PUBLISHED_DATA = {
       ],
       "copy": {
         "pt": {
-          "title": "Subpersonalidades",
+          "title": "Sub personalidades",
           "label": "Laboratório Intensivo",
           "headline": "Preparação emocional, imaginação dramática e dinâmicas coletivas.",
           "summary": "Um laboratório de pesquisa e autoconhecimento das nossas máscaras sociais e sua economia afetiva.",
@@ -375,7 +375,7 @@ window.ND_PUBLISHED_DATA = {
             "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento."
           },
           "registration": {
-            "message": "Olá, Nicholas! Tenho interesse na oficina Subpersonalidades. Gostaria de receber mais informações."
+            "message": "Olá, Nicholas! Tenho interesse na oficina Sub personalidades. Gostaria de receber mais informações."
           },
           "faq": [
             {
