@@ -63,7 +63,7 @@ window.ND_PUBLISHED_DATA = {
           "enrollment": "Inscrição",
           "languages": "Idiomas da oficina",
           "languagesIntro": "A turma pode ser conduzida nos idiomas indicados abaixo, de acordo com o grupo.",
-          "formIntro": "Preencha os dados e envie sua inscrição pelo WhatsApp.",
+          "formIntro": "Preencha os dados e envie sua inscrição por e-mail.",
           "firstName": "Nome",
           "lastName": "Sobrenome",
           "email": "Email",
@@ -129,7 +129,7 @@ window.ND_PUBLISHED_DATA = {
           "enrollment": "Inscripción",
           "languages": "Idiomas del taller",
           "languagesIntro": "El grupo puede ser conducido en los idiomas indicados abajo, según la composición del grupo.",
-          "formIntro": "Completa tus datos y envía la inscripción por WhatsApp.",
+          "formIntro": "Completa tus datos y envía la inscripción por e-mail.",
           "firstName": "Nombre",
           "lastName": "Apellido",
           "email": "Email",
@@ -195,7 +195,7 @@ window.ND_PUBLISHED_DATA = {
           "enrollment": "Enrollment",
           "languages": "Workshop languages",
           "languagesIntro": "The group can be conducted in the languages listed below, according to the participants.",
-          "formIntro": "Fill in your details and send your enrollment via WhatsApp.",
+          "formIntro": "Fill in your details and send your enrollment by email.",
           "firstName": "First name",
           "lastName": "Last name",
           "email": "Email",
@@ -228,7 +228,7 @@ window.ND_PUBLISHED_DATA = {
         },
         {
           "question": "Como funciona a inscrição?",
-          "answer": "A inscrição começa pelo formulário da página da oficina. Ele abre uma mensagem organizada no WhatsApp para confirmar disponibilidade e próximos passos."
+          "answer": "A inscrição começa pelo formulário da página da oficina. Os dados chegam por e-mail para confirmação de disponibilidade e próximos passos."
         },
         {
           "question": "Como posso efetuar o pagamento da oficina?",
@@ -242,7 +242,7 @@ window.ND_PUBLISHED_DATA = {
         },
         {
           "question": "¿Cómo funciona la inscripción?",
-          "answer": "La inscripción comienza en el formulario de la página del taller y abre un mensaje organizado en WhatsApp."
+          "answer": "La inscripción comienza en el formulario de la página del taller. Los datos llegan por e-mail para confirmar disponibilidad y próximos pasos."
         },
         {
           "question": "¿Puedo divulgar un taller específico en campaña?",
@@ -256,7 +256,7 @@ window.ND_PUBLISHED_DATA = {
         },
         {
           "question": "How does enrollment work?",
-          "answer": "Enrollment starts with the form on the workshop page and opens a structured WhatsApp message."
+          "answer": "Enrollment starts with the form on the workshop page. The details arrive by email for availability and next steps."
         },
         {
           "question": "Can I promote a specific workshop in a campaign?",

@@ -61,6 +61,32 @@
       scene: t("workshop.videoScene"),
     })[type] || t("workshop.videoScene");
 
+  const signupCopy = {
+    pt: {
+      intro: "Preencha os dados e envie sua inscrição por e-mail.",
+      submitting: "Enviando inscricao...",
+      success: "Inscricao enviada. Vamos responder pelo e-mail informado.",
+      error: "Nao foi possivel enviar por e-mail agora.",
+      whatsapp: "Enviar pelo WhatsApp",
+    },
+    es: {
+      intro: "Completa tus datos y envia la inscripcion por e-mail.",
+      submitting: "Enviando inscripcion...",
+      success: "Inscripcion enviada. Responderemos al e-mail informado.",
+      error: "No fue posible enviar por e-mail ahora.",
+      whatsapp: "Enviar por WhatsApp",
+    },
+    en: {
+      intro: "Fill in your details and send your enrollment by email.",
+      submitting: "Sending enrollment...",
+      success: "Enrollment sent. We will reply to the email you provided.",
+      error: "The email could not be sent right now.",
+      whatsapp: "Send by WhatsApp",
+    },
+  };
+
+  const getSignupCopy = () => signupCopy[language] || signupCopy.pt;
+
   const applyLanguage = () => {
     document.documentElement.lang = language === "pt" ? "pt-BR" : language;
     window.ND.setLanguage(language);
@@ -262,14 +288,16 @@
         <article class="commerce-panel commerce-panel--form">
           <h2>${t("workshop.enrollment")}</h2>
           <span class="divider"></span>
-          <p>${t("workshop.formIntro")}</p>
+          <p>${getSignupCopy().intro}</p>
           <form class="signup-form" id="signup-form">
+            <input class="signup-form__trap" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
             <label>${t("workshop.firstName")} *<input name="firstName" required placeholder="${t("workshop.firstNamePlaceholder")}"></label>
             <label>${t("workshop.lastName")} *<input name="lastName" required placeholder="${t("workshop.lastNamePlaceholder")}"></label>
             <label>${t("workshop.email")} *<input type="email" name="email" required placeholder="${t("workshop.emailPlaceholder")}"></label>
             <label>${t("workshop.phone")} *<input name="phone" required placeholder="${t("workshop.phonePlaceholder")}"></label>
             <label>${t("workshop.trajectory")}<textarea name="trajectory" rows="4" placeholder="${t("workshop.trajectoryPlaceholder")}"></textarea></label>
             <button class="button button--primary" type="submit">${t("workshop.submit")}</button>
+            <p class="signup-form__status" id="signup-status" aria-live="polite"></p>
           </form>
         </article>
       </section>
@@ -283,16 +311,62 @@
       </section>
     `;
 
-    document.querySelector("#signup-form")?.addEventListener("submit", (event) => {
+    document.querySelector("#signup-form")?.addEventListener("submit", async (event) => {
       event.preventDefault();
-      const data = new FormData(event.currentTarget);
+      const signupForm = event.currentTarget;
+      const submitButton = signupForm.querySelector('button[type="submit"]');
+      const status = signupForm.querySelector("#signup-status");
+      const data = new FormData(signupForm);
+      const submitCopy = getSignupCopy();
+      const workshopTitle = window.ND.getWorkshopCopy(workshop, language).title || workshop.slug;
       const extra = `
 
 Nome: ${data.get("firstName")} ${data.get("lastName")}
 Email: ${data.get("email")}
 Telefone: ${data.get("phone")}
 Trajetória: ${data.get("trajectory") || "-"}`;
-      window.open(window.ND.createWhatsAppUrl(registration.message || "", extra), "_blank", "noopener");
+      const whatsappUrl = window.ND.createWhatsAppUrl(registration.message || "", extra);
+
+      if (!signupForm.reportValidity()) return;
+
+      status.textContent = submitCopy.submitting;
+      status.classList.remove("is-error", "is-success");
+      signupForm.classList.add("is-submitting");
+      submitButton.disabled = true;
+
+      try {
+        const response = await fetch("/api/signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            firstName: data.get("firstName"),
+            lastName: data.get("lastName"),
+            email: data.get("email"),
+            phone: data.get("phone"),
+            trajectory: data.get("trajectory"),
+            website: data.get("website"),
+            workshopSlug: workshop.slug,
+            workshopTitle,
+            language,
+            pageUrl: window.location.href,
+          }),
+        });
+        const payload = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          throw new Error(payload.message || submitCopy.error);
+        }
+
+        signupForm.reset();
+        status.textContent = submitCopy.success;
+        status.classList.add("is-success");
+      } catch (error) {
+        status.classList.add("is-error");
+        status.innerHTML = `${escapeHtml(error.message || submitCopy.error)} <a href="${escapeHtml(whatsappUrl)}" target="_blank" rel="noopener">${escapeHtml(submitCopy.whatsapp)}</a>`;
+      } finally {
+        signupForm.classList.remove("is-submitting");
+        submitButton.disabled = false;
+      }
     });
   };
 

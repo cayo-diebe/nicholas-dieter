@@ -870,6 +870,45 @@ h3 {
   color: rgba(247, 241, 223, 0.42);
 }
 
+.signup-form__trap {
+  position: absolute;
+  left: -100vw;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  pointer-events: none;
+}
+
+.signup-form button[disabled] {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.signup-form__status {
+  min-height: 1.4rem;
+  margin: 0;
+  color: rgba(7, 6, 8, 0.72);
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.signup-form__status.is-success {
+  color: #1d4f37;
+}
+
+.signup-form__status.is-error {
+  color: #641a14;
+}
+
+.signup-form__status a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
 .admin-form select option {
   color: #0b0b0b;
 }
