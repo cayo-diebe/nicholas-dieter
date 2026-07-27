@@ -2,7 +2,7 @@ const GITHUB_OWNER = "cayo-diebe";
 const GITHUB_REPO = "nicholas-dieter";
 const DEFAULT_PRIMARY_BRANCH = "main";
 const DEFAULT_MIRROR_BRANCHES = "";
-const DEFAULT_SIGNUP_EMAIL_TO = "cayodiebe@gmail.com";
+const DEFAULT_SIGNUP_EMAIL_TO = "cayodiebe@gmail.com,nicholasdieter@gmail.com";
 const DEFAULT_SIGNUP_EMAIL_FROM = "Nicholas Dieter <site@nicholasdieter.com>";
 const SESSION_COOKIE = "nd_admin_session";
 const SESSION_TTL_SECONDS = 60 * 60 * 12;
@@ -29,6 +29,12 @@ const cleanMultiline = (value = "", maxLength = 3000) =>
     .replace(/\r/g, "")
     .trim()
     .slice(0, maxLength);
+
+const parseEmailList = (value = "") =>
+  String(value || "")
+    .split(",")
+    .map((email) => email.trim())
+    .filter(Boolean);
 
 const escapeHtml = (value = "") =>
   String(value)
@@ -190,7 +196,12 @@ const validateSignup = (body = {}) => {
 
 const getSignupEmailConfig = (env) => ({
   apiKey: getEnvValue(env, "RESEND_API_KEY"),
-  to: getEnvValue(env, "SIGNUP_EMAIL_TO") || DEFAULT_SIGNUP_EMAIL_TO,
+  to: Array.from(
+    new Set([
+      ...parseEmailList(DEFAULT_SIGNUP_EMAIL_TO),
+      ...parseEmailList(getEnvValue(env, "SIGNUP_EMAIL_TO")),
+    ]),
+  ),
   from: getEnvValue(env, "SIGNUP_EMAIL_FROM") || DEFAULT_SIGNUP_EMAIL_FROM,
 });
 
@@ -276,7 +287,7 @@ const handleSignup = async (request, env) => {
     },
     body: JSON.stringify({
       from: config.from,
-      to: [config.to],
+      to: config.to,
       reply_to: signup.email,
       subject: email.subject,
       text: email.text,
