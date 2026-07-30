@@ -1,24 +1,13 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-07-25T01:12:12.432Z",
+  "exportedAt": "2026-07-30T17:08:38.081Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
-    "vimeoUrl": "https://vimeo.com/1212801579?share=copy&fl=sv&fe=ci",
+    "vimeoUrl": "https://vimeo.com/user131484859",
     "whatsappPhone": "5511992978145",
     "whatsappMessage": "Olá, Nicholas! Vim pelo site e gostaria de falar no WhatsApp.",
     "recordsImages": [
-      "assets/uploads/2026-07-23/8383f0bcd8f004ef29b6079c.jpg",
-      "assets/uploads/2026-07-24/704b648465fb740fc4c98ea7.jpg",
-      "assets/uploads/2026-07-24/41216c42b4e5af8110cffce9.jpg",
-      "assets/uploads/2026-07-24/442250f9b71b81afac709434.jpg",
-      "assets/uploads/2026-07-24/82b8b35b4bcc5168e73f5f73.jpg",
-      "assets/uploads/2026-07-24/83b14bf28b90ca524b8299a5.jpg",
-      "assets/uploads/2026-07-24/86388de24076292f848c8f22.jpg",
-      "assets/uploads/2026-07-24/2f4cdd74f3f0d64e8cf108b5.jpg",
-      "assets/uploads/2026-07-24/e572e7e5ad60250e70b3e38d.jpg",
-      "assets/uploads/2026-07-24/cf9263ab5eb792f4bb7b2455.jpg",
-      "assets/uploads/2026-07-24/6187d1a1456c8e2c0939dbbe.jpg",
-      "assets/uploads/2026-07-24/ed11e7b545cef6fbf59343d2.jpg"
+      "assets/uploads/2026-07-23/8383f0bcd8f004ef29b6079c.jpg"
     ],
     "copy": {
       "pt": {
@@ -35,7 +24,7 @@ window.ND_PUBLISHED_DATA = {
           "secondaryCta": "Ver outras aulas",
           "workshopsKicker": "Campanhas e inscrições",
           "workshopsTitle": "OFICINAS",
-          "workshopsText": "Cada oficina tem uma página de campanha com programação, próximas turmas, investimento e formulário de inscrição. Para qualquer dúvida também é possível consultar por whatsapp.",
+          "workshopsText": "Cada oficina tem uma página de campanha com programação, próximas turmas, investimento e formulário de inscrição.",
           "recordsKicker": "Arquivo vivo",
           "recordsTitle": "Registros de processos",
           "faqKicker": "FAQ",
@@ -63,7 +52,7 @@ window.ND_PUBLISHED_DATA = {
           "enrollment": "Inscrição",
           "languages": "Idiomas da oficina",
           "languagesIntro": "A turma pode ser conduzida nos idiomas indicados abaixo, de acordo com o grupo.",
-          "formIntro": "Preencha os dados e envie sua inscrição por e-mail.",
+          "formIntro": "Preencha os dados e envie sua inscrição pelo WhatsApp.",
           "firstName": "Nome",
           "lastName": "Sobrenome",
           "email": "Email",
@@ -129,7 +118,7 @@ window.ND_PUBLISHED_DATA = {
           "enrollment": "Inscripción",
           "languages": "Idiomas del taller",
           "languagesIntro": "El grupo puede ser conducido en los idiomas indicados abajo, según la composición del grupo.",
-          "formIntro": "Completa tus datos y envía la inscripción por e-mail.",
+          "formIntro": "Completa tus datos y envía la inscripción por WhatsApp.",
           "firstName": "Nombre",
           "lastName": "Apellido",
           "email": "Email",
@@ -195,7 +184,7 @@ window.ND_PUBLISHED_DATA = {
           "enrollment": "Enrollment",
           "languages": "Workshop languages",
           "languagesIntro": "The group can be conducted in the languages listed below, according to the participants.",
-          "formIntro": "Fill in your details and send your enrollment by email.",
+          "formIntro": "Fill in your details and send your enrollment via WhatsApp.",
           "firstName": "First name",
           "lastName": "Last name",
           "email": "Email",
@@ -228,11 +217,11 @@ window.ND_PUBLISHED_DATA = {
         },
         {
           "question": "Como funciona a inscrição?",
-          "answer": "A inscrição começa pelo formulário da página da oficina. Os dados chegam por e-mail para confirmação de disponibilidade e próximos passos."
+          "answer": "A inscrição começa pelo formulário da página da oficina. Ele abre uma mensagem organizada no WhatsApp para confirmar disponibilidade e próximos passos."
         },
         {
-          "question": "Como posso efetuar o pagamento da oficina?",
-          "answer": "Pelo sistema de cobrança sugerido aqui no site ou via pix, uma vez feita a inscrição."
+          "question": "Posso divulgar uma oficina específica em campanha?",
+          "answer": "Sim. Cada oficina tem uma URL própria, como oficinas/subpersonalidades/."
         }
       ],
       "es": [
@@ -242,7 +231,7 @@ window.ND_PUBLISHED_DATA = {
         },
         {
           "question": "¿Cómo funciona la inscripción?",
-          "answer": "La inscripción comienza en el formulario de la página del taller. Los datos llegan por e-mail para confirmar disponibilidad y próximos pasos."
+          "answer": "La inscripción comienza en el formulario de la página del taller y abre un mensaje organizado en WhatsApp."
         },
         {
           "question": "¿Puedo divulgar un taller específico en campaña?",
@@ -256,7 +245,7 @@ window.ND_PUBLISHED_DATA = {
         },
         {
           "question": "How does enrollment work?",
-          "answer": "Enrollment starts with the form on the workshop page. The details arrive by email for availability and next steps."
+          "answer": "Enrollment starts with the form on the workshop page and opens a structured WhatsApp message."
         },
         {
           "question": "Can I promote a specific workshop in a campaign?",
@@ -273,109 +262,84 @@ window.ND_PUBLISHED_DATA = {
       "heroImage": "assets/nicholas-dieter-nevoa.png",
       "accent": "#76d8e6",
       "languages": {
-        "pt": "Português",
-        "es": "Portugués",
-        "en": "Portuguese"
+        "pt": "Português e espanhol",
+        "es": "Portugués y español",
+        "en": "Portuguese and Spanish"
       },
       "gallery": [
         "assets/oficina-leitura-palco.png",
         "assets/oficina-mesa-cena.png",
+        "assets/oficina-dupla-mesa.png",
         "assets/oficina-sofa-movimento.png",
         "assets/oficina-mesa-publico.png",
         "assets/oficina-figura-vermelho.png",
-        "assets/uploads/2026-07-24/ddb4b3d686a77643142792b3.jpg",
-        "assets/uploads/2026-07-24/83b14bf28b90ca524b8299a5.jpg",
-        "assets/uploads/2026-07-24/702304a05b99bef1136195ac.jpg"
+        "assets/oficina-palco-aberto.png"
       ],
       "copy": {
         "pt": {
-          "title": "SUBPERSONALIDADES",
+          "title": "Subpersonalidades",
           "label": "Laboratório Intensivo",
           "headline": "Preparação emocional, imaginação dramática e dinâmicas coletivas.",
-          "summary": "Um laboratório de pesquisa e autoconhecimento das nossas máscaras sociais e sua economia afetiva.",
+          "summary": "Um laboratório de criação para investigar camadas internas, presença e composição coletiva em cena.",
           "about": [
-            "Oferecemos um treinamento para desenvolver a elasticidade emocional e o repertório expressivo.",
-            "As subpersonalidades são arquétipos expressivos que se manifestam num diálogo interno em cada sujeito como reação a certas circunstâncias sociais e dramáticas.",
-            "Esses arquétipos ou subpersonalidades operam certas máscaras retóricas em função do contexto dramático do nosso personagem. Algumas das subpersonalidades mais relevantes são o crítico, a vítima, o juiz, o guerreiro, o sedutor, o vagabundo, a criança mágica, o herói, o perfeccionista e a criança vulnerável.",
-            "Este trabalho com as subpersonalidades ajuda os atores a acessar emoções e estados expressivos de maneira mais direta e profunda, facilitando um processo criativo mais rico e variado. Cada máscara se manifesta através construção de um imaginário dos vínculos em cena.",
-            "Ao desconstruir e potenciar as subpersonalidades, ampliamos nossa capacidade de compor os conflitos internos dos personagens, bem como as motivações e desejos. Isto contribui para a criação de personagens mais complexos e tridimensionais.",
-            "Nesse sentido, o trabalho com as subpersonalidades favorece uma forma de autoconhecimento ativa e crítica.",
-            "Público-alvo: atores, artistas, professores, psicólogos e qualquer pessoa interessada em compreender as diferentes vozes que constituem nossa vida emocional.",
-            "Não é necessário ter experiência em teatro. O laboratório utiliza ferramentas da atuação e biodrama para investigar nossas subpersonalidades em práticas coletivas ao vivo.",
-            "Um laboratório ao vivo de subpersonalidades para ampliar seu repertório emocional, criativo e relacional.",
-            "Descubra como diferentes vozes internas moldam suas emoções, relações e criatividade.",
-            "Amplie seu repertório emocional através de práticas coletivas ao vivo."
+            "Subpersonalidades propõe uma investigação prática sobre as forças, máscaras, impulsos e vozes que compõem uma presença cênica.",
+            "A oficina combina preparação emocional, imaginação dramática, exercícios de escuta e dinâmicas coletivas para desenvolver material de cena com rigor e liberdade.",
+            "O trabalho é indicado para artistas, estudantes e pessoas interessadas em processos de teatro, cinema e criação performativa."
           ],
           "program": [
             {
-              "title": "Módulo 1 - Presença: Ação e reação",
+              "title": "Presença e escuta",
               "items": [
-                "Reconhecendo minha máscara social dominante",
-                "Primeiras subpersonalidades",
-                "Breves situações cênicas",
-                "Convergência entre John Austin, Eric Morris e Stanford Meisner",
-                "O uso performativo da linguagem e a situação social da cena",
-                "Atuar sem representar: atuar é reagir",
-                "Impulso, honestidade, escuta ativa"
+                "aquecimento cênico",
+                "atenção ao corpo",
+                "disponibilidade e relação"
               ]
             },
             {
               "title": "Mapeamento das subpersonalidades",
               "items": [
-                "Subpersonalidades principais e secundárias",
-                "Reconhecendo meu mecanismo interno de ação e reação",
-                "Desconstrução das máscaras sociais",
-                "Uso performativo das subpersonalidades",
-                "Ego Aware versus Presença (Impulso, vulnerabilidade, memória sensorial)"
+                "impulsos internos",
+                "contradições",
+                "figuras emocionais e composição"
               ]
             },
             {
               "title": "Imaginação dramática",
               "items": [
-                "Expansão dos universos dramáticos",
-                "Subversão das máscaras sociais como motor criativo",
-                "Empoderamento dramático: atuamos com o que não se diz.",
-                "Imaginário emocional",
-                "Exercícios cênicos individuais"
+                "situação",
+                "conflito",
+                "imagem, memória e ação"
               ]
             },
             {
-              "title": "Cenas em duplas",
+              "title": "Dinâmicas coletivas",
               "items": [
-                "Partitura emocional versus improvisação",
-                "Expansão de mundo dramático versus Vivência ética da cena",
-                "Performatividade emocional versus Permeabilidade e comunicação",
-                "Devoluções finais"
+                "jogo",
+                "contracena",
+                "cena curta e partilha"
               ]
             }
           ],
-          "videos": [
-            {
-              "title": "",
-              "type": "scene",
-              "url": "https://vimeo.com/1212801579?share=copy&fl=sv&fe=ci",
-              "description": "Fragmentos de cenas a partir das dinâmicas grupais"
-            }
-          ],
+          "videos": [],
           "coordinator": {
             "name": "Nicholas Dieter",
             "role": "Diretor • Dramaturgo • Pesquisador",
-            "bio": "Nicholas Dieter é mestre em dramaturgia pela Universidade Nacional das Artes, em Buenos Aires (Argentina, 2022) e doutor em Sociologia da Arte pela Universidade de Buenos Aires. Atualmente é pós-doutorando na Universidade de São Paulo, no Centro de Artes Cênicas.\nEstudou atuação na Escola de Teatro de Buenos Aires (2012-2015) e no Sportivo Teatral com Ricardo Bartis (2015-2019). Escreveu e/ou dirigiu inúmeras peças como Nada a ver (2015), Mal de arquivo (2016), Glória Onírica (2019), O casório (2020), Homens com ossos cheios de Barro (2021), A briga (2022), O relato (2023), Revezamento (2023), O diário de Ana Franco (2023), Lihuén (2023), Tio Vania (2024), Cenas no abismo (2025), Caim (2025), U(ru)bú Rei (2026), Acompanhantes (2026) e Janta Joana dos Matadouros (2026).\nSua produção audiovisual como roteirista e diretor conta com mais de sessenta curtametragens, entre eles Partir (2022), Se falamos de amor (2023), Satisfiz (2024), Ritinha (2024), Ir embora assim (2025), Desmanche (2025), Paria (2026), entre muitos outros. Em 2024 produziu e codirgiu a minisérie Melhor se queimar, (coprodução Brasil-Argentina) ganhadora do Festival Cannes Series.\nDesde 2024 se desempenha como professor no Teatro Escola Mario Persico em Sorocaba/SP onde oferece diversas oficinas como Técnica Meisner, Subpersonalidades, Performance, Shakespeare, Brecht, Atuação para Cinema (CineLab), entre outras. Em sua pesquisa de pós-doutorado na USP, no Centro de Artes Cênicas, com supervisão do prof. Sergio de Carvalho (Cia do Latão), pesquisando Novas configurações do teatro documental e novas formas de atuação no teatro pósdramático."
+            "bio": "Nicholas conduz laboratórios de teatro, cinema e formação artística voltados à presença, imaginação dramática, pesquisa cênica e composição coletiva."
           },
           "nextClass": {
-            "dates": "22 • 29 de agosto",
-            "schedule": "Sábados, 14h às 18h",
-            "workload": "Carga horária: 8 horas",
+            "dates": "8 • 15 • 22 • 29 de agosto",
+            "schedule": "Sábados, 14h às 17h",
+            "workload": "Carga horária: 12 horas",
             "location": "Ao vivo, online pelo Meet",
             "statusText": "Inscrições abertas"
           },
           "investment": {
             "cash": "Venha conhecer",
             "installments": "Valores e condições por WhatsApp",
-            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento."
+            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato e disponibilidade de vaga."
           },
           "registration": {
-            "message": "Olá, Nicholas! Tenho interesse na oficina SUBPERSONALIDADES. Gostaria de receber mais informações."
+            "message": "Olá, Nicholas! Tenho interesse na oficina Subpersonalidades. Gostaria de receber mais informações."
           },
           "faq": [
             {
@@ -385,18 +349,6 @@ window.ND_PUBLISHED_DATA = {
             {
               "question": "A turma é realmente reduzida?",
               "answer": "Sim. O limite proposto é de 12 participantes para preservar acompanhamento e qualidade de troca."
-            },
-            {
-              "question": "A Oficina oferece material bibliográfico em pdf?",
-              "answer": "Sim. Uma vez confirmada a inscrição, cada estudante recebe acesso a uma série de textos selecionados, tanto teóricos quanto dramáticos."
-            },
-            {
-              "question": "Para confirmar minha inscrição é preciso pagar primeiro?",
-              "answer": "Sim. Não aceitaremos a instância de \"aula experimental\" num curso intensivo online como fazemos em casos de aulas presenciais no nosso teatro."
-            },
-            {
-              "question": "Posso solicitar uma entrevista prévia com o professor para tirar dúvidas pontuais?",
-              "answer": "Sim. As entrevistas de até 30 minutos de duração podem ser agendadas por email ou whatsapp."
             }
           ]
         },
@@ -459,7 +411,7 @@ window.ND_PUBLISHED_DATA = {
           "investment": {
             "cash": "Venha conhecer",
             "installments": "Valores e condições por WhatsApp",
-            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento."
+            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato e disponibilidade de vaga."
           },
           "registration": {
             "message": "Hola, Nicholas! Me interesa el taller Subpersonalidades. Me gustaría recibir más información sobre fechas, formato e inscripción."
@@ -474,14 +426,7 @@ window.ND_PUBLISHED_DATA = {
               "answer": "Sí. El límite propuesto es de 12 participantes para preservar el acompañamiento y la calidad del intercambio."
             }
           ],
-          "videos": [
-            {
-              "title": "",
-              "type": "scene",
-              "url": "https://vimeo.com/1212801579?share=copy&fl=sv&fe=ci",
-              "description": "Fragmentos de cenas a partir das dinâmicas grupais"
-            }
-          ]
+          "videos": []
         },
         "en": {
           "title": "Subpersonalities",
@@ -542,7 +487,7 @@ window.ND_PUBLISHED_DATA = {
           "investment": {
             "cash": "Venha conhecer",
             "installments": "Valores e condições por WhatsApp",
-            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento."
+            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato e disponibilidade de vaga."
           },
           "registration": {
             "message": "Hello, Nicholas! I am interested in the Subpersonalities workshop. I would like to receive more information about dates, format and enrollment."
@@ -557,20 +502,13 @@ window.ND_PUBLISHED_DATA = {
               "answer": "Yes. The proposed limit is 12 participants to preserve guidance and quality of exchange."
             }
           ],
-          "videos": [
-            {
-              "title": "",
-              "type": "scene",
-              "url": "https://vimeo.com/1212801579?share=copy&fl=sv&fe=ci",
-              "description": "Fragmentos de cenas a partir das dinâmicas grupais"
-            }
-          ]
+          "videos": []
         }
       },
       "investment": {
         "cash": "Venha conhecer",
         "installments": "Valores e condições por WhatsApp",
-        "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento."
+        "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato e disponibilidade de vaga."
       }
     }
   ]
