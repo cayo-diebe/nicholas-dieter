@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-02T18:26:21.172Z",
+  "exportedAt": "2026-08-02T18:33:07.830Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -49,6 +49,8 @@ window.ND_PUBLISHED_DATA = {
           "coordinator": "Coordenação",
           "nextClasses": "Próximas turmas",
           "investment": "Investimento",
+          "paymentAction": "Pagar pelo Mercado Pago",
+          "paymentHint": "Pagamento online opcional",
           "enrollment": "Inscrição",
           "languages": "Idiomas da oficina",
           "languagesIntro": "A turma pode ser conduzida nos idiomas indicados abaixo, de acordo com o grupo.",
@@ -115,6 +117,8 @@ window.ND_PUBLISHED_DATA = {
           "coordinator": "Coordinación",
           "nextClasses": "Próximas fechas",
           "investment": "Inversión",
+          "paymentAction": "Pagar por Mercado Pago",
+          "paymentHint": "Pago online opcional",
           "enrollment": "Inscripción",
           "languages": "Idiomas del taller",
           "languagesIntro": "El grupo puede ser conducido en los idiomas indicados abajo, según la composición del grupo.",
@@ -181,6 +185,8 @@ window.ND_PUBLISHED_DATA = {
           "coordinator": "Coordination",
           "nextClasses": "Upcoming groups",
           "investment": "Investment",
+          "paymentAction": "Pay with Mercado Pago",
+          "paymentHint": "Optional online payment",
           "enrollment": "Enrollment",
           "languages": "Workshop languages",
           "languagesIntro": "The group can be conducted in the languages listed below, according to the participants.",
@@ -269,11 +275,9 @@ window.ND_PUBLISHED_DATA = {
       "gallery": [
         "assets/oficina-leitura-palco.png",
         "assets/oficina-mesa-cena.png",
-        "assets/oficina-dupla-mesa.png",
         "assets/oficina-sofa-movimento.png",
         "assets/oficina-mesa-publico.png",
-        "assets/oficina-figura-vermelho.png",
-        "assets/oficina-palco-aberto.png"
+        "assets/oficina-figura-vermelho.png"
       ],
       "copy": {
         "pt": {
@@ -324,7 +328,8 @@ window.ND_PUBLISHED_DATA = {
           "coordinator": {
             "name": "Nicholas Dieter",
             "role": "Diretor • Dramaturgo • Pesquisador",
-            "bio": "Nicholas conduz laboratórios de teatro, cinema e formação artística voltados à presença, imaginação dramática, pesquisa cênica e composição coletiva."
+            "bio": "Nicholas conduz laboratórios de teatro, cinema e formação artística voltados à presença, imaginação dramática, pesquisa cênica e composição coletiva.",
+            "photo": ""
           },
           "nextClass": {
             "dates": "8 • 15 • 22 • 29 de agosto",
@@ -509,7 +514,9 @@ window.ND_PUBLISHED_DATA = {
         "cash": "Venha conhecer",
         "installments": "Valores e condições por WhatsApp",
         "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato e disponibilidade de vaga."
-      }
+      },
+      "coordinatorPhoto": "",
+      "paymentLink": ""
     }
   ]
 };
