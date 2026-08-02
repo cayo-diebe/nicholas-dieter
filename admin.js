@@ -14,6 +14,7 @@
   const settingsForm = document.querySelector("#site-settings-form");
   const siteSettingsStatus = document.querySelector("#site-settings-status");
   const siteContentLanguage = document.querySelector("#site-content-language");
+  const workshopContentLanguage = document.querySelector("#workshop-content-language");
   const siteFaqEditor = document.querySelector("#site-faq-editor");
   const recordsPreview = document.querySelector("#records-preview");
   const list = document.querySelector("#admin-list");
@@ -39,13 +40,14 @@
 
   let activeStepIndex = 0;
   let activeSiteLanguage = "pt";
+  let activeWorkshopLanguage = "pt";
   let activeAdminRoute = "site-visual";
   const IMAGE_PREVIEW_CACHE_KEY = "nicholas-dieter-upload-previews";
   const MAX_PREVIEW_CACHE_ITEMS = 12;
   const imagePreviewCache = new Map();
 
   const getSelected = () => workshops.find((workshop) => workshop.slug === selectedSlug);
-  const getCopy = (workshop) => window.ND.getWorkshopCopy(workshop, "pt");
+  const getCopy = (workshop, language = "pt") => window.ND.getWorkshopCopy(workshop, language);
   const escapeHtml = (value = "") =>
     String(value)
       .replaceAll("&", "&amp;")
@@ -91,6 +93,37 @@
       .split("\n")
       .map((item) => item.trim())
       .filter(Boolean);
+
+  const mergeCopy = (base = {}, override = {}) => {
+    const result = {
+      ...window.ND.clone(base || {}),
+      ...window.ND.clone(override || {}),
+    };
+
+    ["coordinator", "nextClass", "investment", "registration"].forEach((key) => {
+      result[key] = {
+        ...(base?.[key] || {}),
+        ...(override?.[key] || {}),
+      };
+    });
+
+    ["about", "program", "videos", "faq"].forEach((key) => {
+      if (Array.isArray(override?.[key])) {
+        result[key] = window.ND.clone(override[key]);
+      } else if (Array.isArray(base?.[key])) {
+        result[key] = window.ND.clone(base[key]);
+      }
+    });
+
+    return result;
+  };
+
+  const getEditableCopy = (workshop, language = activeWorkshopLanguage) => {
+    if (!workshop) return {};
+    const base = workshop.copy?.pt || getCopy(workshop, "pt") || {};
+    const localized = workshop.copy?.[language];
+    return localized ? mergeCopy(base, localized) : window.ND.clone(base);
+  };
 
   const loadImagePreviewCache = () => {
     try {
@@ -245,6 +278,16 @@
   ];
 
   const emptyVideo = { title: "", type: "scene", url: "", description: "" };
+
+  const defaultRegistrationMessage = (title, language = activeWorkshopLanguage) => {
+    const workshopTitle = title || "esta oficina";
+    const messages = {
+      pt: `Olá, Nicholas! Tenho interesse na oficina ${workshopTitle}. Gostaria de receber mais informações.`,
+      es: `Hola, Nicholas! Me interesa el taller ${workshopTitle}. Me gustaría recibir más información.`,
+      en: `Hello, Nicholas! I am interested in the workshop ${workshopTitle}. I would like to receive more information.`,
+    };
+    return messages[language] || messages.pt;
+  };
 
   const renderVideoTypeOptions = (selected = "scene") =>
     videoTypeOptions
@@ -552,13 +595,32 @@
     nextSettings.homeHeroImage = await moveImageToUpload(nextSettings.homeHeroImage);
     nextSettings.recordsImages = await Promise.all((nextSettings.recordsImages || []).map(moveImageToUpload));
 
+    const moveCopyImagesToUploads = async (copy = {}) => {
+      const nextCopy = window.ND.clone(copy || {});
+      if (nextCopy.coordinator?.photo) {
+        nextCopy.coordinator.photo = await moveImageToUpload(nextCopy.coordinator.photo);
+      }
+      return nextCopy;
+    };
+
     const nextWorkshops = await Promise.all(
-      window.ND.normalizeWorkshops(workshops).map(async (workshop) => ({
-        ...workshop,
-        cardImage: await moveImageToUpload(workshop.cardImage),
-        heroImage: await moveImageToUpload(workshop.heroImage),
-        gallery: await Promise.all((workshop.gallery || []).map(moveImageToUpload)),
-      })),
+      window.ND.normalizeWorkshops(workshops).map(async (workshop) => {
+        const copyEntries = await Promise.all(
+          Object.entries(workshop.copy || {}).map(async ([language, copy]) => [
+            language,
+            await moveCopyImagesToUploads(copy),
+          ]),
+        );
+
+        return {
+          ...workshop,
+          cardImage: await moveImageToUpload(workshop.cardImage),
+          heroImage: await moveImageToUpload(workshop.heroImage),
+          coordinatorPhoto: await moveImageToUpload(workshop.coordinatorPhoto),
+          gallery: await Promise.all((workshop.gallery || []).map(moveImageToUpload)),
+          copy: Object.fromEntries(copyEntries),
+        };
+      }),
     );
 
     const payload = {
@@ -626,10 +688,7 @@
     publishToServer(onSuccess).then((published) => {
       if (!published) {
         onLocalOnly?.();
-        return;
       }
-      setWorkshopStatus(onSuccess);
-      if (siteSettingsStatus) siteSettingsStatus.textContent = onSuccess;
     }).catch(() => {
       onLocalOnly?.();
     });
@@ -644,6 +703,7 @@
     renderRecordsPreview();
     renderSingleImagePreview("cardImage");
     renderSingleImagePreview("heroImage");
+    renderSingleImagePreview("coordinatorPhoto");
     renderGalleryPreview();
   };
 
@@ -677,6 +737,7 @@
 
     list.querySelectorAll("[data-admin-slug]").forEach((button) => {
       button.addEventListener("click", () => {
+        storeActiveWorkshopDraft();
         selectedSlug = button.dataset.adminSlug;
         fillForm();
         setActiveStep(0);
@@ -813,6 +874,67 @@
       }))
       .filter((item) => item.question || item.answer);
 
+  const readWorkshopCopyFromForm = (language = activeWorkshopLanguage) => {
+    const title = form.title.value.trim();
+
+    return {
+      title,
+      label: form.label.value.trim(),
+      headline: form.headline.value.trim(),
+      summary: form.summary.value.trim(),
+      about: splitLines(form.about.value),
+      program: readProgramEditor(),
+      videos: readVideoEditor(),
+      coordinator: {
+        name: form.coordinatorName.value.trim(),
+        role: form.coordinatorRole.value.trim(),
+        bio: form.coordinatorBio.value.trim(),
+        photo: form.coordinatorPhoto.value.trim(),
+      },
+      nextClass: {
+        dates: form.dates.value.trim(),
+        schedule: form.schedule.value.trim(),
+        workload: form.workload.value.trim(),
+        location: form.location.value.trim(),
+        statusText: form.statusText.value.trim() || getStatusText(),
+      },
+      investment: {
+        cash: normalizeCashValue(form.cash.value),
+        installments: form.installments.value.trim(),
+        notes: form.investmentNotes.value.trim(),
+      },
+      registration: {
+        message: form.registrationMessage.value.trim() || defaultRegistrationMessage(title, language),
+      },
+      faq: readFaqEditor(),
+    };
+  };
+
+  const storeActiveWorkshopDraft = () => {
+    const workshop = getSelected();
+    if (!workshop || !form) return;
+
+    const copy = readWorkshopCopyFromForm(activeWorkshopLanguage);
+    workshop.status = form.status.value;
+    workshop.cardImage = form.cardImage.value.trim();
+    workshop.heroImage = form.heroImage.value.trim();
+    workshop.coordinatorPhoto = form.coordinatorPhoto.value.trim();
+    workshop.paymentLink = form.paymentLink.value.trim();
+    workshop.languages = {
+      pt: form.languagePt.value.trim() || "Português",
+      es: form.languageEs.value.trim() || form.languagePt.value.trim() || "Portugués",
+      en: form.languageEn.value.trim() || form.languagePt.value.trim() || "Portuguese",
+    };
+    workshop.gallery = splitLines(form.gallery.value);
+    workshop.copy = {
+      ...(workshop.copy || {}),
+      [activeWorkshopLanguage]: copy,
+    };
+
+    if (!workshop.copy.pt) workshop.copy.pt = copy;
+    workshop.investment = workshop.copy.pt?.investment || copy.investment;
+  };
+
   const fillForm = () => {
     const workshop = getSelected();
     if (!workshop) {
@@ -825,11 +947,13 @@
       return;
     }
 
-    const copy = getCopy(workshop);
+    const copy = getEditableCopy(workshop, activeWorkshopLanguage);
     const next = copy.nextClass || {};
-    const investment = workshop.investment || copy.investment || {};
+    const investment = copy.investment || workshop.investment || {};
     const coordinator = copy.coordinator || {};
+    const paymentLink = workshop.paymentLink || investment.paymentLink || investment.paymentUrl || "";
 
+    if (workshopContentLanguage) workshopContentLanguage.value = activeWorkshopLanguage;
     form.slug.value = workshop.slug;
     form.status.value = workshop.status || "open";
     form.title.value = copy.title || "";
@@ -847,12 +971,16 @@
     form.schedule.value = next.schedule || "";
     form.workload.value = next.workload || "";
     form.location.value = next.location || "";
+    form.statusText.value = next.statusText || getStatusText();
     form.cash.value = normalizeCashValue(investment.cash || "");
     form.installments.value = investment.installments || "";
+    form.paymentLink.value = paymentLink;
     form.investmentNotes.value = investment.notes || "";
+    form.coordinatorPhoto.value = workshop.coordinatorPhoto || coordinator.photo || "";
     form.coordinatorName.value = coordinator.name || "";
     form.coordinatorRole.value = coordinator.role || "";
     form.coordinatorBio.value = coordinator.bio || "";
+    form.registrationMessage.value = copy.registration?.message || defaultRegistrationMessage(copy.title, activeWorkshopLanguage);
     renderProgramEditor(copy.program?.length ? copy.program : [{ title: "", items: [] }]);
     renderVideoEditor(copy.videos?.length ? copy.videos : [emptyVideo]);
     renderFaqEditor(copy.faq?.length ? copy.faq : [{ question: "", answer: "" }]);
@@ -932,48 +1060,24 @@
     if (!validateRequiredFields()) return;
 
     const currentSlug = selectedSlug;
-    const nextSlug = slugify(form.slug.value || form.title.value);
     const existing = workshops.find((workshop) => workshop.slug === currentSlug);
+    storeActiveWorkshopDraft();
 
-    const copy = {
-      title: form.title.value.trim(),
-      label: form.label.value.trim(),
-      headline: form.headline.value.trim(),
-      summary: form.summary.value.trim(),
-      about: splitLines(form.about.value),
-      program: readProgramEditor(),
-      videos: readVideoEditor(),
-      coordinator: {
-        name: form.coordinatorName.value.trim(),
-        role: form.coordinatorRole.value.trim(),
-        bio: form.coordinatorBio.value.trim(),
-      },
-      nextClass: {
-        dates: form.dates.value.trim(),
-        schedule: form.schedule.value.trim(),
-        workload: form.workload.value.trim(),
-        location: form.location.value.trim(),
-        statusText: getStatusText(),
-      },
-      investment: {
-        cash: normalizeCashValue(form.cash.value),
-        installments: form.installments.value.trim(),
-        notes: form.investmentNotes.value.trim(),
-      },
-      registration: {
-        message: `Olá, Nicholas! Tenho interesse na oficina ${form.title.value.trim()}. Gostaria de receber mais informações.`,
-      },
-      faq: readFaqEditor(),
-    };
+    const draft = workshops.find((workshop) => workshop.slug === currentSlug) || existing || {};
+    const activeCopy = draft.copy?.[activeWorkshopLanguage] || readWorkshopCopyFromForm(activeWorkshopLanguage);
+    const ptCopy = draft.copy?.pt || activeCopy;
+    const nextSlug = slugify(form.slug.value || ptCopy.title || activeCopy.title || currentSlug) || currentSlug;
 
     const nextWorkshop = {
-      ...(existing || {}),
+      ...draft,
       slug: nextSlug,
       status: form.status.value,
       cardImage: form.cardImage.value.trim(),
       heroImage: form.heroImage.value.trim(),
+      coordinatorPhoto: form.coordinatorPhoto.value.trim(),
+      paymentLink: form.paymentLink.value.trim(),
       accent: existing?.accent || "#76d8e6",
-      investment: copy.investment,
+      investment: ptCopy.investment || activeCopy.investment || {},
       languages: {
         pt: form.languagePt.value.trim() || "Português",
         es: form.languageEs.value.trim() || form.languagePt.value.trim() || "Portugués",
@@ -981,10 +1085,9 @@
       },
       gallery: splitLines(form.gallery.value),
       copy: {
-        ...(existing?.copy || {}),
-        pt: copy,
-        es: { ...(existing?.copy?.es || copy), investment: copy.investment, videos: copy.videos },
-        en: { ...(existing?.copy?.en || copy), investment: copy.investment, videos: copy.videos },
+        ...(draft.copy || {}),
+        [activeWorkshopLanguage]: activeCopy,
+        pt: ptCopy,
       },
     };
 
@@ -1074,6 +1177,13 @@
     siteSettingsStatus.textContent = "";
   });
 
+  workshopContentLanguage?.addEventListener("change", () => {
+    storeActiveWorkshopDraft();
+    activeWorkshopLanguage = workshopContentLanguage.value;
+    fillForm();
+    setWorkshopStatus("");
+  });
+
   document.querySelectorAll("[data-image-upload]").forEach((input) => {
     input.addEventListener("change", async () => {
       const files = Array.from(input.files || []);
@@ -1116,6 +1226,7 @@
   settingsForm.recordsImages.addEventListener("input", syncImagePreviews);
   form.cardImage.addEventListener("input", syncImagePreviews);
   form.heroImage.addEventListener("input", syncImagePreviews);
+  form.coordinatorPhoto.addEventListener("input", syncImagePreviews);
   form.gallery.addEventListener("input", syncImagePreviews);
 
   galleryPreview.addEventListener("click", (event) => {
@@ -1139,12 +1250,16 @@
   });
 
   document.querySelector("#new-workshop").addEventListener("click", () => {
+    storeActiveWorkshopDraft();
+    activeWorkshopLanguage = "pt";
     const slug = `nova-oficina-${workshops.length + 1}`;
     workshops.push({
       slug,
       status: "soon",
       cardImage: "assets/subpersonalidades-cartaz.png",
       heroImage: "assets/nicholas-dieter-nevoa.png",
+      coordinatorPhoto: "",
+      paymentLink: "",
       languages: {
         pt: "Português",
         es: "Portugués",

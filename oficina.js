@@ -198,8 +198,10 @@
 
     const copy = window.ND.getWorkshopCopy(workshop, language);
     const next = copy.nextClass || {};
-    const investment = workshop.investment || copy.investment || {};
+    const investment = copy.investment || workshop.investment || {};
     const coordinator = copy.coordinator || {};
+    const coordinatorPhoto = coordinator.photo || workshop.coordinatorPhoto || "";
+    const paymentUrl = getSafeVideoUrl(workshop.paymentLink || investment.paymentLink || investment.paymentUrl || "");
     const registration = copy.registration || {};
     const faq = [...(copy.faq || []), ...window.ND.getGlobalFaq(language, siteSettings)];
     const videos = copy.videos || workshop.videos || [];
@@ -258,12 +260,19 @@
       ${renderVideos(videos)}
 
       <section class="section coordinator-section">
-        <div>
+        ${coordinatorPhoto ? `
+          <figure class="coordinator-photo">
+            <img src="${escapeHtml(window.ND.resolveAsset(coordinatorPhoto))}" alt="${escapeHtml(coordinator.name || t("workshop.coordinator"))}" loading="lazy" decoding="async">
+          </figure>
+        ` : ""}
+        <div class="coordinator-section__intro">
           <p class="eyebrow">${t("workshop.coordinator")}</p>
           <h2>${coordinator.name || "Nicholas Dieter"}</h2>
           <p>${coordinator.role || ""}</p>
         </div>
-        <p>${coordinator.bio || ""}</p>
+        <div class="coordinator-section__bio">
+          <p>${coordinator.bio || ""}</p>
+        </div>
       </section>
 
       <section class="course-commerce" id="turmas">
@@ -283,6 +292,12 @@
           <strong>${investment.cash || "-"}</strong>
           <p>${investment.installments || ""}</p>
           <small>${investment.notes || ""}</small>
+          ${paymentUrl ? `
+            <a class="button button--payment" href="${escapeHtml(paymentUrl)}" target="_blank" rel="noopener">
+              <span>${t("workshop.paymentAction")}</span>
+              <small>${t("workshop.paymentHint")}</small>
+            </a>
+          ` : ""}
         </article>
 
         <article class="commerce-panel commerce-panel--form">

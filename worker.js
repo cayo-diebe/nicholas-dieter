@@ -2,6 +2,7 @@ const GITHUB_OWNER = "cayo-diebe";
 const GITHUB_REPO = "nicholas-dieter";
 const DEFAULT_PRIMARY_BRANCH = "main";
 const DEFAULT_MIRROR_BRANCHES = "";
+const PUBLISH_COMMIT_RETRIES = 3;
 const DEFAULT_SIGNUP_EMAIL_TO = "cayodiebe@gmail.com,nicholasdieter@gmail.com";
 const DEFAULT_SIGNUP_EMAIL_FROM = "Nicholas Dieter <site@nicholasdieter.com>";
 const SESSION_COOKIE = "nd_admin_session";
@@ -430,6 +431,27 @@ const createPublicationCommit = async (env, publication, branch) => {
   return commit.sha;
 };
 
+const isRefUpdateConflict = (error) =>
+  [409, 422].includes(error.status) ||
+  /reference update failed|not a fast forward|cannot lock ref/i.test(error.message || "");
+
+const createPublicationCommitWithRetry = async (env, publication, branch) => {
+  let lastError;
+
+  for (let attempt = 1; attempt <= PUBLISH_COMMIT_RETRIES; attempt += 1) {
+    try {
+      return await createPublicationCommit(env, publication, branch);
+    } catch (error) {
+      lastError = error;
+      if (!isRefUpdateConflict(error) || attempt === PUBLISH_COMMIT_RETRIES) {
+        throw error;
+      }
+    }
+  }
+
+  throw lastError;
+};
+
 const mirrorCommit = async (env, commitSha, branch) =>
   githubRequest(env, `git/refs/heads/${encodeBranchPath(branch)}`, {
     method: "PATCH",
@@ -444,7 +466,7 @@ const handlePublish = async (request, env) => {
   const body = await request.json().catch(() => ({}));
   const publication = validatePublication(body);
   const primaryBranch = getEnvValue(env, "GITHUB_BRANCH") || DEFAULT_PRIMARY_BRANCH;
-  const commitSha = await createPublicationCommit(env, publication, primaryBranch);
+  const commitSha = await createPublicationCommitWithRetry(env, publication, primaryBranch);
   const mirroredBranches = [];
   const mirrorFailures = [];
 

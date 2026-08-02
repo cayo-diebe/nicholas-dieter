@@ -42,6 +42,8 @@
         coordinator: "Coordenação",
         nextClasses: "Próximas turmas",
         investment: "Investimento",
+        paymentAction: "Pagar pelo Mercado Pago",
+        paymentHint: "Pagamento online opcional",
         enrollment: "Inscrição",
         languages: "Idiomas da oficina",
         languagesIntro: "A turma pode ser conduzida nos idiomas indicados abaixo, de acordo com o grupo.",
@@ -104,6 +106,8 @@
         coordinator: "Coordinación",
         nextClasses: "Próximas fechas",
         investment: "Inversión",
+        paymentAction: "Pagar por Mercado Pago",
+        paymentHint: "Pago online opcional",
         enrollment: "Inscripción",
         languages: "Idiomas del taller",
         languagesIntro: "El grupo puede ser conducido en los idiomas indicados abajo, según la composición del grupo.",
@@ -166,6 +170,8 @@
         coordinator: "Coordination",
         nextClasses: "Upcoming groups",
         investment: "Investment",
+        paymentAction: "Pay with Mercado Pago",
+        paymentHint: "Optional online payment",
         enrollment: "Enrollment",
         languages: "Workshop languages",
         languagesIntro: "The group can be conducted in the languages listed below, according to the participants.",
@@ -256,6 +262,8 @@
       status: "open",
       cardImage: "assets/subpersonalidades-cartaz.png",
       heroImage: "assets/nicholas-dieter-nevoa.png",
+      coordinatorPhoto: "assets/nicholas-dieter-nevoa.png",
+      paymentLink: "",
       accent: "#76d8e6",
       languages: {
         pt: "Português e espanhol",
@@ -512,6 +520,8 @@
   const normalizeWorkshops = (workshops) =>
     (workshops || []).map((workshop) => ({
       ...workshop,
+      coordinatorPhoto: workshop.coordinatorPhoto || workshop.copy?.pt?.coordinator?.photo || "",
+      paymentLink: workshop.paymentLink || workshop.investment?.paymentLink || workshop.investment?.paymentUrl || "",
       gallery: workshop.gallery || [],
       languages: {
         ...defaultLanguages,
@@ -546,6 +556,8 @@
       ? normalizeSiteSettings(publishedData.siteSettings)
       : normalizeSiteSettings(defaultSiteSettings);
 
+  const isAdminPage = () => document.body?.dataset.page === "admin";
+
   const getLanguage = () => {
     const params = new URLSearchParams(window.location.search);
     const queryLanguage = params.get("lang");
@@ -572,6 +584,8 @@
   };
 
   const loadWorkshops = () => {
+    if (!isAdminPage()) return clone(getPublishedWorkshops());
+
     try {
       const saved = window.localStorage.getItem(STORAGE_KEY);
       return saved ? normalizeWorkshops(JSON.parse(saved)) : clone(getPublishedWorkshops());
@@ -585,6 +599,8 @@
   };
 
   const loadSiteSettings = () => {
+    if (!isAdminPage()) return clone(getPublishedSiteSettings());
+
     try {
       const saved = window.localStorage.getItem(SETTINGS_KEY);
       return saved ? normalizeSiteSettings(JSON.parse(saved)) : clone(getPublishedSiteSettings());

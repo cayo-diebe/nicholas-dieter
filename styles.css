@@ -316,7 +316,8 @@ h3 {
 .section__intro p:not(.eyebrow),
 .rich-copy,
 .about-copy,
-.coordinator-section > p {
+.coordinator-section > p,
+.coordinator-section__bio {
   color: rgba(247, 241, 223, 0.74);
   font-size: 1.08rem;
   line-height: 1.65;
@@ -675,8 +676,31 @@ h3 {
 }
 
 .coordinator-section .eyebrow,
-.coordinator-section p {
+.coordinator-section p,
+.coordinator-section__bio {
   color: #0b0b0b;
+}
+
+.coordinator-section__intro {
+  min-width: 0;
+}
+
+.coordinator-section__bio p {
+  margin: 0;
+  max-width: 760px;
+  white-space: pre-line;
+}
+
+.coordinator-photo {
+  width: min(280px, 100%);
+  margin: 0;
+}
+
+.coordinator-photo img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border: 1px solid rgba(7, 6, 8, 0.24);
+  object-fit: cover;
 }
 
 .course-commerce {
@@ -716,6 +740,23 @@ h3 {
   max-width: 360px;
   color: rgba(247, 241, 223, 0.72);
   line-height: 1.55;
+}
+
+.button--payment {
+  display: grid;
+  gap: 0.15rem;
+  width: min(100%, 360px);
+  margin-top: 1.35rem;
+  border-color: var(--nd-cream);
+  background: var(--nd-cream);
+  color: var(--nd-purple);
+  text-align: center;
+}
+
+.button--payment small {
+  color: rgba(49, 0, 59, 0.7);
+  font-size: 0.75rem;
+  font-weight: 700;
 }
 
 .commerce-panel--dark {
@@ -1061,6 +1102,10 @@ h3 {
   max-width: 320px;
 }
 
+.admin-language-picker--workshop {
+  max-width: 360px;
+}
+
 .admin-copy-group {
   border: 1px solid rgba(244, 232, 184, 0.14);
   background: rgba(247, 241, 223, 0.035);
@@ -1366,6 +1411,15 @@ body.is-admin-busy {
   padding: 1rem;
 }
 
+.image-uploader--compact {
+  grid-template-columns: minmax(140px, 0.35fr) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.image-uploader--compact .image-uploader__preview {
+  min-height: 180px;
+}
+
 .image-uploader__preview {
   display: grid;
   min-height: 220px;
@@ -1616,6 +1670,15 @@ body.is-admin-busy {
   .coordinator-section,
   .language-section {
     grid-template-columns: minmax(260px, 0.42fr) minmax(0, 1fr);
+  }
+
+  .coordinator-photo {
+    grid-row: 1 / span 2;
+  }
+
+  .coordinator-photo + .coordinator-section__intro,
+  .coordinator-photo ~ .coordinator-section__bio {
+    grid-column: 2;
   }
 
   .workshop-card {

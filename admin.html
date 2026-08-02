@@ -306,6 +306,15 @@
                 </div>
               </div>
 
+              <label class="admin-language-picker admin-language-picker--workshop">
+                Texto em edição
+                <select id="workshop-content-language" aria-label="Selecionar idioma dos textos da oficina">
+                  <option value="pt">Português</option>
+                  <option value="es">Español</option>
+                  <option value="en">English</option>
+                </select>
+              </label>
+
               <div class="form-row form-row--two">
                 <label>
                   Slug / URL
@@ -447,6 +456,7 @@
                   <label>Carga horária <input name="workload" placeholder="Carga horária: 12 horas"></label>
                   <label>Local/Formato <input name="location" placeholder="Ao vivo, online pelo Meet"></label>
                 </div>
+                <label>Status exibido <input name="statusText" placeholder="Inscrições abertas"></label>
               </fieldset>
 
               <fieldset class="admin-inline-fieldset">
@@ -455,16 +465,41 @@
                   <label>Valor à vista <input name="cash" inputmode="numeric" autocomplete="off" placeholder="R$ 0,00" data-money-mask></label>
                   <label>Parcelamento <input name="installments" placeholder="4x de R$ 250,00"></label>
                 </div>
+                <label>Link de pagamento Mercado Pago <input name="paymentLink" type="url" placeholder="https://www.mercadopago.com.br/..."></label>
                 <label>Observações <textarea name="investmentNotes" rows="3" placeholder="Ex: desconto para ex-alunos, prazo de matrícula ou condição especial."></textarea></label>
               </fieldset>
 
               <fieldset class="admin-inline-fieldset">
                 <legend>Coordenação</legend>
+                <article class="image-uploader image-uploader--compact">
+                  <div class="image-uploader__preview" data-image-preview="coordinatorPhoto"></div>
+                  <div class="image-uploader__body">
+                    <h3>Foto da coordenação</h3>
+                    <p>Foto de quem será responsável por conduzir esta oficina.</p>
+                    <label class="upload-button">
+                      Enviar foto
+                      <input type="file" accept="image/*" data-image-upload="coordinatorPhoto">
+                    </label>
+                    <details class="admin-advanced">
+                      <summary>Usar caminho/URL manual</summary>
+                      <label class="admin-path-label">
+                        Caminho ou URL
+                        <input name="coordinatorPhoto" placeholder="assets/nicholas-dieter-nevoa.png">
+                      </label>
+                    </details>
+                    <button class="admin-mini-button" type="button" data-clear-image="coordinatorPhoto">Limpar foto</button>
+                  </div>
+                </article>
                 <div class="form-row form-row--two">
                   <label>Nome <input name="coordinatorName" placeholder="Nicholas Dieter"></label>
                   <label>Função <input name="coordinatorRole" placeholder="Diretor, dramaturgo e pesquisador"></label>
                 </div>
                 <label>Bio <textarea name="coordinatorBio" rows="4" placeholder="Uma bio curta sobre a pesquisa, trajetória e condução da oficina."></textarea></label>
+              </fieldset>
+
+              <fieldset class="admin-inline-fieldset">
+                <legend>Inscrição</legend>
+                <label>Mensagem do WhatsApp <textarea name="registrationMessage" rows="3" placeholder="Olá, Nicholas! Tenho interesse nesta oficina."></textarea></label>
               </fieldset>
             </section>
 
