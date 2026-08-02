@@ -511,7 +511,13 @@ h3 {
 }
 
 .course-hero__copy h1 {
-  max-width: 12ch;
+  max-width: min(100%, 15ch);
+  font-size: clamp(3.6rem, 7vw, 7.8rem);
+  line-height: 0.86;
+  overflow-wrap: normal;
+  text-wrap: balance;
+  word-break: normal;
+  hyphens: none;
 }
 
 .course-about h2 {
@@ -1827,7 +1833,9 @@ body.is-admin-busy {
   }
 
   .course-hero h1 {
-    font-size: clamp(3.2rem, 16vw, 4.6rem);
+    max-width: 100%;
+    font-size: clamp(2.15rem, 12vw, 4.2rem);
+    line-height: 0.92;
   }
 
   .course-commerce {
