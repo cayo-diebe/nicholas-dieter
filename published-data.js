@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-02T19:19:00.247Z",
+  "exportedAt": "2026-08-02T19:39:15.631Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -516,7 +516,7 @@ window.ND_PUBLISHED_DATA = {
             "name": "Nicholas Dieter",
             "role": "Director • Dramaturgo • Investigador",
             "bio": "Nicholas conduce laboratorios de teatro, cine y formación artística orientados a presencia, imaginación dramática, investigación escénica y composición colectiva.",
-            "photo": "assets/uploads/2026-08-02/2c8e4cd191afd1445c633b88.jpg"
+            "photo": "assets/uploads/2026-08-02/2202be2154f9a2ab8d5fd1e3.jpg"
           },
           "nextClass": {
             "dates": "8 • 15 • 22 • 29 de agosto",
@@ -633,7 +633,7 @@ window.ND_PUBLISHED_DATA = {
         "installments": "Valores e condições por WhatsApp",
         "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento."
       },
-      "coordinatorPhoto": "assets/uploads/2026-08-02/2c8e4cd191afd1445c633b88.jpg",
+      "coordinatorPhoto": "assets/uploads/2026-08-02/2202be2154f9a2ab8d5fd1e3.jpg",
       "paymentLink": ""
     }
   ]
