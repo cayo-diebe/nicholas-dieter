@@ -1,13 +1,24 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-02T18:33:07.830Z",
+  "exportedAt": "2026-08-02T18:44:36.819Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
-    "vimeoUrl": "https://vimeo.com/user131484859",
+    "vimeoUrl": "https://vimeo.com/1212801579?share=copy&fl=sv&fe=ci",
     "whatsappPhone": "5511992978145",
     "whatsappMessage": "Olá, Nicholas! Vim pelo site e gostaria de falar no WhatsApp.",
     "recordsImages": [
-      "assets/uploads/2026-07-23/8383f0bcd8f004ef29b6079c.jpg"
+      "assets/uploads/2026-07-23/8383f0bcd8f004ef29b6079c.jpg",
+      "assets/uploads/2026-07-24/704b648465fb740fc4c98ea7.jpg",
+      "assets/uploads/2026-07-24/41216c42b4e5af8110cffce9.jpg",
+      "assets/uploads/2026-07-24/442250f9b71b81afac709434.jpg",
+      "assets/uploads/2026-07-24/82b8b35b4bcc5168e73f5f73.jpg",
+      "assets/uploads/2026-07-24/83b14bf28b90ca524b8299a5.jpg",
+      "assets/uploads/2026-07-24/86388de24076292f848c8f22.jpg",
+      "assets/uploads/2026-07-24/2f4cdd74f3f0d64e8cf108b5.jpg",
+      "assets/uploads/2026-07-24/e572e7e5ad60250e70b3e38d.jpg",
+      "assets/uploads/2026-07-24/cf9263ab5eb792f4bb7b2455.jpg",
+      "assets/uploads/2026-07-24/6187d1a1456c8e2c0939dbbe.jpg",
+      "assets/uploads/2026-07-24/ed11e7b545cef6fbf59343d2.jpg"
     ],
     "copy": {
       "pt": {
@@ -24,14 +35,14 @@ window.ND_PUBLISHED_DATA = {
           "secondaryCta": "Ver outras aulas",
           "workshopsKicker": "Campanhas e inscrições",
           "workshopsTitle": "OFICINAS",
-          "workshopsText": "Cada oficina tem uma página de campanha com programação, próximas turmas, investimento e formulário de inscrição.",
+          "workshopsText": "Cada oficina tem uma página de campanha com programação, próximas turmas, investimento e formulário de inscrição. Para qualquer dúvida também é possível consultar por whatsapp.",
           "recordsKicker": "Arquivo vivo",
           "recordsTitle": "Registros de processos",
           "faqKicker": "FAQ",
           "faqTitle": "Perguntas frequentes",
           "aboutKicker": "Sobre",
           "aboutTitle": "Pesquisa cênica com presença, escuta e composição.",
-          "aboutText": "Nicholas Dieter conduz laboratórios de teatro, cinema e formação artística voltados à presença, imaginação dramática, pesquisa cênica e composição coletiva.",
+          "aboutText": "Nicholas Dieter é diretor teatral, dramaturgo, pesquisador e docente da Universidad de Buenos Aires (UBA). Doutor em Sociologia da Arte e mestre em Dramaturgia, desenvolve pesquisas na intersecção entre teatro, antropologia e processos de criação. Como autor e diretor, escreveu e encenou mais de quinze espetáculos teatrais e dirigiu mais de sessenta obras audiovisuais. Atualmente realiza estágio de pós-doutorado na Universidade de São Paulo (USP), onde investiga novas configurações do teatro documental e das práticas de atuação contemporâneas.",
           "aboutInstagramLabel": "Nicholas Dieter",
           "footer": "Laboratórios de Teatro, Cinema, Pesquisa e Formação Artística.",
           "openWorkshop": "Abrir oficina",
@@ -92,14 +103,14 @@ window.ND_PUBLISHED_DATA = {
           "secondaryCta": "Ver otras clases",
           "workshopsKicker": "Campañas e inscripciones",
           "workshopsTitle": "TALLERES",
-          "workshopsText": "Cada taller tiene una página de campaña con programa, próximas fechas, inversión y formulario de inscripción.",
+          "workshopsText": "Cada taller tiene una página de campaña con programa, próximas fechas, valor de inversión, formulario de inscripción y un contacto directo de whatsapp para consultas.",
           "recordsKicker": "Archivo vivo",
           "recordsTitle": "Registros de procesos",
           "faqKicker": "FAQ",
           "faqTitle": "Preguntas frecuentes",
           "aboutKicker": "Sobre",
           "aboutTitle": "Investigación escénica con presencia, escucha y composición.",
-          "aboutText": "Nicholas Dieter conduce laboratorios de teatro, cine y formación artística orientados a la presencia, la imaginación dramática, la investigación escénica y la composición colectiva.",
+          "aboutText": "Nicholas Dieter es director teatral, dramaturgo, investigador y docente de la Universidad de Buenos Aires (UBA). Doctor en Sociología del Arte y Magíster en Dramaturgia, desarrolla investigaciones en la intersección entre el teatro, la antropología y los procesos de creación. Como autor y director, ha escrito y estrenado más de quince espectáculos teatrales y ha dirigido más de sesenta obras audiovisuales. Actualmente realiza un posdoctorado en la Universidad de São Paulo (USP), donde investiga las nuevas configuraciones del teatro documental y las prácticas contemporáneas de actuación.",
           "aboutInstagramLabel": "Nicholas Dieter",
           "footer": "Laboratorios de Teatro, Cine, Investigación y Formación Artística.",
           "openWorkshop": "Abrir taller",
@@ -167,7 +178,7 @@ window.ND_PUBLISHED_DATA = {
           "faqTitle": "Frequently asked questions",
           "aboutKicker": "About",
           "aboutTitle": "Scenic research through presence, listening and composition.",
-          "aboutText": "Nicholas Dieter leads theater, film and artistic training labs centered on presence, dramatic imagination, scenic research and collective composition.",
+          "aboutText": "Nicholas Dieter is a theatre director, playwright, researcher, and faculty member at the University of Buenos Aires (UBA). He holds a Ph.D. in the Sociology of Art and an M.A. in Dramaturgy, and his research explores the intersection of theatre, anthropology, and creative processes. As a playwright and director, he has written and staged more than fifteen theatre productions and directed over sixty audiovisual works. He is currently a Postdoctoral Research Fellow at the University of São Paulo (USP), where he investigates new configurations of documentary theatre and contemporary acting practices.",
           "aboutInstagramLabel": "Nicholas Dieter",
           "footer": "Theater, Film, Research and Artistic Training Labs.",
           "openWorkshop": "Open workshop",
@@ -226,8 +237,8 @@ window.ND_PUBLISHED_DATA = {
           "answer": "A inscrição começa pelo formulário da página da oficina. Ele abre uma mensagem organizada no WhatsApp para confirmar disponibilidade e próximos passos."
         },
         {
-          "question": "Posso divulgar uma oficina específica em campanha?",
-          "answer": "Sim. Cada oficina tem uma URL própria, como oficinas/subpersonalidades/."
+          "question": "Como posso efetuar o pagamento da oficina?",
+          "answer": "Pelo sistema de cobrança sugerido aqui no site ou via pix, uma vez feita a inscrição."
         }
       ],
       "es": [
@@ -262,89 +273,168 @@ window.ND_PUBLISHED_DATA = {
   },
   "workshops": [
     {
+      "slug": "nova-oficina-2",
+      "status": "soon",
+      "cardImage": "assets/subpersonalidades-cartaz.png",
+      "heroImage": "assets/nicholas-dieter-nevoa.png",
+      "languages": {
+        "pt": "Português",
+        "es": "Portugués",
+        "en": "Portuguese"
+      },
+      "gallery": [],
+      "copy": {
+        "pt": {
+          "title": "Nova oficina",
+          "label": "Laboratório",
+          "headline": "Chamada da oficina",
+          "summary": "Descrição curta da oficina.",
+          "about": [],
+          "program": [],
+          "videos": [],
+          "coordinator": {
+            "name": "",
+            "role": "",
+            "bio": "",
+            "photo": ""
+          },
+          "nextClass": {
+            "dates": "",
+            "schedule": "",
+            "workload": "",
+            "location": "",
+            "statusText": "Em breve"
+          },
+          "investment": {
+            "cash": "",
+            "installments": "",
+            "notes": ""
+          },
+          "registration": {
+            "message": "Olá, Nicholas! Tenho interesse nesta oficina."
+          },
+          "faq": []
+        }
+      },
+      "coordinatorPhoto": "",
+      "paymentLink": "",
+      "investment": {
+        "cash": "",
+        "installments": "",
+        "notes": ""
+      }
+    },
+    {
       "slug": "subpersonalidades",
       "status": "open",
       "cardImage": "assets/subpersonalidades-cartaz.png",
       "heroImage": "assets/nicholas-dieter-nevoa.png",
       "accent": "#76d8e6",
       "languages": {
-        "pt": "Português e espanhol",
-        "es": "Portugués y español",
-        "en": "Portuguese and Spanish"
+        "pt": "Português",
+        "es": "Portugués",
+        "en": "Portuguese"
       },
       "gallery": [
         "assets/oficina-leitura-palco.png",
         "assets/oficina-mesa-cena.png",
         "assets/oficina-sofa-movimento.png",
         "assets/oficina-mesa-publico.png",
-        "assets/oficina-figura-vermelho.png"
+        "assets/oficina-figura-vermelho.png",
+        "assets/uploads/2026-07-24/ddb4b3d686a77643142792b3.jpg",
+        "assets/uploads/2026-07-24/83b14bf28b90ca524b8299a5.jpg",
+        "assets/uploads/2026-07-24/702304a05b99bef1136195ac.jpg"
       ],
       "copy": {
         "pt": {
-          "title": "Subpersonalidades",
+          "title": "SUBPERSONALIDADES",
           "label": "Laboratório Intensivo",
           "headline": "Preparação emocional, imaginação dramática e dinâmicas coletivas.",
-          "summary": "Um laboratório de criação para investigar camadas internas, presença e composição coletiva em cena.",
+          "summary": "Um laboratório de pesquisa e autoconhecimento das nossas máscaras sociais e sua economia afetiva.",
           "about": [
-            "Subpersonalidades propõe uma investigação prática sobre as forças, máscaras, impulsos e vozes que compõem uma presença cênica.",
-            "A oficina combina preparação emocional, imaginação dramática, exercícios de escuta e dinâmicas coletivas para desenvolver material de cena com rigor e liberdade.",
-            "O trabalho é indicado para artistas, estudantes e pessoas interessadas em processos de teatro, cinema e criação performativa."
+            "Oferecemos um treinamento para desenvolver a elasticidade emocional e o repertório expressivo.",
+            "As subpersonalidades são arquétipos expressivos que se manifestam num diálogo interno em cada sujeito como reação a certas circunstâncias sociais e dramáticas.",
+            "Esses arquétipos ou subpersonalidades operam certas máscaras retóricas em função do contexto dramático do nosso personagem. Algumas das subpersonalidades mais relevantes são o crítico, a vítima, o juiz, o guerreiro, o sedutor, o vagabundo, a criança mágica, o herói, o perfeccionista e a criança vulnerável.",
+            "Este trabalho com as subpersonalidades ajuda os atores a acessar emoções e estados expressivos de maneira mais direta e profunda, facilitando um processo criativo mais rico e variado. Cada máscara se manifesta através construção de um imaginário dos vínculos em cena.",
+            "Ao desconstruir e potenciar as subpersonalidades, ampliamos nossa capacidade de compor os conflitos internos dos personagens, bem como as motivações e desejos. Isto contribui para a criação de personagens mais complexos e tridimensionais.",
+            "Nesse sentido, o trabalho com as subpersonalidades favorece uma forma de autoconhecimento ativa e crítica.",
+            "Público-alvo: atores, artistas, professores, psicólogos e qualquer pessoa interessada em compreender as diferentes vozes que constituem nossa vida emocional.",
+            "Não é necessário ter experiência em teatro. O laboratório utiliza ferramentas da atuação e biodrama para investigar nossas subpersonalidades em práticas coletivas ao vivo.",
+            "Um laboratório ao vivo de subpersonalidades para ampliar seu repertório emocional, criativo e relacional.",
+            "Descubra como diferentes vozes internas moldam suas emoções, relações e criatividade.",
+            "Amplie seu repertório emocional através de práticas coletivas ao vivo."
           ],
           "program": [
             {
-              "title": "Presença e escuta",
+              "title": "Módulo 1 - Presença: Ação e reação",
               "items": [
-                "aquecimento cênico",
-                "atenção ao corpo",
-                "disponibilidade e relação"
+                "Reconhecendo minha máscara social dominante",
+                "Primeiras subpersonalidades",
+                "Breves situações cênicas",
+                "Convergência entre John Austin, Eric Morris e Stanford Meisner",
+                "O uso performativo da linguagem e a situação social da cena",
+                "Atuar sem representar: atuar é reagir",
+                "Impulso, honestidade, escuta ativa"
               ]
             },
             {
               "title": "Mapeamento das subpersonalidades",
               "items": [
-                "impulsos internos",
-                "contradições",
-                "figuras emocionais e composição"
+                "Subpersonalidades principais e secundárias",
+                "Reconhecendo meu mecanismo interno de ação e reação",
+                "Desconstrução das máscaras sociais",
+                "Uso performativo das subpersonalidades",
+                "Ego Aware versus Presença (Impulso, vulnerabilidade, memória sensorial)"
               ]
             },
             {
               "title": "Imaginação dramática",
               "items": [
-                "situação",
-                "conflito",
-                "imagem, memória e ação"
+                "Expansão dos universos dramáticos",
+                "Subversão das máscaras sociais como motor criativo",
+                "Empoderamento dramático: atuamos com o que não se diz.",
+                "Imaginário emocional",
+                "Exercícios cênicos individuais"
               ]
             },
             {
-              "title": "Dinâmicas coletivas",
+              "title": "Cenas em duplas",
               "items": [
-                "jogo",
-                "contracena",
-                "cena curta e partilha"
+                "Partitura emocional versus improvisação",
+                "Expansão de mundo dramático versus Vivência ética da cena",
+                "Performatividade emocional versus Permeabilidade e comunicação",
+                "Devoluções finais"
               ]
             }
           ],
-          "videos": [],
+          "videos": [
+            {
+              "title": "",
+              "type": "scene",
+              "url": "https://vimeo.com/1212801579?share=copy&fl=sv&fe=ci",
+              "description": "Fragmentos de cenas a partir das dinâmicas grupais"
+            }
+          ],
           "coordinator": {
             "name": "Nicholas Dieter",
             "role": "Diretor • Dramaturgo • Pesquisador",
-            "bio": "Nicholas conduz laboratórios de teatro, cinema e formação artística voltados à presença, imaginação dramática, pesquisa cênica e composição coletiva.",
+            "bio": "Nicholas Dieter é professor na Universidade de Buenos Aires. É mestre em dramaturgia pela Universidade Nacional das Artes, em Buenos Aires, e doutor em Sociologia da Arte pela Universidade de Buenos Aires, e graduado em Ciências Sociais na Universidade de São Paulo e em Cinema no Senac/SP. Atualmente é pós-doutorando na Universidade de São Paulo, no Centro de Artes Cênicas, onde é professor visitante.\nEstudou atuação na Escola de Teatro de Buenos Aires (2012-2015) e no Sportivo Teatral com Ricardo Bartis (2015-2019). Escreveu e/ou dirigiu inúmeras peças como Nada a ver (2015), Mal de arquivo (2016), Glória Onírica (2019), O casório (2020), Homens com ossos cheios de Barro (2021), A briga (2022), O relato (2023), Revezamento (2023), O diário de Ana Franco (2023), Lihuén (2023), Tio Vania (2024), Cenas no abismo (2025), Caim (2025), U(ru)bú Rei (2026), Acompanhantes (2026) e Santa Joana dos Matadouros (2026).\nSua produção audiovisual como roteirista e diretor conta com mais de sessenta curtametragens, entre eles Partir (2022), Se falamos de amor (2023), Satisfiz (2024), Ritinha (2024), Ir embora assim (2025), Desmanche (2025), Paria (2026), entre muitos outros. Em 2024 produziu e codirgiu a minisérie Melhor se queimar, (coprodução Brasil-Argentina) ganhadora do Festival Cannes Series.\nDesde 2024 se desempenha como professor no Teatro Escola Mario Persico em Sorocaba/SP onde oferece diversas oficinas como Técnica Meisner, Subpersonalidades, Performance, Shakespeare, Brecht, Atuação para Cinema (CineLab), entre outras. Em sua pesquisa de pós-doutorado na USP, no Centro de Artes Cênicas, com supervisão do prof. Sergio de Carvalho (Cia do Latão), pesquisando Novas configurações do teatro documental e novas formas de atuação no teatro pósdramático.",
             "photo": ""
           },
           "nextClass": {
-            "dates": "8 • 15 • 22 • 29 de agosto",
-            "schedule": "Sábados, 14h às 17h",
-            "workload": "Carga horária: 12 horas",
+            "dates": "22 • 29 de agosto",
+            "schedule": "Sábados, 14h às 18h",
+            "workload": "Carga horária: 8 horas",
             "location": "Ao vivo, online pelo Meet",
             "statusText": "Inscrições abertas"
           },
           "investment": {
             "cash": "Venha conhecer",
             "installments": "Valores e condições por WhatsApp",
-            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato e disponibilidade de vaga."
+            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento."
           },
           "registration": {
-            "message": "Olá, Nicholas! Tenho interesse na oficina Subpersonalidades. Gostaria de receber mais informações."
+            "message": "Olá, Nicholas! Tenho interesse na oficina SUBPERSONALIDADES. Gostaria de receber mais informações."
           },
           "faq": [
             {
@@ -354,6 +444,18 @@ window.ND_PUBLISHED_DATA = {
             {
               "question": "A turma é realmente reduzida?",
               "answer": "Sim. O limite proposto é de 12 participantes para preservar acompanhamento e qualidade de troca."
+            },
+            {
+              "question": "A Oficina oferece material bibliográfico em pdf?",
+              "answer": "Sim. Uma vez confirmada a inscrição, cada estudante recebe acesso a uma série de textos selecionados, tanto teóricos quanto dramáticos."
+            },
+            {
+              "question": "Para confirmar minha inscrição é preciso pagar primeiro?",
+              "answer": "Sim. Não aceitaremos a instância de \"aula experimental\" num curso intensivo online como fazemos em casos de aulas presenciais no nosso teatro."
+            },
+            {
+              "question": "Posso solicitar uma entrevista prévia com o professor para tirar dúvidas pontuais?",
+              "answer": "Sim. As entrevistas de até 30 minutos de duração podem ser agendadas por email ou whatsapp."
             }
           ]
         },
@@ -373,7 +475,8 @@ window.ND_PUBLISHED_DATA = {
               "items": [
                 "calentamiento escénico",
                 "atención al cuerpo",
-                "disponibilidad y relación"
+                "disponibilidad y relación",
+                "Acción y reacción"
               ]
             },
             {
@@ -401,10 +504,19 @@ window.ND_PUBLISHED_DATA = {
               ]
             }
           ],
+          "videos": [
+            {
+              "title": "",
+              "type": "scene",
+              "url": "https://vimeo.com/1212801579?share=copy&fl=sv&fe=ci",
+              "description": "Fragmentos de cenas a partir das dinâmicas grupais"
+            }
+          ],
           "coordinator": {
             "name": "Nicholas Dieter",
             "role": "Director • Dramaturgo • Investigador",
-            "bio": "Nicholas conduce laboratorios de teatro, cine y formación artística orientados a presencia, imaginación dramática, investigación escénica y composición colectiva."
+            "bio": "Nicholas conduce laboratorios de teatro, cine y formación artística orientados a presencia, imaginación dramática, investigación escénica y composición colectiva.",
+            "photo": ""
           },
           "nextClass": {
             "dates": "8 • 15 • 22 • 29 de agosto",
@@ -416,7 +528,7 @@ window.ND_PUBLISHED_DATA = {
           "investment": {
             "cash": "Venha conhecer",
             "installments": "Valores e condições por WhatsApp",
-            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato e disponibilidade de vaga."
+            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento."
           },
           "registration": {
             "message": "Hola, Nicholas! Me interesa el taller Subpersonalidades. Me gustaría recibir más información sobre fechas, formato e inscripción."
@@ -430,8 +542,7 @@ window.ND_PUBLISHED_DATA = {
               "question": "¿El grupo es realmente reducido?",
               "answer": "Sí. El límite propuesto es de 12 participantes para preservar el acompañamiento y la calidad del intercambio."
             }
-          ],
-          "videos": []
+          ]
         },
         "en": {
           "title": "Subpersonalities",
@@ -492,7 +603,7 @@ window.ND_PUBLISHED_DATA = {
           "investment": {
             "cash": "Venha conhecer",
             "installments": "Valores e condições por WhatsApp",
-            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato e disponibilidade de vaga."
+            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento."
           },
           "registration": {
             "message": "Hello, Nicholas! I am interested in the Subpersonalities workshop. I would like to receive more information about dates, format and enrollment."
@@ -507,13 +618,20 @@ window.ND_PUBLISHED_DATA = {
               "answer": "Yes. The proposed limit is 12 participants to preserve guidance and quality of exchange."
             }
           ],
-          "videos": []
+          "videos": [
+            {
+              "title": "",
+              "type": "scene",
+              "url": "https://vimeo.com/1212801579?share=copy&fl=sv&fe=ci",
+              "description": "Fragmentos de cenas a partir das dinâmicas grupais"
+            }
+          ]
         }
       },
       "investment": {
         "cash": "Venha conhecer",
         "installments": "Valores e condições por WhatsApp",
-        "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato e disponibilidade de vaga."
+        "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento."
       },
       "coordinatorPhoto": "",
       "paymentLink": ""
