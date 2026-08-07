@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-07T19:47:59.244Z",
+  "exportedAt": "2026-08-07T19:49:12.159Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -455,7 +455,7 @@ window.ND_PUBLISHED_DATA = {
               "title": "",
               "type": "scene",
               "url": "https://vimeo.com/1212801579?share=copy&fl=sv&fe=ci",
-              "description": "Fragmentos de cenas a partir das dinâmicas grupais"
+              "description": "Fragmentos de cenas a partir das dinâmicas grupais no nosso CineLab (2026)"
             },
             {
               "title": "Ir embora assim (2025), Trailer",
