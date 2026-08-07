@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-07T13:49:53.860Z",
+  "exportedAt": "2026-08-07T13:51:24.255Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -382,7 +382,13 @@ window.ND_PUBLISHED_DATA = {
         "assets/oficina-figura-vermelho.png",
         "assets/uploads/2026-07-24/ddb4b3d686a77643142792b3.jpg",
         "assets/uploads/2026-07-24/83b14bf28b90ca524b8299a5.jpg",
-        "assets/uploads/2026-07-24/702304a05b99bef1136195ac.jpg"
+        "assets/uploads/2026-07-24/702304a05b99bef1136195ac.jpg",
+        "assets/uploads/2026-08-07/ef7d01f2ed4a49a95ac07ac3.jpg",
+        "assets/uploads/2026-08-07/c625eb5cbf9b9d9639c80770.jpg",
+        "assets/uploads/2026-08-07/a4d3ae167448350e0014671a.jpg",
+        "assets/uploads/2026-08-07/538ffbb73ff791924ce37092.jpg",
+        "assets/uploads/2026-08-07/4b9b37bf309f62748c704a06.jpg",
+        "assets/uploads/2026-08-07/359091d218495d2ceff596e3.jpg"
       ],
       "copy": {
         "pt": {
