@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-07T04:15:23.483Z",
+  "exportedAt": "2026-08-07T04:16:22.376Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -272,58 +272,6 @@ window.ND_PUBLISHED_DATA = {
     }
   },
   "workshops": [
-    {
-      "slug": "nova-oficina-2",
-      "status": "soon",
-      "cardImage": "assets/subpersonalidades-cartaz.png",
-      "heroImage": "assets/nicholas-dieter-nevoa.png",
-      "languages": {
-        "pt": "Português",
-        "es": "Portugués",
-        "en": "Portuguese"
-      },
-      "gallery": [],
-      "copy": {
-        "pt": {
-          "title": "Nova oficina",
-          "label": "Laboratório",
-          "headline": "Chamada da oficina",
-          "summary": "Descrição curta da oficina.",
-          "about": [],
-          "program": [],
-          "videos": [],
-          "coordinator": {
-            "name": "",
-            "role": "",
-            "bio": "",
-            "photo": ""
-          },
-          "nextClass": {
-            "dates": "",
-            "schedule": "",
-            "workload": "",
-            "location": "",
-            "statusText": "Em breve"
-          },
-          "investment": {
-            "cash": "",
-            "installments": "",
-            "notes": ""
-          },
-          "registration": {
-            "message": "Olá, Nicholas! Tenho interesse nesta oficina."
-          },
-          "faq": []
-        }
-      },
-      "coordinatorPhoto": "",
-      "paymentLink": "",
-      "investment": {
-        "cash": "",
-        "installments": "",
-        "notes": ""
-      }
-    },
     {
       "slug": "subpersonalidades",
       "status": "open",
@@ -635,6 +583,90 @@ window.ND_PUBLISHED_DATA = {
       },
       "coordinatorPhoto": "assets/uploads/2026-08-02/2202be2154f9a2ab8d5fd1e3.jpg",
       "paymentLink": ""
+    },
+    {
+      "slug": "nova-oficina-2",
+      "status": "soon",
+      "cardImage": "assets/subpersonalidades-cartaz.png",
+      "heroImage": "assets/nicholas-dieter-nevoa.png",
+      "languages": {
+        "pt": "Português",
+        "es": "Portugués",
+        "en": "Portuguese"
+      },
+      "gallery": [],
+      "copy": {
+        "pt": {
+          "title": "Nova oficina",
+          "label": "Laboratório",
+          "headline": "Chamada da oficina",
+          "summary": "Descrição curta da oficina.",
+          "about": [],
+          "program": [],
+          "videos": [],
+          "coordinator": {
+            "name": "",
+            "role": "",
+            "bio": "",
+            "photo": ""
+          },
+          "nextClass": {
+            "dates": "",
+            "schedule": "",
+            "workload": "",
+            "location": "",
+            "statusText": "Em breve"
+          },
+          "investment": {
+            "cash": "",
+            "installments": "",
+            "notes": ""
+          },
+          "registration": {
+            "message": "Olá, Nicholas! Tenho interesse nesta oficina."
+          },
+          "faq": []
+        },
+        "es": {
+          "title": "Nova oficina",
+          "label": "Laboratório",
+          "headline": "Chamada da oficina",
+          "summary": "Descrição curta da oficina.",
+          "about": [],
+          "program": [],
+          "videos": [],
+          "coordinator": {
+            "name": "",
+            "role": "",
+            "bio": "Nicholas Dieter es director teatral, dramaturgo, investigador y docente de la Universidad de Buenos Aires (UBA). Doctor en Sociología del Arte y Magíster en Dramaturgia, desarrolla investigaciones en la intersección entre el teatro, la antropología y los procesos de creación. Como autor y director, ha escrito y estrenado más de quince espectáculos teatrales y ha dirigido más de sesenta obras audiovisuales. Actualmente realiza un posdoctorado en la Universidad de São Paulo (USP), donde investiga las nuevas configuraciones del teatro documental y las prácticas contemporáneas de actuación.",
+            "photo": ""
+          },
+          "nextClass": {
+            "dates": "",
+            "schedule": "",
+            "workload": "",
+            "location": "",
+            "statusText": "Em breve"
+          },
+          "investment": {
+            "cash": "",
+            "installments": "",
+            "notes": ""
+          },
+          "registration": {
+            "message": "Olá, Nicholas! Tenho interesse nesta oficina."
+          },
+          "faq": []
+        }
+      },
+      "coordinatorPhoto": "",
+      "paymentLink": "",
+      "investment": {
+        "cash": "",
+        "installments": "",
+        "notes": ""
+      },
+      "accent": "#76d8e6"
     }
   ]
 };
