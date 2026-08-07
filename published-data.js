@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-07T13:36:42.730Z",
+  "exportedAt": "2026-08-07T13:49:53.860Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -18,7 +18,14 @@ window.ND_PUBLISHED_DATA = {
       "assets/uploads/2026-07-24/e572e7e5ad60250e70b3e38d.jpg",
       "assets/uploads/2026-07-24/cf9263ab5eb792f4bb7b2455.jpg",
       "assets/uploads/2026-07-24/6187d1a1456c8e2c0939dbbe.jpg",
-      "assets/uploads/2026-07-24/ed11e7b545cef6fbf59343d2.jpg"
+      "assets/uploads/2026-07-24/ed11e7b545cef6fbf59343d2.jpg",
+      "assets/uploads/2026-08-07/4cd284035c8cd26d619e17ce.jpg",
+      "assets/uploads/2026-08-07/ef7d01f2ed4a49a95ac07ac3.jpg",
+      "assets/uploads/2026-08-07/c625eb5cbf9b9d9639c80770.jpg",
+      "assets/uploads/2026-08-07/a4d3ae167448350e0014671a.jpg",
+      "assets/uploads/2026-08-07/538ffbb73ff791924ce37092.jpg",
+      "assets/uploads/2026-08-07/4b9b37bf309f62748c704a06.jpg",
+      "assets/uploads/2026-08-07/359091d218495d2ceff596e3.jpg"
     ],
     "copy": {
       "pt": {
@@ -273,6 +280,90 @@ window.ND_PUBLISHED_DATA = {
   },
   "workshops": [
     {
+      "slug": "nova-oficina-2",
+      "status": "soon",
+      "cardImage": "assets/subpersonalidades-cartaz.png",
+      "heroImage": "assets/nicholas-dieter-nevoa.png",
+      "languages": {
+        "pt": "Português",
+        "es": "Portugués",
+        "en": "Portuguese"
+      },
+      "gallery": [],
+      "copy": {
+        "pt": {
+          "title": "Nova oficina",
+          "label": "Laboratório",
+          "headline": "Chamada da oficina",
+          "summary": "Descrição curta da oficina.",
+          "about": [],
+          "program": [],
+          "videos": [],
+          "coordinator": {
+            "name": "",
+            "role": "",
+            "bio": "",
+            "photo": ""
+          },
+          "nextClass": {
+            "dates": "",
+            "schedule": "",
+            "workload": "",
+            "location": "",
+            "statusText": "Em breve"
+          },
+          "investment": {
+            "cash": "",
+            "installments": "",
+            "notes": ""
+          },
+          "registration": {
+            "message": "Olá, Nicholas! Tenho interesse nesta oficina."
+          },
+          "faq": []
+        },
+        "es": {
+          "title": "Nova oficina",
+          "label": "Laboratório",
+          "headline": "Chamada da oficina",
+          "summary": "Descrição curta da oficina.",
+          "about": [],
+          "program": [],
+          "videos": [],
+          "coordinator": {
+            "name": "",
+            "role": "",
+            "bio": "Nicholas Dieter es director teatral, dramaturgo, investigador y docente de la Universidad de Buenos Aires (UBA). Doctor en Sociología del Arte y Magíster en Dramaturgia, desarrolla investigaciones en la intersección entre el teatro, la antropología y los procesos de creación. Como autor y director, ha escrito y estrenado más de quince espectáculos teatrales y ha dirigido más de sesenta obras audiovisuales. Actualmente realiza un posdoctorado en la Universidad de São Paulo (USP), donde investiga las nuevas configuraciones del teatro documental y las prácticas contemporáneas de actuación.",
+            "photo": ""
+          },
+          "nextClass": {
+            "dates": "",
+            "schedule": "",
+            "workload": "",
+            "location": "",
+            "statusText": "Em breve"
+          },
+          "investment": {
+            "cash": "",
+            "installments": "",
+            "notes": ""
+          },
+          "registration": {
+            "message": "Olá, Nicholas! Tenho interesse nesta oficina."
+          },
+          "faq": []
+        }
+      },
+      "coordinatorPhoto": "",
+      "paymentLink": "",
+      "investment": {
+        "cash": "",
+        "installments": "",
+        "notes": ""
+      },
+      "accent": "#76d8e6"
+    },
+    {
       "slug": "subpersonalidades",
       "status": "open",
       "cardImage": "assets/subpersonalidades-cartaz.png",
@@ -367,7 +458,7 @@ window.ND_PUBLISHED_DATA = {
             "name": "Nicholas Dieter",
             "role": "Diretor • Dramaturgo • Pesquisador",
             "bio": "Nicholas Dieter é professor na Universidade de Buenos Aires. É mestre em dramaturgia pela Universidade Nacional das Artes, em Buenos Aires, e doutor em Sociologia da Arte pela Universidade de Buenos Aires, e graduado em Ciências Sociais na Universidade de São Paulo e em Cinema no Senac/SP. Atualmente é pós-doutorando na Universidade de São Paulo, no Centro de Artes Cênicas, onde é professor visitante.\nEstudou atuação na Escola de Teatro de Buenos Aires (2012-2015) e no Sportivo Teatral com Ricardo Bartis (2015-2019). Escreveu e/ou dirigiu inúmeras peças como Nada a ver (2015), Mal de arquivo (2016), Glória Onírica (2019), O casório (2020), Homens com ossos cheios de Barro (2021), A briga (2022), O relato (2023), Revezamento (2023), O diário de Ana Franco (2023), Lihuén (2023), Tio Vania (2024), Cenas no abismo (2025), Caim (2025), U(ru)bú Rei (2026), Acompanhantes (2026) e Santa Joana dos Matadouros (2026).\nSua produção audiovisual como roteirista e diretor conta com mais de sessenta curtametragens, entre eles Partir (2022), Se falamos de amor (2023), Satisfiz (2024), Ritinha (2024), Ir embora assim (2025), Desmanche (2025), Paria (2026), entre muitos outros. Em 2024 produziu e codirgiu a minisérie Melhor se queimar, (coprodução Brasil-Argentina) ganhadora do Festival Cannes Series.\nDesde 2024 se desempenha como professor no Teatro Escola Mario Persico em Sorocaba/SP onde oferece diversas oficinas como Técnica Meisner, Subpersonalidades, Performance, Shakespeare, Brecht, Atuação para Cinema (CineLab), entre outras. Em sua pesquisa de pós-doutorado na USP, no Centro de Artes Cênicas, com supervisão do prof. Sergio de Carvalho (Cia do Latão), pesquisando Novas configurações do teatro documental e novas formas de atuação no teatro pósdramático.",
-            "photo": ""
+            "photo": "assets/uploads/2026-08-02/2202be2154f9a2ab8d5fd1e3.jpg"
           },
           "nextClass": {
             "dates": "22 • 29 de agosto",
@@ -583,90 +674,6 @@ window.ND_PUBLISHED_DATA = {
       },
       "coordinatorPhoto": "assets/uploads/2026-08-02/2202be2154f9a2ab8d5fd1e3.jpg",
       "paymentLink": ""
-    },
-    {
-      "slug": "nova-oficina-2",
-      "status": "soon",
-      "cardImage": "assets/subpersonalidades-cartaz.png",
-      "heroImage": "assets/nicholas-dieter-nevoa.png",
-      "languages": {
-        "pt": "Português",
-        "es": "Portugués",
-        "en": "Portuguese"
-      },
-      "gallery": [],
-      "copy": {
-        "pt": {
-          "title": "Nova oficina",
-          "label": "Laboratório",
-          "headline": "Chamada da oficina",
-          "summary": "Descrição curta da oficina.",
-          "about": [],
-          "program": [],
-          "videos": [],
-          "coordinator": {
-            "name": "",
-            "role": "",
-            "bio": "",
-            "photo": ""
-          },
-          "nextClass": {
-            "dates": "",
-            "schedule": "",
-            "workload": "",
-            "location": "",
-            "statusText": "Em breve"
-          },
-          "investment": {
-            "cash": "",
-            "installments": "",
-            "notes": ""
-          },
-          "registration": {
-            "message": "Olá, Nicholas! Tenho interesse nesta oficina."
-          },
-          "faq": []
-        },
-        "es": {
-          "title": "Nova oficina",
-          "label": "Laboratório",
-          "headline": "Chamada da oficina",
-          "summary": "Descrição curta da oficina.",
-          "about": [],
-          "program": [],
-          "videos": [],
-          "coordinator": {
-            "name": "",
-            "role": "",
-            "bio": "Nicholas Dieter es director teatral, dramaturgo, investigador y docente de la Universidad de Buenos Aires (UBA). Doctor en Sociología del Arte y Magíster en Dramaturgia, desarrolla investigaciones en la intersección entre el teatro, la antropología y los procesos de creación. Como autor y director, ha escrito y estrenado más de quince espectáculos teatrales y ha dirigido más de sesenta obras audiovisuales. Actualmente realiza un posdoctorado en la Universidad de São Paulo (USP), donde investiga las nuevas configuraciones del teatro documental y las prácticas contemporáneas de actuación.",
-            "photo": ""
-          },
-          "nextClass": {
-            "dates": "",
-            "schedule": "",
-            "workload": "",
-            "location": "",
-            "statusText": "Em breve"
-          },
-          "investment": {
-            "cash": "",
-            "installments": "",
-            "notes": ""
-          },
-          "registration": {
-            "message": "Olá, Nicholas! Tenho interesse nesta oficina."
-          },
-          "faq": []
-        }
-      },
-      "coordinatorPhoto": "",
-      "paymentLink": "",
-      "investment": {
-        "cash": "",
-        "installments": "",
-        "notes": ""
-      },
-      "accent": "#76d8e6"
     }
   ]
 };
