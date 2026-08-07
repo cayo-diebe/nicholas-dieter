@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-07T15:00:47.530Z",
+  "exportedAt": "2026-08-07T15:31:38.993Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -524,45 +524,59 @@ window.ND_PUBLISHED_DATA = {
           ],
           "program": [
             {
-              "title": "Presencia y escucha",
+              "title": "Presencia: acción y reacción",
               "items": [
-                "calentamiento escénico",
-                "atención al cuerpo",
-                "disponibilidad y relación",
-                "Acción y reacción"
+                "Reconocimiento de mi máscara social dominante",
+                "Primeras subpersonalidades",
+                "Breves situaciones escénicas",
+                "Convergencia entre John Austin, Eric Morris y Sanford Meisner",
+                "El uso performativo del lenguaje y la situación social de la escena",
+                "Actuar sin representar: actuar es reaccionar",
+                "Impulso, honestidad y escucha activa"
               ]
             },
             {
-              "title": "Mapeo de subpersonalidades",
+              "title": "Mapeo de las subpersonalidades",
               "items": [
-                "impulsos internos",
-                "contradicciones",
-                "figuras emocionales y composición"
+                "Subpersonalidades principales y secundarias",
+                "Reconocimiento de mi mecanismo interno de acción y reacción",
+                "Deconstrucción de las máscaras sociales",
+                "Uso performativo de las subpersonalidades",
+                "Ego Aware versus Presencia (impulso, vulnerabilidad y memoria sensorial)"
               ]
             },
             {
               "title": "Imaginación dramática",
               "items": [
-                "situación",
-                "conflicto",
-                "imagen, memoria y acción"
+                "Expansión de los universos dramáticos",
+                "Subversión de las máscaras sociales como motor creativo",
+                "Empoderamiento dramático: actuamos con aquello que no se dice",
+                "Imaginario emocional",
+                "Ejercicios escénicos individuales"
               ]
             },
             {
-              "title": "Dinámicas colectivas",
+              "title": "Escenas en parejas",
               "items": [
-                "juego",
-                "contracena",
-                "escena breve y puesta en común"
+                "Partitura emocional versus improvisación",
+                "Expansión del mundo dramático versus vivencia ética de la escena",
+                "Performatividad emocional versus permeabilidad y comunicación",
+                "Devoluciones finales"
               ]
             }
           ],
           "videos": [
             {
-              "title": "",
+              "title": "Trailer de Irse así",
               "type": "scene",
-              "url": "https://vimeo.com/1212801579?share=copy&fl=sv&fe=ci",
-              "description": "Fragmentos de cenas a partir das dinâmicas grupais"
+              "url": "https://vimeo.com/1105957379?fl=tl&fe=ec",
+              "description": "Trailer de cortometraje premiado hecho a partir de las subpersonalidades"
+            },
+            {
+              "title": "Trailer de",
+              "type": "scene",
+              "url": "",
+              "description": ""
             }
           ],
           "coordinator": {
