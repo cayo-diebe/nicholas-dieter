@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-07T14:32:44.243Z",
+  "exportedAt": "2026-08-07T14:39:50.525Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -641,10 +641,19 @@ window.ND_PUBLISHED_DATA = {
               ]
             }
           ],
+          "videos": [
+            {
+              "title": "",
+              "type": "scene",
+              "url": "https://vimeo.com/1212801579?share=copy&fl=sv&fe=ci",
+              "description": "Fragmentos de cenas a partir das dinâmicas grupais"
+            }
+          ],
           "coordinator": {
             "name": "Nicholas Dieter",
             "role": "Director • Playwright • Researcher",
-            "bio": "Nicholas leads theater, film and artistic training labs centered on presence, dramatic imagination, scenic research and collective composition."
+            "bio": "Nicholas Dieter holds a Ph.D. in Social Sciences from the University of Buenos Aires (2015). He earned an M.A. in History and Memory from the National University of La Plata, Argentina (2013), and an M.A. in Dramaturgy from the National University of the Arts (Buenos Aires, 2021). He received his B.A. in Social Sciences from the University of São Paulo in 2005.\nSince 2017, he has been a faculty member in the Department of Sociology at the University of Buenos Aires. In 2024 and 2025, he served as a Visiting Professor at the University of São Paulo, in the Department of Sociology. He is currently pursuing postdoctoral research in the Department of Performing Arts at the University of São Paulo.\nSince 2014, his primary research has focused on theatrical practices in the cities of São Paulo and Buenos Aires. He also specializes in the Sociology of Art, stage directing, and dramaturgy, subjects on which he has taught numerous graduate seminars in recent years.",
+            "photo": "assets/uploads/2026-08-02/2202be2154f9a2ab8d5fd1e3.jpg"
           },
           "nextClass": {
             "dates": "August 8 • 15 • 22 • 29",
@@ -669,14 +678,6 @@ window.ND_PUBLISHED_DATA = {
             {
               "question": "Is the group really small?",
               "answer": "Yes. The proposed limit is 12 participants to preserve guidance and quality of exchange."
-            }
-          ],
-          "videos": [
-            {
-              "title": "",
-              "type": "scene",
-              "url": "https://vimeo.com/1212801579?share=copy&fl=sv&fe=ci",
-              "description": "Fragmentos de cenas a partir das dinâmicas grupais"
             }
           ]
         }
