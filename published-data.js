@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-07T14:39:50.525Z",
+  "exportedAt": "2026-08-07T14:41:12.121Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -603,9 +603,17 @@ window.ND_PUBLISHED_DATA = {
           "headline": "Emotional preparation, dramatic imagination and collective dynamics.",
           "summary": "A creation lab for investigating inner layers, presence and collective composition on stage.",
           "about": [
-            "Subpersonalities proposes a practical investigation into the forces, masks, impulses and voices that shape scenic presence.",
-            "The workshop combines emotional preparation, dramatic imagination, listening exercises and collective dynamics to develop scene material.",
-            "It is designed for artists, students and people interested in theater, film and performative creation processes."
+            "We offer a training program designed to develop emotional flexibility and expand your expressive repertoire.",
+            "Subpersonalities are expressive archetypes that emerge through an inner dialogue within each individual as a response to specific social and dramatic circumstances.",
+            "These archetypes, or subpersonalities, activate different rhetorical masks according to the dramatic context of our character. Some of the most significant subpersonalities include the Critic, the Victim, the Judge, the Warrior, the Seducer, the Wanderer, the Magical Child, the Hero, the Perfectionist, and the Vulnerable Child.",
+            "Working with subpersonalities helps actors access emotions and expressive states in a more direct and profound way, fostering a richer and more diverse creative process. Each mask manifests itself through the construction of an imaginative network of relationships on stage.",
+            "By deconstructing and strengthening our subpersonalities, we expand our ability to shape the inner conflicts, motivations, and desires of our characters. This contributes to the creation of more complex and multidimensional characters.",
+            "In this sense, working with subpersonalities also promotes an active and critical form of self-awareness.",
+            "Target audience: actors, artists, teachers, psychologists, and anyone interested in understanding the different inner voices that shape our emotional lives.",
+            "No previous experience in theatre is required. The laboratory uses acting techniques and biodrama practices to investigate our subpersonalities through live collective exercises.",
+            "A live Subpersonalities Laboratory designed to expand your emotional, creative, and relational repertoire.",
+            "Discover how different inner voices shape your emotions, relationships, and creativity.",
+            "Expand your emotional repertoire through live collective practices."
           ],
           "program": [
             {
