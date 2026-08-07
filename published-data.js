@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-07T04:16:22.376Z",
+  "exportedAt": "2026-08-07T13:36:42.730Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -42,7 +42,7 @@ window.ND_PUBLISHED_DATA = {
           "faqTitle": "Perguntas frequentes",
           "aboutKicker": "Sobre",
           "aboutTitle": "Pesquisa cênica com presença, escuta e composição.",
-          "aboutText": "Nicholas Dieter é diretor teatral, dramaturgo, pesquisador e docente da Universidad de Buenos Aires (UBA). Doutor em Sociologia da Arte e mestre em Dramaturgia, desenvolve pesquisas na intersecção entre teatro, antropologia e processos de criação. Como autor e diretor, escreveu e encenou mais de trinta espetáculos teatrais e dirigiu mais de sessenta obras audiovisuais. Atualmente realiza estágio de pós-doutorado na Universidade de São Paulo (USP), onde investiga novas configurações do teatro documental e das práticas de atuação contemporâneas.",
+          "aboutText": "Nicholas Dieter é professor na Universidade de Buenos Aires. É mestre em dramaturgia pela Universidade Nacional das Artes, em Buenos Aires (Argentina, 2022) e doutor em Sociologia da Arte pela Universidade de Buenos Aires, e graduado em Ciências Sociais na Universidade de São Paulo e em Cinema no Senac/SP. Atualmente é pós-doutorando na Universidade de São Paulo, no Centro de Artes Cênicas, onde é professor visitante.\nEstudou atuação na Escola de Teatro de Buenos Aires (2012-2015) e no Sportivo Teatral com Ricardo Bartis (2015-2019). Escreveu e/ou dirigiu inúmeras peças como Nada a ver (2015), Mal de arquivo (2016), Glória Onírica (2019), O casório (2020), Homens com ossos cheios de Barro (2021), A briga (2022), O relato (2023), Revezamento (2023), O diário de Ana Franco (2023), Lihuén (2023), Tio Vania (2024), Cenas no abismo (2025), Caim (2025), U(ru)bú Rei (2026), Acompanhantes (2026) e Janta Joana dos Matadouros (2026).\nSua produção audiovisual como roteirista e diretor conta com mais de sessenta curtametragens, entre eles Partir (2022), Se falamos de amor (2023), Satisfiz (2024), Ritinha (2024), Ir embora assim (2025), Desmanche (2025), Paria (2026), entre muitos outros. Em 2024 produziu e codirgiu a minisérie \"Melhor se queimar\", (coprodução Brasil-Argentina) ganhadora do Festival Cannes Series.\nDesde 2024 se desempenha como professor no Teatro Escola Mario Persico em Sorocaba/SP onde oferece diversas oficinas como Técnica Meisner, Subpersonalidades, Performance, Shakespeare, Brecht, Atuação para Cinema (CineLab), entre outras. Em sua pesquisa de pós-doutorado na USP, no Centro de Artes Cênicas, com supervisão do prof. Sergio de Carvalho (Cia do Latão), pesquisando Novas configurações do teatro documental e novas formas de atuação no teatro pósdramático.",
           "aboutInstagramLabel": "Nicholas Dieter",
           "footer": "Laboratórios de Teatro, Cinema, Pesquisa e Formação Artística.",
           "openWorkshop": "Abrir oficina",
