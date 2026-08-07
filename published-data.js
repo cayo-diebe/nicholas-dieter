@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-07T19:51:05.158Z",
+  "exportedAt": "2026-08-07T19:52:30.515Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -714,7 +714,7 @@ window.ND_PUBLISHED_DATA = {
         "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento. Você pode parcelar em até 12x pelo Mercado Pago."
       },
       "coordinatorPhoto": "assets/uploads/2026-08-02/2202be2154f9a2ab8d5fd1e3.jpg",
-      "paymentLink": ""
+      "paymentLink": "https://mpago.la/1zYgTXa"
     }
   ]
 };
