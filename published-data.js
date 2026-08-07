@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-07T14:01:24.806Z",
+  "exportedAt": "2026-08-07T14:04:43.981Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -474,7 +474,7 @@ window.ND_PUBLISHED_DATA = {
             "statusText": "Inscrições abertas"
           },
           "investment": {
-            "cash": "Venha conhecer",
+            "cash": "R$ 297,00",
             "installments": "Valores e condições por WhatsApp",
             "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento."
           },
@@ -674,12 +674,12 @@ window.ND_PUBLISHED_DATA = {
         }
       },
       "investment": {
-        "cash": "Venha conhecer",
+        "cash": "R$ 297,00",
         "installments": "Valores e condições por WhatsApp",
         "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento."
       },
       "coordinatorPhoto": "assets/uploads/2026-08-02/2202be2154f9a2ab8d5fd1e3.jpg",
-      "paymentLink": ""
+      "paymentLink": "https://mpago.la/1zYgTXa"
     }
   ]
 };
