@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-07T14:14:51.872Z",
+  "exportedAt": "2026-08-07T14:30:37.375Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -510,9 +510,17 @@ window.ND_PUBLISHED_DATA = {
           "headline": "Preparación emocional, imaginación dramática y dinámicas colectivas.",
           "summary": "Un laboratorio de creación para investigar capas internas, presencia y composición colectiva en escena.",
           "about": [
-            "Subpersonalidades propone una investigación práctica sobre fuerzas, máscaras, impulsos y voces que componen una presencia escénica.",
-            "El taller combina preparación emocional, imaginación dramática, ejercicios de escucha y dinámicas colectivas para desarrollar material de escena.",
-            "Está dirigido a artistas, estudiantes y personas interesadas en procesos de teatro, cine y creación performativa."
+            "Ofrecemos un entrenamiento para desarrollar la elasticidad emocional y el repertorio expresivo.",
+            "Las subpersonalidades son arquetipos expresivos que se manifiestan en un diálogo interno en cada persona como respuesta a determinadas circunstancias sociales y dramáticas.",
+            "Estos arquetipos o subpersonalidades ponen en juego distintas máscaras retóricas según el contexto dramático de nuestro personaje. Algunas de las subpersonalidades más relevantes son el crítico, la víctima, el juez, el guerrero, el seductor, el vagabundo, el niño mágico, el héroe, el perfeccionista y el niño vulnerable.",
+            "Este trabajo con las subpersonalidades ayuda a los actores a acceder a emociones y estados expresivos de manera más directa y profunda, favoreciendo un proceso creativo más rico y diverso. Cada máscara se manifiesta a través de la construcción de un imaginario de los vínculos en escena.",
+            "Al deconstruir y potenciar las subpersonalidades, ampliamos nuestra capacidad para componer los conflictos internos de los personajes, así como sus motivaciones y deseos. Esto contribuye a la creación de personajes más complejos y tridimensionales.",
+            "En este sentido, el trabajo con las subpersonalidades favorece una forma de autoconocimiento activa y crítica.",
+            "Público destinatario: actores, artistas, docentes, psicólogos y cualquier persona interesada en comprender las distintas voces que constituyen nuestra vida emocional.",
+            "No es necesario tener experiencia previa en teatro. El laboratorio utiliza herramientas de la actuación y del biodrama para investigar nuestras subpersonalidades a través de prácticas colectivas en vivo.",
+            "Un laboratorio en vivo de subpersonalidades para ampliar tu repertorio emocional, creativo y relacional.",
+            "Descubrí cómo las diferentes voces internas moldean tus emociones, vínculos y creatividad.",
+            "Ampliá tu repertorio emocional a través de prácticas colectivas en vivo."
           ],
           "program": [
             {
