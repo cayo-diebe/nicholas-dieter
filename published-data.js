@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-02T19:40:48.008Z",
+  "exportedAt": "2026-08-07T04:15:00.969Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -42,7 +42,7 @@ window.ND_PUBLISHED_DATA = {
           "faqTitle": "Perguntas frequentes",
           "aboutKicker": "Sobre",
           "aboutTitle": "Pesquisa cênica com presença, escuta e composição.",
-          "aboutText": "Nicholas Dieter é diretor teatral, dramaturgo, pesquisador e docente da Universidad de Buenos Aires (UBA). Doutor em Sociologia da Arte e mestre em Dramaturgia, desenvolve pesquisas na intersecção entre teatro, antropologia e processos de criação. Como autor e diretor, escreveu e encenou mais de quinze espetáculos teatrais e dirigiu mais de sessenta obras audiovisuais. Atualmente realiza estágio de pós-doutorado na Universidade de São Paulo (USP), onde investiga novas configurações do teatro documental e das práticas de atuação contemporâneas.",
+          "aboutText": "Nicholas Dieter é diretor teatral, dramaturgo, pesquisador e docente da Universidad de Buenos Aires (UBA). Doutor em Sociologia da Arte e mestre em Dramaturgia, desenvolve pesquisas na intersecção entre teatro, antropologia e processos de criação. Como autor e diretor, escreveu e encenou mais de trinta espetáculos teatrais e dirigiu mais de sessenta obras audiovisuais. Atualmente realiza estágio de pós-doutorado na Universidade de São Paulo (USP), onde investiga novas configurações do teatro documental e das práticas de atuação contemporâneas.",
           "aboutInstagramLabel": "Nicholas Dieter",
           "footer": "Laboratórios de Teatro, Cinema, Pesquisa e Formação Artística.",
           "openWorkshop": "Abrir oficina",
@@ -515,11 +515,11 @@ window.ND_PUBLISHED_DATA = {
           "coordinator": {
             "name": "Nicholas Dieter",
             "role": "Director • Dramaturgo • Investigador",
-            "bio": "Nicholas conduce laboratorios de teatro, cine y formación artística orientados a presencia, imaginación dramática, investigación escénica y composición colectiva.",
+            "bio": "Nicholas Dieter es director teatral, dramaturgo, investigador y docente de la Universidad de Buenos Aires (UBA). Doctor en Sociología del Arte y Magíster en Dramaturgia, desarrolla investigaciones en la intersección entre el teatro, la antropología y los procesos de creación. Como autor y director, ha escrito y estrenado más de quince espectáculos teatrales y ha dirigido más de sesenta obras audiovisuales. Actualmente realiza un posdoctorado en la Universidad de São Paulo (USP), donde investiga las nuevas configuraciones del teatro documental y las prácticas contemporáneas de actuación.",
             "photo": "assets/uploads/2026-08-02/2202be2154f9a2ab8d5fd1e3.jpg"
           },
           "nextClass": {
-            "dates": "8 • 15 • 22 • 29 de agosto",
+            "dates": "5 • 12 • 19 • 26 de septiembre",
             "schedule": "Sábados, 14h a 17h",
             "workload": "Carga horaria: 12 horas",
             "location": "En vivo, online por Meet",
@@ -531,7 +531,7 @@ window.ND_PUBLISHED_DATA = {
             "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento."
           },
           "registration": {
-            "message": "Hola, Nicholas! Me interesa el taller Subpersonalidades. Me gustaría recibir más información sobre fechas, formato e inscripción."
+            "message": "Hola, Nicholas! Me interesa el taller de Subpersonalidades. Me gustaría recibir más información sobre fechas, formato e inscripción."
           },
           "faq": [
             {
