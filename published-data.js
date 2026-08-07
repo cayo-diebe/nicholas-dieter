@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-07T19:49:12.159Z",
+  "exportedAt": "2026-08-07T19:51:05.158Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -480,7 +480,7 @@ window.ND_PUBLISHED_DATA = {
           "investment": {
             "cash": "R$ 297,00",
             "installments": "Valores e condições por WhatsApp",
-            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento."
+            "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento. Você pode parcelar em até 12x pelo Mercado Pago."
           },
           "registration": {
             "message": "Olá, Nicholas! Tenho interesse na oficina SUBPERSONALIDADES. Gostaria de receber mais informações."
@@ -711,7 +711,7 @@ window.ND_PUBLISHED_DATA = {
       "investment": {
         "cash": "R$ 297,00",
         "installments": "Valores e condições por WhatsApp",
-        "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento."
+        "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento. Você pode parcelar em até 12x pelo Mercado Pago."
       },
       "coordinatorPhoto": "assets/uploads/2026-08-02/2202be2154f9a2ab8d5fd1e3.jpg",
       "paymentLink": ""
