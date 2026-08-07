@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-07T14:30:37.375Z",
+  "exportedAt": "2026-08-07T14:32:44.243Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -508,7 +508,7 @@ window.ND_PUBLISHED_DATA = {
           "title": "Subpersonalidades",
           "label": "Laboratorio Intensivo",
           "headline": "Preparación emocional, imaginación dramática y dinámicas colectivas.",
-          "summary": "Un laboratorio de creación para investigar capas internas, presencia y composición colectiva en escena.",
+          "summary": "Un laboratorio de investigación y autoconocimiento de nuestras máscaras sociales y su economía afectiva.",
           "about": [
             "Ofrecemos un entrenamiento para desarrollar la elasticidad emocional y el repertorio expresivo.",
             "Las subpersonalidades son arquetipos expresivos que se manifiestan en un diálogo interno en cada persona como respuesta a determinadas circunstancias sociales y dramáticas.",
