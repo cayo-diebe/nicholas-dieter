@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-07T14:41:12.121Z",
+  "exportedAt": "2026-08-07T15:00:47.530Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -411,7 +411,7 @@ window.ND_PUBLISHED_DATA = {
           ],
           "program": [
             {
-              "title": "Módulo 1 - Presença: Ação e reação",
+              "title": "Presença: Ação e reação",
               "items": [
                 "Reconhecendo minha máscara social dominante",
                 "Primeiras subpersonalidades",
