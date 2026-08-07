@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-07T13:51:24.255Z",
+  "exportedAt": "2026-08-07T13:59:45.580Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -467,9 +467,9 @@ window.ND_PUBLISHED_DATA = {
             "photo": "assets/uploads/2026-08-02/2202be2154f9a2ab8d5fd1e3.jpg"
           },
           "nextClass": {
-            "dates": "22 • 29 de agosto",
-            "schedule": "Sábados, 14h às 18h",
-            "workload": "Carga horária: 8 horas",
+            "dates": "5 • 12 • 19 • 26 de setembro",
+            "schedule": "Sábados, 14h às 17h",
+            "workload": "Carga horária: 12 horas",
             "location": "Ao vivo, online pelo Meet",
             "statusText": "Inscrições abertas"
           },
