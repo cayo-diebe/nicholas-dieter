@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-07T19:57:28.153Z",
+  "exportedAt": "2026-08-07T20:00:34.382Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -366,7 +366,7 @@ window.ND_PUBLISHED_DATA = {
     {
       "slug": "subpersonalidades",
       "status": "open",
-      "cardImage": "assets/subpersonalidades-cartaz.png",
+      "cardImage": "assets/uploads/2026-08-07/065df17d9f1b934745d04393.jpg",
       "heroImage": "assets/uploads/2026-08-07/065df17d9f1b934745d04393.jpg",
       "accent": "#76d8e6",
       "languages": {
