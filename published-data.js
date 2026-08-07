@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-07T15:31:38.993Z",
+  "exportedAt": "2026-08-07T19:39:08.864Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -375,7 +375,6 @@ window.ND_PUBLISHED_DATA = {
         "en": "Portuguese"
       },
       "gallery": [
-        "assets/oficina-leitura-palco.png",
         "assets/oficina-mesa-cena.png",
         "assets/oficina-sofa-movimento.png",
         "assets/oficina-mesa-publico.png",
@@ -458,6 +457,12 @@ window.ND_PUBLISHED_DATA = {
               "type": "scene",
               "url": "https://vimeo.com/1212801579?share=copy&fl=sv&fe=ci",
               "description": "Fragmentos de cenas a partir das dinâmicas grupais"
+            },
+            {
+              "title": "Ir embora assim (2025), Trailer",
+              "type": "scene",
+              "url": "https://vimeo.com/1105957379?fl=tl&fe=ec",
+              "description": "Filme feito com base na pesquisa sobre as subpersonalidades"
             }
           ],
           "coordinator": {
@@ -710,7 +715,7 @@ window.ND_PUBLISHED_DATA = {
         "notes": "Turma reduzida a 12 participantes. A inscrição é confirmada após contato, disponibilidade de vaga e pagamento."
       },
       "coordinatorPhoto": "assets/uploads/2026-08-02/2202be2154f9a2ab8d5fd1e3.jpg",
-      "paymentLink": "https://mpago.la/1zYgTXa"
+      "paymentLink": ""
     }
   ]
 };
