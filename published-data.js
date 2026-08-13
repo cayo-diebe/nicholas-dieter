@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-13T03:47:24.460Z",
+  "exportedAt": "2026-08-13T03:51:50.460Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -733,9 +733,9 @@ window.ND_PUBLISHED_DATA = {
             "statusText": "Em breve"
           },
           "investment": {
-            "cash": "",
+            "cash": "R$ 140,00",
             "installments": "",
-            "notes": ""
+            "notes": "São apenas 12 vagas"
           },
           "registration": {
             "message": "Olá, Nicholas! Tenho interesse nesta oficina."
@@ -780,11 +780,11 @@ window.ND_PUBLISHED_DATA = {
         }
       },
       "coordinatorPhoto": "assets/uploads/2026-08-13/2202be2154f9a2ab8d5fd1e3.jpg",
-      "paymentLink": "",
+      "paymentLink": "https://mpago.la/17wgdN1",
       "investment": {
-        "cash": "",
+        "cash": "R$ 140,00",
         "installments": "",
-        "notes": ""
+        "notes": "São apenas 12 vagas"
       },
       "accent": "#76d8e6"
     }
