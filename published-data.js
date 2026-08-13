@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-13T03:51:50.460Z",
+  "exportedAt": "2026-08-13T03:53:38.972Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -726,11 +726,11 @@ window.ND_PUBLISHED_DATA = {
             "photo": "assets/uploads/2026-08-13/2202be2154f9a2ab8d5fd1e3.jpg"
           },
           "nextClass": {
-            "dates": "",
-            "schedule": "",
-            "workload": "",
-            "location": "",
-            "statusText": "Em breve"
+            "dates": "Começa dia 9 de setembro",
+            "schedule": "Quartas feiras, das 19 às 22h",
+            "workload": "12 horas mensais",
+            "location": "Presencial: no Teatro Escola Mario Persico",
+            "statusText": "Inscrições abertas"
           },
           "investment": {
             "cash": "R$ 140,00",
