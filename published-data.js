@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-13T03:31:38.855Z",
+  "exportedAt": "2026-08-13T03:32:28.333Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -636,7 +636,7 @@ window.ND_PUBLISHED_DATA = {
       "slug": "nova-oficina-2",
       "status": "open",
       "cardImage": "assets/uploads/2026-08-13/dca7e4fab52a8c57b220273f.jpg",
-      "heroImage": "assets/uploads/2026-08-13/77648a26517a1c7e28ab0509.jpg",
+      "heroImage": "assets/uploads/2026-08-13/dca7e4fab52a8c57b220273f.jpg",
       "languages": {
         "pt": "Português",
         "es": "Portugués",
