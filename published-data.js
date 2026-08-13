@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-07T20:06:45.951Z",
+  "exportedAt": "2026-08-13T02:53:06.219Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -279,90 +279,6 @@ window.ND_PUBLISHED_DATA = {
     }
   },
   "workshops": [
-    {
-      "slug": "nova-oficina-2",
-      "status": "soon",
-      "cardImage": "assets/subpersonalidades-cartaz.png",
-      "heroImage": "assets/nicholas-dieter-nevoa.png",
-      "languages": {
-        "pt": "Português",
-        "es": "Portugués",
-        "en": "Portuguese"
-      },
-      "gallery": [],
-      "copy": {
-        "pt": {
-          "title": "Nova oficina",
-          "label": "Laboratório",
-          "headline": "Chamada da oficina",
-          "summary": "Descrição curta da oficina.",
-          "about": [],
-          "program": [],
-          "videos": [],
-          "coordinator": {
-            "name": "",
-            "role": "",
-            "bio": "",
-            "photo": ""
-          },
-          "nextClass": {
-            "dates": "",
-            "schedule": "",
-            "workload": "",
-            "location": "",
-            "statusText": "Em breve"
-          },
-          "investment": {
-            "cash": "",
-            "installments": "",
-            "notes": ""
-          },
-          "registration": {
-            "message": "Olá, Nicholas! Tenho interesse nesta oficina."
-          },
-          "faq": []
-        },
-        "es": {
-          "title": "Nova oficina",
-          "label": "Laboratório",
-          "headline": "Chamada da oficina",
-          "summary": "Descrição curta da oficina.",
-          "about": [],
-          "program": [],
-          "videos": [],
-          "coordinator": {
-            "name": "",
-            "role": "",
-            "bio": "Nicholas Dieter es director teatral, dramaturgo, investigador y docente de la Universidad de Buenos Aires (UBA). Doctor en Sociología del Arte y Magíster en Dramaturgia, desarrolla investigaciones en la intersección entre el teatro, la antropología y los procesos de creación. Como autor y director, ha escrito y estrenado más de quince espectáculos teatrales y ha dirigido más de sesenta obras audiovisuales. Actualmente realiza un posdoctorado en la Universidad de São Paulo (USP), donde investiga las nuevas configuraciones del teatro documental y las prácticas contemporáneas de actuación.",
-            "photo": ""
-          },
-          "nextClass": {
-            "dates": "",
-            "schedule": "",
-            "workload": "",
-            "location": "",
-            "statusText": "Em breve"
-          },
-          "investment": {
-            "cash": "",
-            "installments": "",
-            "notes": ""
-          },
-          "registration": {
-            "message": "Olá, Nicholas! Tenho interesse nesta oficina."
-          },
-          "faq": []
-        }
-      },
-      "coordinatorPhoto": "",
-      "paymentLink": "",
-      "investment": {
-        "cash": "",
-        "installments": "",
-        "notes": ""
-      },
-      "accent": "#76d8e6"
-    },
     {
       "slug": "subpersonalidades",
       "status": "open",
@@ -715,6 +631,102 @@ window.ND_PUBLISHED_DATA = {
       },
       "coordinatorPhoto": "assets/uploads/2026-08-02/2202be2154f9a2ab8d5fd1e3.jpg",
       "paymentLink": "https://mpago.la/1zYgTXa"
+    },
+    {
+      "slug": "nova-oficina-2",
+      "status": "open",
+      "cardImage": "assets/subpersonalidades-cartaz.png",
+      "heroImage": "assets/nicholas-dieter-nevoa.png",
+      "languages": {
+        "pt": "Português",
+        "es": "Portugués",
+        "en": "Portuguese"
+      },
+      "gallery": [
+        "assets/uploads/2026-08-13/77648a26517a1c7e28ab0509.jpg"
+      ],
+      "copy": {
+        "pt": {
+          "title": "Atuação para Cinema",
+          "label": "Laboratório extensivo presencial",
+          "headline": "Chamada da oficina",
+          "summary": "Treinamento em atuação para atores em cinema",
+          "about": [
+            "CINE LAB 2026 – Quinta edição",
+            "A oficina de atuação para cinema procura ser um laboratório de treinamento e experimentação para atores que tenham interesse em se aprimorar na linguajem audiovisual.",
+            "Numa primeira etapa realizaremos um intensivo treinamento teatral a partir dos ensinamentos de mestres como Stella Adler, Stanford Meisner, Willian Esper e Ivana Chubbuck. A partir de exercícios que favorecem uma atuação “não representativa”, criaremos cenas inéditas que serão filmadas e comentadas em cada encontro.",
+            "Pensamos a atuação em cinema como “honesta” e \"não representativa”. Articulando diferentes níveis de trânsito emocional, buscamos criar estados expressivos de maneira orgânica e através de procedimentos concretos.",
+            "Na segunda etapa construiremos cenas mais complexas com situações dramáticas que implicam pelo menos três planos cinematográficos buscando aprimorar o vínculo do ator com o espaço, os outros atores da cena e as circunstâncias dramáticas.",
+            "Na terceira e última etapa vamos desenvolver em pequenos grupos três cenas mais complexas que serão um curta-metragem experimental.",
+            "Onde: Teatro Escola Mário Pérsico, na Rua Coronel Cavalheiros, 74, Sorocaba-Centro.",
+            "Quando? Às quartas feiras, de 19 a 22hs",
+            "Inicio: 9 de setembro de 2026."
+          ],
+          "program": [],
+          "videos": [],
+          "coordinator": {
+            "name": "",
+            "role": "",
+            "bio": "",
+            "photo": ""
+          },
+          "nextClass": {
+            "dates": "",
+            "schedule": "",
+            "workload": "",
+            "location": "",
+            "statusText": "Em breve"
+          },
+          "investment": {
+            "cash": "",
+            "installments": "",
+            "notes": ""
+          },
+          "registration": {
+            "message": "Olá, Nicholas! Tenho interesse nesta oficina."
+          },
+          "faq": []
+        },
+        "es": {
+          "title": "Nova oficina",
+          "label": "Laboratório",
+          "headline": "Chamada da oficina",
+          "summary": "Descrição curta da oficina.",
+          "about": [],
+          "program": [],
+          "videos": [],
+          "coordinator": {
+            "name": "",
+            "role": "",
+            "bio": "Nicholas Dieter es director teatral, dramaturgo, investigador y docente de la Universidad de Buenos Aires (UBA). Doctor en Sociología del Arte y Magíster en Dramaturgia, desarrolla investigaciones en la intersección entre el teatro, la antropología y los procesos de creación. Como autor y director, ha escrito y estrenado más de quince espectáculos teatrales y ha dirigido más de sesenta obras audiovisuales. Actualmente realiza un posdoctorado en la Universidad de São Paulo (USP), donde investiga las nuevas configuraciones del teatro documental y las prácticas contemporáneas de actuación.",
+            "photo": ""
+          },
+          "nextClass": {
+            "dates": "",
+            "schedule": "",
+            "workload": "",
+            "location": "",
+            "statusText": "Em breve"
+          },
+          "investment": {
+            "cash": "",
+            "installments": "",
+            "notes": ""
+          },
+          "registration": {
+            "message": "Olá, Nicholas! Tenho interesse nesta oficina."
+          },
+          "faq": []
+        }
+      },
+      "coordinatorPhoto": "",
+      "paymentLink": "",
+      "investment": {
+        "cash": "",
+        "installments": "",
+        "notes": ""
+      },
+      "accent": "#76d8e6"
     }
   ]
 };
