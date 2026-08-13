@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-13T03:12:38.541Z",
+  "exportedAt": "2026-08-13T03:23:32.786Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -279,144 +279,6 @@ window.ND_PUBLISHED_DATA = {
     }
   },
   "workshops": [
-    {
-      "slug": "nova-oficina-2",
-      "status": "open",
-      "cardImage": "assets/subpersonalidades-cartaz.png",
-      "heroImage": "assets/nicholas-dieter-nevoa.png",
-      "languages": {
-        "pt": "Português",
-        "es": "Portugués",
-        "en": "Portuguese"
-      },
-      "gallery": [
-        "assets/uploads/2026-08-13/77648a26517a1c7e28ab0509.jpg"
-      ],
-      "copy": {
-        "pt": {
-          "title": "Atuação para Cinema",
-          "label": "Laboratório extensivo presencial",
-          "headline": "Chamada da oficina",
-          "summary": "Treinamento em atuação para atores em cinema",
-          "about": [
-            "CINE LAB 2026 – Quinta edição",
-            "A oficina de atuação para cinema procura ser um laboratório de treinamento e experimentação para atores que tenham interesse em se aprimorar na linguajem audiovisual.",
-            "Numa primeira etapa realizaremos um intensivo treinamento teatral a partir dos ensinamentos de mestres como Stella Adler, Stanford Meisner, Willian Esper e Ivana Chubbuck. A partir de exercícios que favorecem uma atuação “não representativa”, criaremos cenas inéditas que serão filmadas e comentadas em cada encontro.",
-            "Pensamos a atuação em cinema como “honesta” e \"não representativa”. Articulando diferentes níveis de trânsito emocional, buscamos criar estados expressivos de maneira orgânica e através de procedimentos concretos.",
-            "Na segunda etapa construiremos cenas mais complexas com situações dramáticas que implicam pelo menos três planos cinematográficos buscando aprimorar o vínculo do ator com o espaço, os outros atores da cena e as circunstâncias dramáticas.",
-            "Na terceira e última etapa vamos desenvolver em pequenos grupos três cenas mais complexas que serão um curta-metragem experimental.",
-            "Onde: Teatro Escola Mário Pérsico, na Rua Coronel Cavalheiros, 74, Sorocaba-Centro.",
-            "Quando? Às quartas feiras, de 19 a 22hs",
-            "Inicio: 9 de setembro de 2026."
-          ],
-          "program": [
-            {
-              "title": "Módulo 1 - Treinamento",
-              "items": [
-                "Stanford Meisner: Repetição",
-                "Preparação emocional",
-                "Ações físicas",
-                "Objetivos ocultos"
-              ]
-            },
-            {
-              "title": "Módulo 2 - Gravação de cenas",
-              "items": [
-                "Improvisação a partir de exercícios",
-                "Dramaturgia de estados expressivos",
-                "Território poético",
-                "Dispositivo em cena"
-              ]
-            },
-            {
-              "title": "Módulo 3 - Elaboração de curtametragens",
-              "items": [
-                "Leitura de textos",
-                "Ensaios",
-                "Visita e ensaios na locação",
-                "Gravação"
-              ]
-            },
-            {
-              "title": "Módulo 4 - Mostra de curtas",
-              "items": [
-                "Apresentação aberta de curtas",
-                "Discussão final",
-                "Devoluções individuais dos processos",
-                "Disponibilização dos materiais"
-              ]
-            }
-          ],
-          "videos": [],
-          "coordinator": {
-            "name": "",
-            "role": "",
-            "bio": "Nicholas Dieter é professor na Universidade de Buenos Aires. É mestre em dramaturgia pela Universidade Nacional das Artes, em Buenos Aires, doutor em Sociologia da Arte pela Universidade de Buenos Aires, e graduado em Ciências Sociais na Universidade de São Paulo e em Cinema no Senac/SP. Atualmente é pós-doutorando na Universidade de São Paulo, no Centro de Artes Cênicas, onde é professor visitante.\nEstudou atuação na Escola de Teatro de Buenos Aires (2012-2015) e no Sportivo Teatral com Ricardo Bartis (2015-2019). Escreveu e/ou dirigiu inúmeras peças como Nada a ver (2015), Mal de arquivo (2016), Glória Onírica (2019), O casório (2020), Homens com ossos cheios de Barro (2021), A briga (2022), O relato (2023), Revezamento (2023), O diário de Ana Franco (2023), Lihuén (2023), Tio Vania (2024), Cenas no abismo (2025), Caim (2025), U(ru)bú Rei (2026), Acompanhantes (2026) e Santa Joana dos Matadouros (2026).\nSua produção audiovisual como roteirista e diretor conta com mais de sessenta curtametragens, entre eles Partir (2022), Se falamos de amor (2023), Satisfiz (2024), Ritinha (2024), Ir embora assim (2025), Desmanche (2025), Paria (2026), entre muitos outros. Em 2024 produziu e codirgiu a minisérie Melhor se queimar, (coprodução Brasil-Argentina) ganhadora do Festival Cannes Series.\nDesde 2024 se desempenha como professor no Teatro Escola Mario Persico em Sorocaba/SP onde oferece diversas oficinas como Técnica Meisner, Subpersonalidades, Performance, Shakespeare, Brecht, Atuação para Cinema (CineLab), entre outras. Em sua pesquisa de pós-doutorado na USP, no Centro de Artes Cênicas, conta com a supervisão do prof. Sergio de Carvalho (Cia do Latão), pesquisando novas configurações do teatro documental e novas formas de atuação no teatro pósdramático.",
-            "photo": "assets/uploads/2026-08-13/2202be2154f9a2ab8d5fd1e3.jpg"
-          },
-          "nextClass": {
-            "dates": "",
-            "schedule": "",
-            "workload": "",
-            "location": "",
-            "statusText": "Em breve"
-          },
-          "investment": {
-            "cash": "",
-            "installments": "",
-            "notes": ""
-          },
-          "registration": {
-            "message": "Olá, Nicholas! Tenho interesse nesta oficina."
-          },
-          "faq": [
-            {
-              "question": "A oficina de cinema é presencial?",
-              "answer": "Sim, em Sorocaba. Nos reunimos no Teatro Escola Mario Persico"
-            }
-          ]
-        },
-        "es": {
-          "title": "Nova oficina",
-          "label": "Laboratório",
-          "headline": "Chamada da oficina",
-          "summary": "Descrição curta da oficina.",
-          "about": [],
-          "program": [],
-          "videos": [],
-          "coordinator": {
-            "name": "",
-            "role": "",
-            "bio": "Nicholas Dieter es director teatral, dramaturgo, investigador y docente de la Universidad de Buenos Aires (UBA). Doctor en Sociología del Arte y Magíster en Dramaturgia, desarrolla investigaciones en la intersección entre el teatro, la antropología y los procesos de creación. Como autor y director, ha escrito y estrenado más de quince espectáculos teatrales y ha dirigido más de sesenta obras audiovisuales. Actualmente realiza un posdoctorado en la Universidad de São Paulo (USP), donde investiga las nuevas configuraciones del teatro documental y las prácticas contemporáneas de actuación.",
-            "photo": ""
-          },
-          "nextClass": {
-            "dates": "",
-            "schedule": "",
-            "workload": "",
-            "location": "",
-            "statusText": "Em breve"
-          },
-          "investment": {
-            "cash": "",
-            "installments": "",
-            "notes": ""
-          },
-          "registration": {
-            "message": "Olá, Nicholas! Tenho interesse nesta oficina."
-          },
-          "faq": []
-        }
-      },
-      "coordinatorPhoto": "assets/uploads/2026-08-13/2202be2154f9a2ab8d5fd1e3.jpg",
-      "paymentLink": "",
-      "investment": {
-        "cash": "",
-        "installments": "",
-        "notes": ""
-      },
-      "accent": "#76d8e6"
-    },
     {
       "slug": "subpersonalidades",
       "status": "open",
@@ -769,6 +631,162 @@ window.ND_PUBLISHED_DATA = {
       },
       "coordinatorPhoto": "assets/uploads/2026-08-02/2202be2154f9a2ab8d5fd1e3.jpg",
       "paymentLink": "https://mpago.la/1zYgTXa"
+    },
+    {
+      "slug": "nova-oficina-2",
+      "status": "open",
+      "cardImage": "assets/uploads/2026-08-13/77648a26517a1c7e28ab0509.jpg",
+      "heroImage": "assets/uploads/2026-08-13/77648a26517a1c7e28ab0509.jpg",
+      "languages": {
+        "pt": "Português",
+        "es": "Portugués",
+        "en": "Portuguese"
+      },
+      "gallery": [
+        "assets/uploads/2026-08-13/34778814125dd87058817a78.jpg",
+        "assets/uploads/2026-08-13/d913b04d2fc962decfe23c8e.jpg",
+        "assets/uploads/2026-08-13/e9f84a5c27864c9916fd8700.jpg",
+        "assets/uploads/2026-08-13/116822b43c513428befbb3c3.jpg",
+        "assets/uploads/2026-08-13/69af11b9922df106663bf5f3.jpg",
+        "assets/uploads/2026-08-13/acaf32e31ea27a5bb71ee7e4.jpg",
+        "assets/uploads/2026-08-13/597c3e21fc7d975c514e1187.jpg",
+        "assets/uploads/2026-08-13/0b5c8fa3d133cabc5288a234.jpg",
+        "assets/uploads/2026-08-13/2996ddce76b1dd8e70157b71.jpg",
+        "assets/uploads/2026-08-13/853ca105e574759e59254f0f.jpg",
+        "assets/uploads/2026-08-13/3d15ce1f2df9c4fa8a633dd8.jpg",
+        "assets/uploads/2026-08-13/401e918f36599c950b08d963.jpg",
+        "assets/uploads/2026-08-13/590a4a63389f1afb4ccb0342.jpg",
+        "assets/uploads/2026-08-13/be3d68718ee8c915cb8d10e3.jpg",
+        "assets/uploads/2026-08-13/5db9af95f72de11101a56570.jpg",
+        "assets/uploads/2026-08-13/691550494a15ce8fb84aeb79.jpg",
+        "assets/uploads/2026-08-13/d2915aaa64d150ea91a322b0.jpg",
+        "assets/uploads/2026-08-13/679eb9a8aba02fe6b9669d19.jpg",
+        "assets/uploads/2026-08-13/b12481285dda0ab53ef1c087.jpg"
+      ],
+      "copy": {
+        "pt": {
+          "title": "Atuação para Cinema",
+          "label": "Laboratório extensivo presencial",
+          "headline": "Chamada da oficina",
+          "summary": "Treinamento em atuação para atores em cinema",
+          "about": [
+            "CINE LAB 2026 – Quinta edição",
+            "A oficina de atuação para cinema procura ser um laboratório de treinamento e experimentação para atores que tenham interesse em se aprimorar na linguajem audiovisual.",
+            "Numa primeira etapa realizaremos um intensivo treinamento teatral a partir dos ensinamentos de mestres como Stella Adler, Stanford Meisner, Willian Esper e Ivana Chubbuck. A partir de exercícios que favorecem uma atuação “não representativa”, criaremos cenas inéditas que serão filmadas e comentadas em cada encontro.",
+            "Pensamos a atuação em cinema como “honesta” e \"não representativa”. Articulando diferentes níveis de trânsito emocional, buscamos criar estados expressivos de maneira orgânica e através de procedimentos concretos.",
+            "Na segunda etapa construiremos cenas mais complexas com situações dramáticas que implicam pelo menos três planos cinematográficos buscando aprimorar o vínculo do ator com o espaço, os outros atores da cena e as circunstâncias dramáticas.",
+            "Na terceira e última etapa vamos desenvolver em pequenos grupos três cenas mais complexas que serão um curta-metragem experimental.",
+            "Onde: Teatro Escola Mário Pérsico, na Rua Coronel Cavalheiros, 74, Sorocaba-Centro.",
+            "Quando? Às quartas feiras, de 19 a 22hs",
+            "Inicio: 9 de setembro de 2026."
+          ],
+          "program": [
+            {
+              "title": "Módulo 1 - Treinamento",
+              "items": [
+                "Stanford Meisner: Repetição",
+                "Preparação emocional",
+                "Ações físicas",
+                "Objetivos ocultos"
+              ]
+            },
+            {
+              "title": "Módulo 2 - Gravação de cenas",
+              "items": [
+                "Improvisação a partir de exercícios",
+                "Dramaturgia de estados expressivos",
+                "Território poético",
+                "Dispositivo em cena"
+              ]
+            },
+            {
+              "title": "Módulo 3 - Elaboração de curtametragens",
+              "items": [
+                "Leitura de textos",
+                "Ensaios",
+                "Visita e ensaios na locação",
+                "Gravação"
+              ]
+            },
+            {
+              "title": "Módulo 4 - Mostra de curtas",
+              "items": [
+                "Apresentação aberta de curtas",
+                "Discussão final",
+                "Devoluções individuais dos processos",
+                "Disponibilização dos materiais"
+              ]
+            }
+          ],
+          "videos": [],
+          "coordinator": {
+            "name": "",
+            "role": "",
+            "bio": "Nicholas Dieter é professor na Universidade de Buenos Aires. É mestre em dramaturgia pela Universidade Nacional das Artes, em Buenos Aires, doutor em Sociologia da Arte pela Universidade de Buenos Aires, e graduado em Ciências Sociais na Universidade de São Paulo e em Cinema no Senac/SP. Atualmente é pós-doutorando na Universidade de São Paulo, no Centro de Artes Cênicas, onde é professor visitante.\nEstudou atuação na Escola de Teatro de Buenos Aires (2012-2015) e no Sportivo Teatral com Ricardo Bartis (2015-2019). Escreveu e/ou dirigiu inúmeras peças como Nada a ver (2015), Mal de arquivo (2016), Glória Onírica (2019), O casório (2020), Homens com ossos cheios de Barro (2021), A briga (2022), O relato (2023), Revezamento (2023), O diário de Ana Franco (2023), Lihuén (2023), Tio Vania (2024), Cenas no abismo (2025), Caim (2025), U(ru)bú Rei (2026), Acompanhantes (2026) e Santa Joana dos Matadouros (2026).\nSua produção audiovisual como roteirista e diretor conta com mais de sessenta curtametragens, entre eles Partir (2022), Se falamos de amor (2023), Satisfiz (2024), Ritinha (2024), Ir embora assim (2025), Desmanche (2025), Paria (2026), entre muitos outros. Em 2024 produziu e codirgiu a minisérie Melhor se queimar, (coprodução Brasil-Argentina) ganhadora do Festival Cannes Series.\nDesde 2024 se desempenha como professor no Teatro Escola Mario Persico em Sorocaba/SP onde oferece diversas oficinas como Técnica Meisner, Subpersonalidades, Performance, Shakespeare, Brecht, Atuação para Cinema (CineLab), entre outras. Em sua pesquisa de pós-doutorado na USP, no Centro de Artes Cênicas, conta com a supervisão do prof. Sergio de Carvalho (Cia do Latão), pesquisando novas configurações do teatro documental e novas formas de atuação no teatro pósdramático.",
+            "photo": "assets/uploads/2026-08-13/2202be2154f9a2ab8d5fd1e3.jpg"
+          },
+          "nextClass": {
+            "dates": "",
+            "schedule": "",
+            "workload": "",
+            "location": "",
+            "statusText": "Em breve"
+          },
+          "investment": {
+            "cash": "",
+            "installments": "",
+            "notes": ""
+          },
+          "registration": {
+            "message": "Olá, Nicholas! Tenho interesse nesta oficina."
+          },
+          "faq": [
+            {
+              "question": "A oficina de cinema é presencial?",
+              "answer": "Sim, em Sorocaba. Nos reunimos no Teatro Escola Mario Persico"
+            }
+          ]
+        },
+        "es": {
+          "title": "Nova oficina",
+          "label": "Laboratório",
+          "headline": "Chamada da oficina",
+          "summary": "Descrição curta da oficina.",
+          "about": [],
+          "program": [],
+          "videos": [],
+          "coordinator": {
+            "name": "",
+            "role": "",
+            "bio": "Nicholas Dieter es director teatral, dramaturgo, investigador y docente de la Universidad de Buenos Aires (UBA). Doctor en Sociología del Arte y Magíster en Dramaturgia, desarrolla investigaciones en la intersección entre el teatro, la antropología y los procesos de creación. Como autor y director, ha escrito y estrenado más de quince espectáculos teatrales y ha dirigido más de sesenta obras audiovisuales. Actualmente realiza un posdoctorado en la Universidad de São Paulo (USP), donde investiga las nuevas configuraciones del teatro documental y las prácticas contemporáneas de actuación.",
+            "photo": ""
+          },
+          "nextClass": {
+            "dates": "",
+            "schedule": "",
+            "workload": "",
+            "location": "",
+            "statusText": "Em breve"
+          },
+          "investment": {
+            "cash": "",
+            "installments": "",
+            "notes": ""
+          },
+          "registration": {
+            "message": "Olá, Nicholas! Tenho interesse nesta oficina."
+          },
+          "faq": []
+        }
+      },
+      "coordinatorPhoto": "assets/uploads/2026-08-13/2202be2154f9a2ab8d5fd1e3.jpg",
+      "paymentLink": "",
+      "investment": {
+        "cash": "",
+        "installments": "",
+        "notes": ""
+      },
+      "accent": "#76d8e6"
     }
   ]
 };
