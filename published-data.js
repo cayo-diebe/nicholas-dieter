@@ -1,5 +1,5 @@
 window.ND_PUBLISHED_DATA = {
-  "exportedAt": "2026-08-13T03:56:13.363Z",
+  "exportedAt": "2026-08-13T04:14:03.007Z",
   "siteSettings": {
     "homeHeroImage": "assets/nicholas-dieter-nevoa.png",
     "instagramUrl": "https://www.instagram.com/nicholas.dieter/",
@@ -729,7 +729,7 @@ window.ND_PUBLISHED_DATA = {
             "dates": "Começa dia 9 de setembro e vai até 23 de dezembro de 2026",
             "schedule": "Quartas feiras, das 19 às 22h",
             "workload": "12 horas mensais",
-            "location": "Presencial: no Teatro Escola Mario Persico",
+            "location": "Presencial: no Teatro Escola Mario Persico, Sorocaba.",
             "statusText": "Inscrições abertas"
           },
           "investment": {
